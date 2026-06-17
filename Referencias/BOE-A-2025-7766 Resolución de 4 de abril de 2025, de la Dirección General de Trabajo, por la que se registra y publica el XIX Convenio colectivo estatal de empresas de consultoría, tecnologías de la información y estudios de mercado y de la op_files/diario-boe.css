@@ -1,0 +1,259 @@
+@import 'forms.css';
+
+/*---- boe dias ----*/
+div.contenedor-calendario {
+  text-align:center; display:flex; justify-content:space-around; margin-top:2em; flex-direction:column;
+}
+div.contenedor-calendario input.boton, form.selectAnyo .boton {min-width:3em;}
+form.selectAnyo button, form.selectAnyo select, form.selectAnyo label {vertical-align:middle;}
+form.selectAnyo {margin-top:1em;}
+div.menuConsultaDiaria {text-align:center;}
+div.menuConsultaDiaria ul {
+  padding:0; display:flex; flex-direction:row; justify-content:center; flex-wrap:wrap;
+}
+div.menuConsultaDiaria ul li {margin:1em; min-width:8em;}
+div.menuConsultaDiaria ul li a {text-decoration:none; color:#123a63;}
+div.menuConsultaDiaria ul li img {margin:0 auto; display:block;}
+div.consultaDiaria div.enlace > a {background:url(../imagenes/iconPagBoe.gif) no-repeat 0% 50%; display:inline-block; padding:0.25em 0 0 2em; line-height:1.5em; text-decoration:none; color:#123a63;
+}
+div.consultaDiaria div.enlace > a:hover {text-decoration: underline;}
+div.consultaDiaria {display:inline-block; margin-top:1em;}
+div.bloque1 ul.meses li {
+  list-style:outside none none; display:inline-block; vertical-align:middle; font-size:1.25em;
+}
+div#grupo-formularios-boe {text-align:left; max-width:50em; margin:0 auto 2em auto;}
+div#grupo-formularios-boe > div.cajaBuscar01 {margin:2em 0 0 0;}
+div#grupo-formularios-boe input {margin-top:0.25em;}
+div#grupo-formularios-boe input[type='text'] {width:65%;}
+div#grupo-formularios-boe input[type='submit'] {width:30%; float:right; margin-top:0.1em;}
+ul.meses {padding:0; margin-top:2em;}
+li.mesSig img, li.mesAnt img {width:1em; padding:1em;}
+.bloque {display:block;}
+label[for=fechaBOE], label[for=cve] {color:#123a63;}
+.cajaBuscar01 fieldset {border-width:0;}
+.BoeCalen {
+  margin:0 0 1em; border-collapse:collapse; border-spacing:0; box-sizing:border-box;
+  box-shadow: 0 1px 1px 0 rgba(0,0,0,0.28), 0 0 0 0.5px rgba(0,0,0,0.28);
+}
+.BoeCalen thead,.BoeCalen tbody {border:none;}
+.BoeCalen th {
+  font-weight:normal; border-width:0; color:#333; text-align:center; 
+}
+.BoeCalen td, .BoeCalen th {padding:0.7em 1.4em; }
+.BoeCalen td {
+  border-width:1px 0 0 0; border-color:#A0B0C0; border-style:solid; color:#aaa; text-align:right;
+}
+.BoeCalen caption {
+  color:#fff; margin:0em auto; font-size:1em; padding:.5em; border:1px solid #123a63;
+  background-color:#123A63; border-radius:5px 5px 0 0; -moz-border-radius:5px 5px 0 0;
+  -webkit-border-radius:5px 5px 0 0; 
+}
+.BoeCalen .diaFES {color:#d5002d; font-weight:normal;}
+.BoeCalen a:link {color: blue;text-decoration:none; border-bottom:1px solid blue;}
+.BoeCalen a:visited {color: purple; text-decoration:none; border-bottom:0 solid white;}
+.BoeCalen a:hover {text-decoration:none; border-bottom:1px solid violet;}
+.caja-suplementos {text-align:center; margin:3em 0 0 0;}
+.caja-suplementos .lista-cooficiales, .caja-suplementos .lista-cooficiales li, .caja-suplementos .fraseHoriz {display:inline; padding:0}
+.caja-suplementos ul {text-align:left; padding:0; margin:0; display:inline-block;}
+.caja-suplementos ul li {padding-bottom:1em;}
+.caja-suplementos ul li.movil{display:none;}
+
+/*---- boe Calendario ----*/
+div.calendario-anno{text-align:center;}
+
+div.calendario-anno p{
+	padding: 0;
+}
+
+div.calendario-anno p.ayudaBD a,
+div#gazeta p.ayudaBD a {
+	background-image: url('/imagenes/icon_FAQ.png');
+	background: url('/imagenes/icon_FAQ.svg'), none;
+	background-repeat: no-repeat;
+	background-position:left center;
+	background-size: 1.2em 1.2em;
+	padding: 0.15em 0 0.15em 2em;
+	margin-right:4em;
+}
+
+div.calendario-anno p.formSuplementos{
+	padding-bottom: 2em;
+}
+
+div.calendario-anno p.formSuplementos a {
+	background-image: url('/imagenes/buscar.png'),none;
+	background:url(/imagenes/buscar.svg);
+	background-repeat: no-repeat;
+	background-position: left center;
+	background-size: 1.5em;
+	padding: 0.2em 2em;
+}
+
+div.calendarios {display:inline-block; max-width:1050px;}
+div.calendarios div.mes {display:inline-block; vertical-align:top; margin:1em;}
+div.calendarios .BoeCalen td, 
+div.calendarios .BoeCalen th {
+	padding: 0.7em 1.2em;
+}
+
+/*---- boe open data ----*/
+div.contenedorIndexCuadros {margin-bottom:3em;}
+div.contenedorIndexCuadros ul {padding:0;}
+div.contenedorIndexCuadros h2 {text-align:left; margin:0 0 0 0.5em;}
+div.contenedorIndexCuadros h3 {text-align:left; margin:1em 0 1em 0;}
+div.contenedorIndexCuadros p {text-align:left; margin:2.5em 0 0 0;}
+div.contenedorIndexCuadros .tabla{border-collapse:separate; border-spacing:1em;}
+div#indexCuadros {text-align:center;}
+div#indexCuadros div.cajaLargaNoLink {
+  border-color:#537597; padding:.5em 1em 0; min-height:22em;
+  border-width:3px 1px 1px 1px; border-style:solid;
+}
+div#indexCuadros div.fondoBORME {background:url(../imagenes/icono_cuadros_borme.png) no-repeat 98% 5%;}
+div#indexCuadros div.fondoBOE {background:url(../imagenes/icono_cuadros_boe.png) no-repeat 98% 5%;}
+
+/*---- texto y consolidada txt.php y act.php ----*/
+div.redaccion {margin:0 1em; width:auto; display:inline-block; font-size:0.9em;}
+div.redaccion.hueco {height: 3.25em;}
+div.redaccion span.etiqDoc {display:inline-block; color: #123a63; margin:0 0.5em;}
+/*----------------- <cabecera disposiciones> ---------------------- */
+p.documento { margin: 0.2em 2em; }
+p.documento-tit, 
+h3.documento-tit { 
+  font-size:1.3em; font-weight:normal; margin:0; color:#000; padding:1em 1.5em; border-top:none; border-bottom:1px solid #ccc; background-color:#f9f9f9; text-align:justify;
+}
+
+div#barraSep { border:1px solid #ccc; margin: 2em 0 0; padding: 0; }
+div#barraSep > div.metadatosDoc { margin: 0; padding: 1em 0; }
+div#barraSep > div.metadatosDoc div.metadatos {padding:0; margin:0 2em;}
+div#barraSep > div.metadatosDoc > ul > li {list-style-image:none;}
+div#barraSep > div.metadatosDoc > ul.enlaces-doc {
+  display:inline-block; padding-left:0.5em; margin:1em 0 1em 2em; background-color:#f9f9f9;
+}
+ul.enlaces-conso {
+  display:inline-block; padding-left:0.5em; margin:-1em 1em 0 0; background-color:#f9f9f9; float:right; box-sizing:border-box; vertical-align:top;
+}
+div#barraSep > div.metadatosDoc > ul.enlaces-doc.sin-fondo {border:0; background-color:#fff;}
+div#barraSep > div.metadatosDoc > ul.enlaces-doc > li {margin:0 1em; min-width:8.5em; display:inline-block;}
+div#barraSep > div.metadatosDoc > ul.enlaces-doc > li.tit-enlaces {
+  display:block; color:#123a63; font-size:0.9em; line-height:1.4em;
+}
+.enlaces-conso li {margin:0 1em; min-width:5em; display:inline-block;}
+div#barraSep span.enlaces-doc.conso {
+  display:block; text-align:right; margin:0 0 -0.5em 0; padding:0; font-size:0.9em;
+}
+div#barraSep > div.metadatosDoc > ul.enlaces-doc.cooficiales .puntoPDFsup a {
+  background-image: url(../imagenes/puntoPDF_light.png);
+  background:url(../imagenes/puntoPDF_light.svg) no-repeat 0% 50%, none;
+}
+.puntoConso a {padding:8px 0 8px 40px; color:#123a63; text-decoration: none;}
+.puntoConso a, .puntoConso a:visited, .puntoConso a:hover, .puntoConso a:visited:hover {
+  color:#123a64;
+}
+.puntoConso a:hover, .puntoConso a:visited:hover {text-decoration:underline;}
+
+/***** ¡¡¡Movil!!! Para pantallas width width < 670px *****/
+@media (max-width:669px) {
+  h3.documento-tit {padding:1em 0.5em; text-align:left;}
+  div.consultaDiaria div.enlace > a {background:none; padding:0;}
+  div#grupo-formularios-boe > div.cajaBuscar01 {margin:2em 0.5em;}
+  div#grupo-formularios-boe input[type='text'] {width:100%; display:block; margin-bottom:0.5em;}
+  div#grupo-formularios-boe input[type='submit'] {width:30%; float:right; margin-top:0.1em;}
+  div.menuConsultaDiaria ul li {min-width:6em; margin:0.2em;}
+  div.menuConsultaDiaria ul li img {width:40px;}
+  div.poolBdatos, div.poolLibros, div.poolLegis, div.poolAgencia, div.poolAnuncios {padding:0}
+  div#barraSep { border-left:0; border-right:0;}
+  #textoxslt {margin:0 0.5em; text-align:left;}
+  .BoeCalen td, .BoeCalen th {padding:0.3em 0.5em; }
+  div.calendarios div.mes{margin: 0.5em 0 0 0;}
+  div.calendarios .BoeCalen td, 
+  div.calendarios .BoeCalen th {padding:0.3em 0.5em;}
+  li.mesSig img{padding: 0 0 0 1em;}
+  li.mesAnt img{padding: 0 1em 0 0;}
+  div.menuConsultaDiaria ul {text-align:center;}
+  div.bloque1 ul.meses li {font-size:0.8em;}
+  div#ayuda-boe-container > ul {padding:0em 2em;}
+  div#ayuda-boe-container > h2 {padding-left:2em; padding-top:1em;}
+  div.mesAnt {margin-right:10em;}
+  div.caja-suplementos {text-align:left; margin:0 0.5em;}
+  div.caja-suplementos ul{padding:0;}
+  div.caja-suplementos ul p.fraseHoriz {display:block;}
+  div.caja-suplementos ul ul.lista-cooficiales {
+    display:block; text-align:left; padding-left:2em;
+  }
+  div.caja-suplementos ul ul.lista-cooficiales li {
+    padding-left:0.5em; padding-right:0.5em; display:block;
+  }
+  p.documento-tit, h3.documento-tit {font-size:1em;}
+  div#barraSep {margin:2em 0 0 0;}
+  div#barraSep > div.metadatosDoc > ul.metadatos,
+  div#barraSep > div.metadatosDoc > div.metadatos {margin:0 1em; padding-left:0;}
+  div#barraSep > div.metadatosDoc > ul.metadatos > li {display: block;}
+  div#barraSep > div.metadatosDoc > ul.enlaces-doc {
+    margin: 0 1em; padding:0; display:block; border:0; background-color:#fff;
+  }
+  div#barraSep > div.metadatosDoc > ul.enlaces-doc > li {
+    min-width:5.56em; margin:0 0.5em;
+  }
+  div.redaccion {font-size:1em;}
+  div.redaccion span.etiqDoc {margin:0;}
+  div#barraSep ul.enlaces-doc.conso {font-size:1em; text-align:left;}
+  ul.enlaces-conso {display:block; text-align:center; padding-left:0; margin:1em; float:none; background-color:#fff;}
+  div.redaccion.hueco {height: 0;}
+}
+
+/***** ¡¡¡Tablet!!! Para pantallas width 670px < width < 1050px *****/
+@media (min-width:670px) and (max-width:1050px) {
+  .BoeCalen td, .BoeCalen th {padding:0.5em 1em; }
+  div.calendarios .BoeCalen td, 
+  div.calendarios .BoeCalen th {padding:0.5em 1em;}
+  div#ayuda-boe-container > ul {padding:0em 2em;}
+  div#ayuda-boe-container > h2 {padding-left:2em;}
+  div.consultaDiaria {margin-top:0;}
+  div.menuConsultaDiaria ul {margin:0;}
+  .BoeCalen {margin-bottom:0;}
+  ul.enlaces-conso {
+    display:block; margin:0; width:auto; background-color:#ffffff; float:none;
+  }
+  div.redaccion.hueco {height: 0;}
+}
+
+/***** ¡¡¡PC!!! Para pantallas width > 1050px *****/
+@media (min-width:1051px) {
+	
+	div#ayuda-boe-container > ul {
+		padding:0em 2em;
+	}
+	
+	.caja-suplementos {text-align:left;}
+	
+	.caja-suplementos ul {
+		display:block;
+	}
+	
+	div.bloque1{
+		display:inline-block;
+		text-align:center;
+	}
+
+	div.bloque2{
+		display:inline-block;
+		vertical-align:top;
+	}
+	
+	div.contenedor-calendario {
+		flex-direction:row;
+	}
+	
+	div.menuConsultaDiaria ul{
+		flex-direction:column;
+		padding:0;
+		margin:6em 0 0 0;
+	}
+	
+	div.menuConsultaDiaria ul li{
+		text-align:center;
+		margin:2em 0em;
+	}
+	
+	
+}

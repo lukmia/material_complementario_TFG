@@ -1,0 +1,216 @@
+div.poolAgencia #textoxslt p:not(.caja), div.poolBORME #textoxslt p:not(.caja) {padding:0em;}
+#textoxslt p         {margin:0.75em 0;}
+#textoxslt table p   {margin:0;}
+#textoxslt p.cerrado {margin:0;}
+#textoxslt p.normal  {margin:0.75em 0;}
+#textoxslt p.texto   {margin:0.75em 0; text-indent:1.5em; text-align:justify;}
+#textoxslt hr        {border:0; border-bottom: 1px solid #999; background:#666; margin:2em 0;}
+#textoxslt .idioma.inf {margin-top: -26px; }
+#textoxslt .idioma {float: right; color: #666; font-size: 70%;}
+
+/* Estilos para el elemento p */
+#textoxslt p.libro_num, #textoxslt h5.libro_num       {margin:3em 4em 0 4em;        text-align:center; font-weight:normal;}
+#textoxslt p.libro_tit, #textoxslt h5.libro_tit       {margin:0.75em 4em 1em 4em;   text-align:center; font-weight:bold;}
+#textoxslt p.libro, #textoxslt h5.libro               {margin:3em 4em 1em 4em;      text-align:center; font-weight:normal;}
+#textoxslt p.titulo_num, #textoxslt h5.titulo_num     {margin:2.5em 4em 0 4em;      text-align:center; font-weight:normal;}
+#textoxslt p.titulo_tit, #textoxslt h5.titulo_tit     {margin:0.75em 4em 1em 4em;   text-align:center; font-weight:bold;}
+#textoxslt p.titulo, #textoxslt h5.titulo             {margin:2.5em 4em 1em 4em;    text-align:center; font-weight:normal;}
+#textoxslt p.capitulo_num, #textoxslt h5.capitulo_num {margin:2em 4em 0 4em;        text-align:center; font-weight:normal;}
+#textoxslt p.capitulo_tit, #textoxslt h5.capitulo_tit {margin:0.75em 4em 1em 4em;   text-align:center; font-weight:bold;}
+#textoxslt p.capitulo, #textoxslt h5.capitulo         {margin:2em 4em 1em 4em;      text-align:center; font-weight:normal;}
+#textoxslt p.anexo_num, #textoxslt h5.anexo_num       {margin:3em 4em 0 4em;        text-align:center; font-weight:bold;}
+#textoxslt p.anexo_tit, #textoxslt h5.anexo_tit       {margin:0.75em 4em 1.5em 4em; text-align:center; font-weight:bold;}
+#textoxslt p.anexo, #textoxslt h5.anexo               {margin: 3em 4em 1em 4em;     text-align:center; font-weight:bold;}
+#textoxslt p.seccion, #textoxslt h5.seccion           {margin:2em 4em 1em 4em;      text-align:center; font-weight:normal; font-style: italic;}
+#textoxslt p.subseccion, #textoxslt h5.subseccion     {margin:2em 4em 1em 4em;      text-align:center; font-weight:normal;}
+#textoxslt p.articulo, #textoxslt h5.articulo         {margin:1.5em 0 0.75em 0;     font-weight:bold;}
+#textoxslt p.parrafo           {margin:0.75em 0;            text-indent:1.5em;  text-align:justify;}
+#textoxslt p.parrafo_2         {margin:1.5em 0 0.75em 0;    text-indent:1.5em;  text-align:justify;}
+#textoxslt p.sin_sangre        {margin:0.75em 0; text-align:justify; }
+#textoxslt p.sin_sangre_2      {margin:1.5em 0 0.75em 0; text-align:justify; }
+#textoxslt p.francesa          {margin:0.75em 0 0.75em 3em; text-indent:-1.5em; text-align:justify;} /*Se utiliza en teju*/
+#textoxslt p.centro_redonda, #textoxslt p.centro    {margin:1.25em 0 1em 0;      text-align:center;  font-style:normal; font-weight:normal;}
+#textoxslt p.centro_cursiva    {margin:1.25em 0 1em 0;      text-align:center;  font-style:italic; font-weight:normal;}
+#textoxslt p.centro_negrita    {margin:1.25em 0 1em 0;      text-align:center;  font-style:normal; font-weight:bold;}
+#textoxslt p.sangrado          {margin:0.75em 0 0.75em 4em; text-align:justify; text-indent:1.5em;}
+#textoxslt p.sangrado_2        {margin:1.5em 0 0.75em 4em;  text-align:justify; text-indent:1.5em;}
+#textoxslt p.sangrado_articulo {margin:1.5em 0 0.75em 4em;  font-weight:bold;}
+#textoxslt blockquote.sangrado {margin:0 0 0 4em;}
+#textoxslt p.tabla             {margin:0;}
+#textoxslt p.firma_ministro    {margin:0; text-align:center;}
+#textoxslt p.firma_ministro + p.firma_ministro {margin-bottom:1em;}
+#textoxslt p.firma_ministro + p.firma_ministro + p.firma_ministro {margin-bottom:0;}
+#textoxslt p.firma_rey         {margin:1.5em 0 2em 0; text-align:right;}
+#textoxslt p.cita              {margin:0.25em 0 0 0; font-size:85%; font-style:normal ! important; }
+#textoxslt p.cita_con_pleca    {margin:0; padding: 0.25em 0 0 0; font-size:85%; border-top:1px dotted #bbb; font-style:normal;}
+#textoxslt p.publicado         {margin:1.5em 0 0.75em 0; text-align:center; font-style:italic;}
+#textoxslt p.imagen, #textoxslt p.imagen_girada {margin:2em 0; text-align:center;}
+#textoxslt p.imagen2           {margin:0.5em 0; text-align:center;}
+#textoxslt p.imagen3           {margin:0.5em 0; text-align:right;}
+#textoxslt p.imagen2  img      {border:none;}
+#textoxslt p.imagen3  img      {border:none;}
+#textoxslt .parrafo[data-sangria="1"], #textoxslt .parrafo_2[data-sangria="1"] {margin-left:1.5em; text-indent:0;}
+#textoxslt .parrafo[data-sangria="2"], #textoxslt .parrafo_2[data-sangria="2"] {margin-left:3em; text-indent:0;}
+#textoxslt .parrafo[data-sangria="3"], #textoxslt .parrafo_2[data-sangria="3"] {margin-left:4.5em; text-indent:0;}
+#textoxslt .parrafo[data-sangria="4"], #textoxslt .parrafo_2[data-sangria="4"] {margin-left:6em; text-indent:0;}
+#textoxslt .parrafo[data-sangria="5"], #textoxslt .parrafo_2[data-sangria="5"] {margin-left:7.5em; text-indent:0;}
+#textoxslt .parrafo[data-sangria="6"], #textoxslt .parrafo_2[data-sangria="6"] {margin-left:9em; text-indent:0;}
+#textoxslt table               {margin:2em auto; background-color:transparent;}
+#textoxslt table.tabla         {margin:2em auto;}
+#textoxslt table.top td        {vertical-align:top;}
+#textoxslt table.tabla_ancha, #textoxslt table.tabla_girada, #textoxslt table.tabla_girada_condensada {
+  margin:2em auto 2em 50%; -moz-transform:translateX(-50%);
+  -ms-transform:translateX(-50%); transform:translateX(-50%);
+  -webkit-transform:translateX(-50%); -o-transform:translateX(-50%);
+  font-family:"Arial Narrow", "Helvetica Narrow", sans-serif;
+  color:black;  min-width:100%;
+}
+#textoxslt table.tabla_ancha caption, #textoxslt table.tabla_girada caption, #textoxslt table.tabla_girada_condensada caption {
+  font-family:verdana, arial, sans-serif;
+}
+#textoxslt table.sinbordes {margin:1em auto; border:0;}
+#textoxslt table.sinbordes td, #textoxslt table.sinbordes th {padding:0.5em; border:0; vertical-align:top;}
+#textoxslt table.sinbordes table:not(.sinbordes) td, #textoxslt table.sinbordes table:not(.sinbordes) th {border:1px solid #A0B0C0;}
+#textoxslt th p.cabeza_tabla, #textoxslt td p.cabeza_tabla, #textoxslt thead td, #textoxslt th, #textoxslt th.cabeza_tabla, #textoxslt td.cabeza_tabla  { margin: 0; text-align: center; font-weight: bold; }
+#textoxslt td p.cuerpo_tabla_izq, #textoxslt td.cuerpo_tabla_izq, #textoxslt td.cuerpo_tabla_izq p:not([class]){text-align:left;}
+#textoxslt td p.cuerpo_tabla_centro, #textoxslt td.cuerpo_tabla_centro, #textoxslt td.cuerpo_tabla_centro p:not([class]) {text-align:center;}
+#textoxslt td p.cuerpo_tabla_der, #textoxslt td.cuerpo_tabla_der, #textoxslt td.cuerpo_tabla_der p:not([class]) {text-align:right;}  
+#textoxslt td p.cuerpo_tabla_coma, #textoxslt td.cuerpo_tabla_coma, #textoxslt td.cuerpo_tabla_coma p:not([class]) {text-align:center; text-align:"," center;}
+#textoxslt td, #textoxslt th {font-size:90%;margin:0;}
+#textoxslt td p, #textoxslt th p {margin:0;} 
+
+#textoxslt p.seccion em, #textoxslt p.centro_cursiva em {font-style: normal;}
+
+/* Estilos antiguos */
+#textoxslt th p.t_cabeza_tabla        {margin:0; text-align:center; font-weight:bold;}
+#textoxslt td p.t_cabeza_tabla        {margin:0; text-align:center; font-weight:bold;}
+#textoxslt td p.t_cuerpo_tabla_normal {margin:0; text-align:left;}
+#textoxslt p.citas                    {margin:0; font-size: 85%;}
+
+/* Se conserva por razones históricas */
+#textoxslt td p.t_celda_d             {margin:0; text-align:right;}
+
+/*Sombreado de celdas */
+#textoxslt td.sombra {background-color: #EFE7DE;} 
+
+/* Valores en los que se convierte el estilo 't_cuerpo_tabla_normal' */
+#textoxslt td p.t_celda_dcha {margin:0; text-align:right; font-size:90%;}
+#textoxslt td p.t_celda_izda {margin:0; text-align:left; font-size:90%;}
+#textoxslt td p.t_celda_cent {margin:0; text-align:center; font-size:90%;}
+
+/* Los tres primeros estan importados de eboe.css */
+#textoxslt dl dd dl dt {padding-right:0.5em; font-weight:bold}
+#textoxslt dl dt       {clear:both; color:#000;}
+#textoxslt dt          {font-weight:bold;}
+#textoxslt dl dd       {margin:0.3em 3em; display:block;}
+
+#textoxslt blockquote {margin-right:0;}
+#textoxslt table       { margin: 1em auto; }
+#textoxslt p           {
+  margin:0; text-align:justify; 
+  white-space:-moz-pre-wrap; /* Mozilla, since 1999 */
+  white-space:-pre-wrap; /* Opera 4-6 */
+  white-space:-o-pre-wrap; /* Opera 7 */
+  word-wrap:break-word; /* Internet Explorer 5.5+ */
+}
+#textoxslt p.normal    {margin:0.75em 0; text-indent:1.5em; text-align:justify;}
+#textoxslt img.imagen2 {margin:0.15em; border:none;}
+#textoxslt img {margin:0.25em; border:1px solid #bbb; padding:1em; max-width:calc(960px - 2em);}
+#textoxslt p.imagen_girada img {
+    -ms-transform: rotate(90deg); /* IE 9 */
+    -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
+     transform: rotate(90deg); 
+     margin: -8em 0;
+}
+#textoxslt img.inline, #textoxslt p.parrafo img, #textoxslt p.parrafo_2 img  {margin:0; padding:0; border:none; vertical-align:middle;}
+#textoxslt pre {
+  margin: 0.75em 0; border:1px solid #a0b0c0; padding:1em; font-size:100%; font-family:monospace;
+  word-wrap:break-word;      /* IE 5.5-7 */
+  white-space:-moz-pre-wrap; /* Firefox 1.0-2.0 */
+  white-space:pre-wrap;      /* current browsers */
+}
+
+.fondo_rojo     {background-color: #FF6600;}
+.fondo_verde    {background-color: #99CC00;}
+.fondo_amarillo {background-color: #FFFF66;}
+.fondo_oscuro   {background-color: #D6D6D6;}
+
+/*.analisisDoc ul.bullet-boe li {display:block;}*/
+.analisisDoc ul.bullet-boe li ul li {list-style: none; background-image:none;}
+.analisisDoc ul li ul li::before {
+  content:"\2022"; color:#123a63; display:inline-block; width:1em; margin-left:-1em;
+}
+.analisisDoc h6 { padding:0 2.5em; margin:0.5em 0;}
+
+/*  ----------------- Trasladado por Ramón desde eboe.css---------------------- */
+#DOdocText h4, .analisisDoc h4 {text-align:center; font-size:1.5em; padding-top:0em; padding-bottom:0; margin-top:1em; color:#123a63;}
+#DOdocText h4  {margin-bottom:0;}
+#DOdocText h4 + #textoxslt  { margin-top: 1.4em;}
+#DOdocText .notaH { margin:.1em 0 3em; color: #123a63; font-size: .85em; text-align: center; }
+#DOdocText h5 {text-align:left; font-size:1.1em; margin-left:2em}
+.analisisDoc h4+h5 {border-top:none;}
+.analisisDoc h5 {padding: 0; margin-top: 2em; border-top: 1px solid #ccc; font-weight: normal; }
+.analisisDoc form {padding: 1em 0;}
+.disclaimer {font-style:italic; margin-top:3em;}
+#textoxslt blockquote.recuadro {margin:1.5em 2em; padding:1em 1.5em; border:1px solid #000000; background:#ffffff; font-size:100%; border-radius:0;}
+#textoxslt {border-bottom:0 solid #123a63;margin:0 0 2em}
+.tit-doc:first-line {font-weight:bold;}
+.datos-doc {margin:0;padding: 0.4em 2em;}
+.enlacesDoc {margin:0.5em 0}
+.enlacesDoc ul li {padding:0 0em 0 0;}
+ul.grupoTiff li {display:inline}
+div.pagTiff {float: left;}
+div#barraSep .cajaInfo {border-width:1px 0 0;}
+.derogada {margin:0; padding:0; text-align:center; color:#912600; font-size:1.1em;}
+
+/*---------- ver imagen en los txt ------------*/
+p.avisoVerImagen, p.avisoHTML {
+  border-width: 2px;
+  border-style: dashed;
+  border-color: black;
+  padding: 1em 2em 1em 4.5em;
+  margin: .8em 6.5em !important;
+  text-align: left !important;
+  font-size: .9em;
+  font-weight: bold;
+  font-style: italic;
+  color: #333;
+  border: 1px solid #aaa;
+  background-color: #f8f8f8;
+}
+
+.dentro {text-align:center; margin:1.5em 0 0 0;}
+
+/***** ¡¡¡Movil!!! Para pantallas width width < 670px *****/
+@media (max-width:669px) {
+  div#barraSep { border-left:0; border-right:0;}
+  #textoxslt, .analisisDoc {margin:0 0.5em;}
+  #textoxslt p.texto, #textoxslt p.parrafo, #textoxslt p.parrafo_2,
+  #textoxslt p.sangrado, #textoxslt p.sangrado_2, #textoxslt p {text-align:left; margin: 1.5em 0 0.75em 1.5em;}
+  #textoxslt blockquote.sangrado { margin: 0 0 0 1.5em;}
+  #textoxslt p.parrafo, #textoxslt p.parrafo_2 {text-indent:0;}
+  .analisisDoc ul {padding:0;}
+  #textoxslt dl dd {margin:0.3em 0; display:block;}
+  form.criterio label {display:block; margin-top:0.5em;}
+  #textoxslt p.libro, #textoxslt h5.libro,
+  #textoxslt p.titulo_num, #textoxslt h5.titulo_num,
+  #textoxslt p.titulo_tit, #textoxslt h5.titulo_tit,
+  #textoxslt p.titulo, #textoxslt h5.titulo,
+  #textoxslt p.capitulo_num, #textoxslt h5.capitulo_num,
+  #textoxslt p.capitulo_tit, #textoxslt h5.capitulo_tit,
+  #textoxslt p.capitulo, #textoxslt h5.capitulo,
+  #textoxslt p.seccion, #textoxslt h5.seccion,
+  #textoxslt p.subseccion, #textoxslt h5.subseccion,
+  #textoxslt p.anexo_num, #textoxslt h5.anexo_num,
+  #textoxslt p.anexo_tit, #textoxslt h5.anexo_tit,
+  #textoxslt p.anexo, #textoxslt h5.anexo {margin-left:1em; margin-right:1em;}
+}
+
+/***** para que no se salgan las imagenes *****/
+@media (max-width:960px) {
+  #textoxslt img {max-width:calc(100vw - 3em); margin-left:0; margin-right:0; padding:0.5em;}
+}
+
+@media print{
+  p[data-page-before="always"] {page-break-before: always;}
+}
