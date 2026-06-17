@@ -1,0 +1,4060 @@
+<!DOCTYPE html>
+<html class="v2 detail-page" dir="ltr" itemscope="" itemtype="http://schema.org/Blog" lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:b="http://www.google.com/2005/gml/b" xmlns:data="http://www.google.com/2005/gml/data" xmlns:expr="http://www.google.com/2005/gml/expr" xmlns:og="http://ogp.me/ns#"><head>
+<link href="Android%20Developers%20Blog_%20Android%2014%20is%20live%20in%20AOSP_files/2872013778-css_bundle_v2.css" rel="stylesheet" type="text/css">
+<!-- Google Tag Manager -->
+<script type="text/javascript" async="" src="Android%20Developers%20Blog_%20Android%2014%20is%20live%20in%20AOSP_files/js"></script><script async="" src="Android%20Developers%20Blog_%20Android%2014%20is%20live%20in%20AOSP_files/analytics.js"></script><script async="" src="Android%20Developers%20Blog_%20Android%2014%20is%20live%20in%20AOSP_files/analytics.js"></script><script src="Android%20Developers%20Blog_%20Android%2014%20is%20live%20in%20AOSP_files/cb=gapi.es" async=""></script><script async="" src="Android%20Developers%20Blog_%20Android%2014%20is%20live%20in%20AOSP_files/gtm.js"></script><script>
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-TB2PQP2');
+    </script>
+<!-- End Google Tag Manager -->
+<title>Android Developers Blog: Android 14 is live in AOSP</title>
+<meta content="width=device-width, height=device-height, minimum-scale=1.0, initial-scale=1.0, user-scalable=0" name="viewport">
+<meta content="IE=Edge" http-equiv="X-UA-Compatible">
+<meta content="Fdm6m1f7LG-QAyDu0qnE_r6lNk42A1CWFBPRD6Y4WuM" name="google-site-verification">
+<meta content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg9MZ26MCfyE5k66dnDkFBh6W9Uax1IrHwbK4Wz8WjArRsDHp9b4K9B2CreON5xt6KwWrpTERxmLXIj0WY70QXml0mcXfxUrWL6CYcJiFuYln3m5S6h2_jkpDd5gU1oJ67pttXIjF-ZalsystKsTx8SVIlC1rms-aaHy5sSfVohHta63_WjPCGUUuT3/s1600/Android_Android14DPI_1024x512.png" property="og:image">
+<meta content="article" property="og:type">
+<meta content="Android 14 is live in AOSP" property="og:title">
+<meta content="Android 14 is rolling out to select Pixel devices starting today, and will be available later this year on some of your favorite devices." property="og:description">
+<meta content="en_US" property="og:locale">
+<meta content="https://android-developers.googleblog.com/2023/10/android-14-is-live-in-aosp.html" property="og:url">
+<meta content="Android Developers Blog" property="og:site_name">
+<link href="Android%20Developers%20Blog_%20Android%2014%20is%20live%20in%20AOSP_files/css.css" rel="stylesheet" type="text/css">
+<link href="Android%20Developers%20Blog_%20Android%2014%20is%20live%20in%20AOSP_files/icon.css" rel="stylesheet">
+<link href="Android%20Developers%20Blog_%20Android%2014%20is%20live%20in%20AOSP_files/app.css" rel="stylesheet">
+<script src="Android%20Developers%20Blog_%20Android%2014%20is%20live%20in%20AOSP_files/jquery.min.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="Android%20Developers%20Blog_%20Android%2014%20is%20live%20in%20AOSP_files/prettify.css">
+<script src="Android%20Developers%20Blog_%20Android%2014%20is%20live%20in%20AOSP_files/autotrack.js" type="text/javascript"></script>
+<script src="Android%20Developers%20Blog_%20Android%2014%20is%20live%20in%20AOSP_files/plusone.js" type="text/javascript" gapi_processed="true"></script>
+<script type="text/javascript">
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-961555-37', 'auto');
+      ga('send', 'pageview');
+    </script>
+<!-- End -->
+<style id="page-skin-1" type="text/css"><!--
+body {
+font-family: Roboto, sans-serif;
+font-weight: 400;
+font-size: 16px;
+line-height: 28px;
+-webkit-font-smoothing: antialiased;
+color: #202124
+}
+h1 {
+font-family: Google Sans, Noto Sans, Android Euclid, Roboto, sans-serif;
+font-size: 44px;
+font-weight: 500;
+line-height: 61.6px
+}
+h2 {
+font-size: 30px;
+line-height: 40px
+}
+h2,
+h3 {
+font-family: Google Sans, Noto Sans, Android Euclid, Roboto, sans-serif;
+font-weight: 500
+}
+h3 {
+font-size: 24px;
+line-height: 32px
+}
+h4 {
+font-family: Google Sans, Noto Sans, Android Euclid, Roboto, sans-serif;
+font-size: 20px;
+font-weight: 500;
+line-height: 26px
+}
+h5 {
+font-size: 16px;
+line-height: 24px
+}
+h5,
+h6 {
+font-family: Roboto, sans-serif;
+font-weight: 600
+}
+h6 {
+font-size: 14px;
+line-height: 22px
+}
+.display {
+font-family: Roboto, sans-serif;
+font-size: 48px;
+font-weight: 600;
+line-height: 67.2px
+}
+.hidden-text {
+height: 1px;
+overflow: hidden;
+pointer-events: none;
+position: absolute;
+top: -10px;
+width: 1px
+}
+img,
+video {
+border: 0;
+height: auto;
+max-width: 100%;
+}
+.featured__image img,
+.adb-card__image-wrapper img {
+width: 100%;
+}
+body {
+position: relative;
+min-height: 100vh
+}
+body.no-scroll {
+overflow: hidden
+}
+a {
+color: #4184f3;
+text-decoration: none
+}
+a:focus,
+a:focus-visible {
+outline-offset: -2px
+}
+.content-wrap {
+padding-top: 200px;
+max-width: 800px;
+margin: auto;
+display: -webkit-box;
+display: -webkit-flex;
+display: -ms-flexbox;
+display: flex;
+-webkit-box-orient: vertical;
+-webkit-box-direction: normal;
+-webkit-flex-direction: column;
+-ms-flex-direction: column;
+flex-direction: column;
+-webkit-box-align: center;
+-webkit-align-items: center;
+-ms-flex-align: center;
+align-items: center
+}
+@media only screen and (max-width:915px) {
+.content-wrap {
+padding-top: 100px
+}
+}
+.full-width {
+width: 100%
+}
+.icon-link {
+height: 42px;
+width: 132px;
+border-radius: 80px;
+display: -webkit-inline-box;
+display: -webkit-inline-flex;
+display: -ms-inline-flexbox;
+display: inline-flex;
+-webkit-box-pack: center;
+-webkit-justify-content: baseline;
+-ms-flex-pack: center;
+justify-content: baseline;
+-webkit-box-align: center;
+-webkit-align-items: center;
+-ms-flex-align: center;
+align-items: center;
+-webkit-transition: background-color .2s linear;
+transition: background-color .2s linear;
+background: transparent;
+border: none;
+color: black !important
+}
+.icon-link:hover {
+background-color: hsla(213, 7%, 76%, .2)
+}
+.icon-link:focus {
+background-color: hsla(213, 7%, 76%, .26)
+}
+.icon-link:active {
+background-color: hsla(213, 7%, 76%, .32)
+}
+.adb-container {
+margin: 40px auto;
+padding: 0 40px;
+position: relative;
+width: auto;
+max-width: 1420px
+}
+@media only screen and (max-width:767px) {
+.adb-container {
+margin: 24px auto;
+padding: 0 20px
+}
+}
+.adb-container--large {
+margin: 40px auto;
+padding: 0 40px;
+position: relative;
+width: auto
+}
+@media only screen and (max-width:767px) {
+.adb-container--large {
+margin: 24px auto;
+padding: 0 20px
+}
+}
+.adb-container--flex-horizontal {
+display: -webkit-box;
+display: -webkit-flex;
+display: -ms-flexbox;
+display: flex
+}
+.section,
+body {
+margin: 0
+}
+.adb-card {
+position: relative;
+background: #fff;
+-webkit-box-sizing: border-box;
+box-sizing: border-box;
+border-radius: 8px;
+margin: 40px 0;
+padding: 20px;
+overflow: hidden;
+-webkit-backface-visibility: hidden;
+backface-visibility: hidden;
+-webkit-transform: translateZ(0);
+transform: translateZ(0);
+-webkit-transition: opacity .2s linear, -webkit-box-shadow .2s linear;
+transition: opacity .2s linear, -webkit-box-shadow .2s linear;
+transition: box-shadow .2s linear, opacity .2s linear;
+transition: box-shadow .2s linear, opacity .2s linear, -webkit-box-shadow .2s linear
+}
+.divider {
+border: none;
+height: 1px;
+color: #DADCE0;
+background-color: #DADCE0;
+margin: 0 20px;
+}
+.adb-card:first-child {
+background-color: #d7effe;
+border: none;
+padding: 32px 24px 32px;
+margin: 40px 20px 60px;
+}
+@media only screen and (max-width:850px) {
+.adb-card {
+max-height: unset;
+padding: 0 20px
+}
+.adb-card:first-child {
+margin-bottom: 40px;
+}
+}
+@media only screen and (max-width:600px) {
+.adb-card:first-child {
+margin: 0 -20px 40px;
+}
+.adb-card {
+border-radius: 0;
+padding: 0;
+}
+.divider {
+margin: 0;
+}
+.content-wrap {
+padding-top: 54px;
+}
+}
+.adb-card:focus-within,
+.adb-card:hover {
+-webkit-box-shadow: 0 0 36px rgba(0, 0, 0, .1);
+box-shadow: 0 0 36px rgba(0, 0, 0, .1);
+cursor: pointer
+}
+.adb-card__href {
+height: 100%;
+left: 0;
+opacity: 0;
+position: absolute;
+top: 0;
+width: 100%;
+z-index: 2
+}
+.adb-card__image-wrapper {
+overflow: hidden;
+position: relative;
+width: auto;
+-webkit-flex-basis: 40%;
+-ms-flex-preferred-size: 40%;
+flex-basis: 40%;
+display: -webkit-box;
+display: -webkit-flex;
+display: -ms-flexbox;
+display: flex;
+-webkit-box-align: center;
+-webkit-align-items: center;
+-ms-flex-align: center;
+align-items: center;
+-webkit-box-pack: center;
+-webkit-justify-content: center;
+-ms-flex-pack: center;
+justify-content: center
+}
+.adb-card__content {
+padding: 24px 0 0
+}
+.adb-card__title {
+font-family: Google Sans, Noto Sans, Android Euclid, Roboto, sans-serif;
+font-size: 32px;
+line-height: 40px;
+font-weight: 600;
+margin-bottom: 12px
+}
+.adb-card__info {
+font-weight: 400;
+font-size: 16px;
+line-height: 24px;
+margin-bottom: 24px
+}
+.adb-card__description {
+font-weight: 500;
+font-size: 14px;
+line-height: 20px;
+margin-bottom: 48px
+}
+.adb-card:hover .adb-content__image-wrapper img,
+.adb-card__href:focus~.adb-content__image-wrapper img {
+-webkit-transform: scale(1.03);
+transform: scale(1.03);
+-webkit-transition: -webkit-transform 1s ease;
+transition: -webkit-transform 1s ease;
+transition: transform 1s ease;
+transition: transform 1s ease, -webkit-transform 1s ease
+}
+.devsite-footer {
+padding: 0 24px;
+border-top: 1px solid #bdc1c6
+}
+.devsite-footer li {
+display: block
+}
+.devsite-footer li a {
+text-decoration: none;
+font-size: 14px;
+line-height: 16px;
+color: #202124
+}
+.devsite-footer li a:focus,
+.devsite-footer li a:hover {
+color: #1a73e8;
+outline: none
+}
+.devsite-footer-linkboxes-list {
+display: grid;
+grid-gap: 24px;
+grid-template-columns: 1fr 1fr 1fr;
+margin: 0;
+padding: 24px 0;
+border-bottom: 1px solid #bdc1c6
+}
+@media only screen and (max-width:767px) {
+.devsite-footer-linkboxes-list {
+grid-template-columns: 1fr;
+padding-left: 0
+}
+}
+.devsite-footer-linkbox {
+display: block
+}
+.devsite-footer-linkbox-heading {
+font-size: 16px;
+line-height: 26px;
+font-weight: 400;
+margin: 0 0 4px
+}
+.devsite-footer-linkbox ul {
+padding-left: 0
+}
+.devsite-footer-sites-list {
+-webkit-box-align: center;
+-webkit-align-items: center;
+-ms-flex-align: center;
+align-items: center
+}
+@media only screen and (max-width:767px) {
+.devsite-footer-sites-list {
+-webkit-box-orient: vertical;
+-webkit-box-direction: normal;
+-webkit-flex-direction: column;
+-ms-flex-direction: column;
+flex-direction: column;
+-webkit-box-align: start;
+-webkit-align-items: flex-start;
+-ms-flex-align: start;
+align-items: flex-start
+}
+}
+.devsite-footer-utility nav {
+display: -webkit-box;
+display: -webkit-flex;
+display: -ms-flexbox;
+display: flex;
+-webkit-box-align: center;
+-webkit-align-items: center;
+-ms-flex-align: center;
+align-items: center
+}
+@media only screen and (max-width:767px) {
+.devsite-footer-utility nav {
+-webkit-box-orient: vertical;
+-webkit-box-direction: normal;
+-webkit-flex-direction: column;
+-ms-flex-direction: column;
+flex-direction: column;
+-webkit-box-align: start;
+-webkit-align-items: flex-start;
+-ms-flex-align: start;
+align-items: flex-start
+}
+}
+.devsite-footer-utility-list {
+display: -webkit-box;
+display: -webkit-flex;
+display: -ms-flexbox;
+display: flex;
+-webkit-box-align: center;
+-webkit-align-items: center;
+-ms-flex-align: center;
+align-items: center;
+-webkit-box-pack: justify;
+-webkit-justify-content: space-between;
+-ms-flex-pack: justify;
+justify-content: space-between;
+-webkit-box-flex: 1;
+-webkit-flex: 1;
+-ms-flex: 1;
+flex: 1;
+padding: 24px 0
+}
+@media only screen and (max-width:767px) {
+.devsite-footer-utility-list {
+-webkit-box-orient: vertical;
+-webkit-box-direction: normal;
+-webkit-flex-direction: column;
+-ms-flex-direction: column;
+flex-direction: column;
+-webkit-box-align: start;
+-webkit-align-items: flex-start;
+-ms-flex-align: start;
+align-items: flex-start;
+padding: 0
+}
+}
+.devsite-footer-utility-button {
+justify-self: flex-end;
+-webkit-box-align: center;
+-webkit-align-items: center;
+-ms-flex-align: center;
+align-items: center;
+line-height: 20px;
+margin-left: auto;
+padding-left: 16px
+}
+.devsite-footer-utility-item {
+display: -webkit-box;
+display: -webkit-flex;
+display: -ms-flexbox;
+display: flex;
+margin: 0 8px 0 0
+}
+.devsite-footer-utility-item:last-child {
+margin-right: 0
+}
+@media only screen and (min-width:768px) {
+.devsite-footer-utility-item:not(:first-child):before {
+content: "|";
+margin: 0 8px 0 0
+}
+}
+.devsite-footer-sites {
+border-bottom: 1px solid #bdc1c6;
+padding: 24px 0 23px
+}
+.devsite-footer-sites-logo {
+height: 32px;
+margin-top: 5px;
+width: 185px
+}
+.devsite-footer-sites-list {
+display: -webkit-box;
+display: -webkit-flex;
+display: -ms-flexbox;
+display: flex;
+list-style: none;
+padding: 0
+}
+.devsite-footer-sites-item {
+margin: 0 0 0 40px
+}
+@media only screen and (max-width:767px) {
+.devsite-footer-sites-item {
+margin: 0
+}
+}
+.devsite-footer-sites-link {
+display: block;
+padding: 8px 0;
+color: #202124
+}
+.devsite-footer-sites-link:focus,
+.devsite-footer-sites-link:hover {
+color: #1a73e8;
+outline: none
+}
+.devsite-footer-utility-link:focus {
+text-decoration: underline
+}
+.devsite-footer-utility .devsite-footer-utility-button {
+line-height: 20px;
+font: 400 14px/16px Roboto, sans-serif
+}
+.devsite-footer-utility .devsite-footer-utility-button:before {
+content: "";
+margin: 0
+}
+@media only screen and (max-width:767px) {
+.devsite-footer-utility .devsite-footer-utility-button {
+display: -webkit-box;
+display: -webkit-flex;
+display: -ms-flexbox;
+display: flex;
+-webkit-box-orient: horizontal;
+-webkit-box-direction: normal;
+-webkit-flex-direction: row;
+-ms-flex-direction: row;
+flex-direction: row;
+-webkit-box-pack: justify;
+-webkit-justify-content: space-between;
+-ms-flex-pack: justify;
+justify-content: space-between;
+padding: 0;
+margin: 18px 0 12px
+}
+}
+.devsite-footer-utility .devsite-footer-utility-button .devsite-footer-utility-link {
+border: 0;
+background: #1a73e8;
+color: #fff;
+line-height: 36px;
+-webkit-flex-shrink: 0;
+-ms-flex-negative: 0;
+flex-shrink: 0;
+margin: 0 0 0 16px;
+border-radius: 2px;
+-webkit-box-shadow: 0 1px 2px 0;
+box-shadow: 0 1px 2px 0;
+display: inline-block;
+font: 500 14px/36px Roboto, sans-serif;
+height: 36px;
+letter-spacing: 0;
+min-width: 36px;
+padding: 0 24px;
+text-align: center;
+-webkit-transition: background-color .2s, border .2s, -webkit-box-shadow .2s;
+transition: background-color .2s, border .2s, -webkit-box-shadow .2s;
+transition: background-color .2s, border .2s, box-shadow .2s;
+transition: background-color .2s, border .2s, box-shadow .2s, -webkit-box-shadow .2s;
+vertical-align: middle;
+white-space: nowrap
+}
+.devsite-footer-utility .devsite-footer-utility-button .devsite-footer-utility-link:hover {
+background: #1765cc
+}
+.adb-page__title {
+font-family: Google Sans, Noto Sans, Android Euclid, Roboto, sans-serif;
+font-size: 44px;
+font-weight: 500;
+line-height: 61.6px;
+text-align: center;
+color: #202124
+}
+.adb-detail hr {
+border: 1px solid #dadce0;
+margin: 40px 0
+}
+.adb-detail__title {
+font-size: 40px;
+font-weight: 600;
+line-height: 48px
+}
+.adb-detail__info {
+font-weight: 400;
+font-size: 16px;
+line-height: 24px
+}
+.adb-detail__content {
+min-height: 200px
+}
+.icon-sidebar {
+position: absolute;
+display: -webkit-box;
+display: -webkit-flex;
+display: -ms-flexbox;
+display: flex;
+-webkit-box-orient: vertical;
+-webkit-box-direction: normal;
+-webkit-flex-direction: column;
+-ms-flex-direction: column;
+flex-direction: column;
+-webkit-box-pack: start;
+-webkit-justify-content: flex-start;
+-ms-flex-pack: start;
+justify-content: flex-start;
+top: 0;
+left: -300px;
+max-width: 220px;
+gap: 8px
+}
+.icon-sidebar .share-text {
+font-weight: 500;
+margin-left: 4px
+}
+@media only screen and (max-width:1440px) {
+.icon-sidebar {
+position: relative;
+-webkit-flex-direction: row;
+-ms-flex-direction: row;
+flex-direction: row;
+left: 0;
+margin-top: -20px;
+margin-bottom: 40px;
+}
+.icon-sidebar .share-text {
+display: none;
+}
+}
+.copy-tooltip {
+display: none;
+position: fixed;
+bottom: 16px;
+left: 10px;
+z-index: 100;
+opacity: 0;
+-webkit-transition: opacity 0.3s;
+transition: opacity 0.3s;
+}
+.copy-tooltip .copy-tooltiptext {
+width: 200px;
+background-color: #202124;
+color: #fff;
+text-align: center;
+border-radius: 80px;
+padding: 8px 16px;
+}
+.header__overlay {
+height: 100vh;
+left: 0;
+position: fixed;
+width: 100vw;
+border: none;
+background-color: rgba(0, 0, 0, .4);
+-webkit-animation: fade-in .4s cubic-bezier(.39, .575, .565, 1);
+animation: fade-in .4s cubic-bezier(.39, .575, .565, 1);
+opacity: 0;
+top: 0;
+z-index: -1;
+display: none
+}
+.header__overlay.show {
+display: block;
+opacity: 1;
+z-index: 800;
+-webkit-transition: opacity .2s ease-in-out;
+transition: opacity .2s ease-in-out
+}
+.social-icons__links {
+height: 100%;
+display: -webkit-box;
+display: -webkit-flex;
+display: -ms-flexbox;
+display: flex;
+-webkit-box-align: center;
+-webkit-align-items: center;
+-ms-flex-align: center;
+align-items: center;
+gap: 24px
+}
+.social-icons__links path {
+fill: #80868b
+}
+.social-icons__container-header {
+display: -webkit-box;
+display: -webkit-flex;
+display: -ms-flexbox;
+display: flex;
+-webkit-box-align: center;
+-webkit-align-items: center;
+-ms-flex-align: center;
+align-items: center;
+height: 100%;
+margin-right: 14px
+}
+@media only screen and (max-width:1000px) {
+.social-icons__container-header {
+display: none
+}
+}
+.adb-blog-logo:focus,
+.adb-blog-logo:hover {
+opacity: .7;
+text-decoration: none
+}
+.adb-blog-logo__image {
+height: 32px;
+margin-left: 0;
+margin-top: 6px
+}
+@media only screen and (min-width:840px) {
+.adb-blog-logo__image {
+margin-left: 24px
+}
+}
+.header {
+position: fixed;
+background: #fff;
+z-index: 700;
+top: 0;
+width: 100%;
+overflow: hidden;
+-webkit-box-shadow: 0 1px 2px 0 rgba(60, 64, 67, .3), 0 2px 6px 2px rgba(60, 64, 67, .15);
+box-shadow: 0 1px 2px 0 rgba(60, 64, 67, .3), 0 2px 6px 2px rgba(60, 64, 67, .15);
+height: auto
+}
+.header .top-row {
+display: -webkit-box;
+display: -webkit-flex;
+display: -ms-flexbox;
+display: flex;
+-webkit-box-pack: justify;
+-webkit-justify-content: space-between;
+-ms-flex-pack: justify;
+justify-content: space-between;
+padding-right: 24px;
+height: 50px;
+-webkit-box-align: center;
+-webkit-align-items: center;
+-ms-flex-align: center;
+align-items: center;
+border-bottom: 1px solid #e6e6e6
+}
+@media only screen and (max-width:839px) {
+.header .top-row {
+padding: 0 16px
+}
+}
+.header .top-row__left,
+.header .top-row__right {
+-webkit-box-align: center;
+-webkit-align-items: center;
+-ms-flex-align: center;
+align-items: center;
+-webkit-box-flex: 0;
+-webkit-flex: 0 0 auto;
+-ms-flex: 0 0 auto;
+flex: 0 0 auto;
+height: 100%
+}
+.header .nav-row,
+.header .top-row__left,
+.header .top-row__right {
+display: -webkit-box;
+display: -webkit-flex;
+display: -ms-flexbox;
+display: flex
+}
+.header .nav-row {
+background: #fff;
+-webkit-box-pack: justify;
+-webkit-justify-content: space-between;
+-ms-flex-pack: justify;
+justify-content: space-between;
+width: 100%
+}
+.header .nav-items {
+display: -webkit-box;
+display: -webkit-flex;
+display: -ms-flexbox;
+display: flex;
+-webkit-box-flex: 1;
+-webkit-flex-grow: 1;
+-ms-flex-positive: 1;
+flex-grow: 1;
+height: 50px;
+position: relative;
+background-color: #fff
+}
+@media only screen and (max-width:839px) {
+.header .nav-items {
+display: none
+}
+}
+.header .nav-items tab {
+position: relative
+}
+.header .nav-items tab.active .header__nav-item:after,
+.header .nav-items tab:hover .header__nav-item:after {
+background: #1a73e8
+}
+.header .nav-items tab.active .header__nav-item,
+.header .nav-items tab:focus-within a {
+color: #202124
+}
+@media only screen and (max-width:839px) {
+.header .header__cta,
+.header .nav-items {
+display: none
+}
+}
+.header__search-container {
+display: -webkit-box;
+display: -webkit-flex;
+display: -ms-flexbox;
+display: flex;
+-webkit-box-align: center;
+-webkit-align-items: center;
+-ms-flex-align: center;
+align-items: center;
+margin: 6px 0 6px 24px;
+overflow: hidden;
+position: relative;
+margin-right: 36px;
+border-radius: 4px
+}
+@media only screen and (max-width:767px) {
+.header__search-container:not(.mobile) {
+display: none
+}
+}
+.header__search-container.mobile {
+margin: 0 0 20px
+}
+.header__search-container.mobile #searchform,
+.header__search-container.mobile .searchbox {
+width: 100%
+}
+.header__search-container .searchbox {
+border-radius: 2px
+}
+.header__search-container .searchbox input {
+font-family: Google Sans, Noto Sans, Android Euclid, Roboto, sans-serif;
+font-weight: 400;
+font-size: 16px;
+line-height: 28px;
+font-weight: 500;
+color: #80868b;
+border: 0;
+margin: 0;
+height: 20px;
+outline: 0;
+padding: 8px 8px 8px 40px;
+width: 100%;
+-webkit-transition: background .2s;
+transition: background .2s
+}
+.header__search-container .searchbox input::-webkit-input-placeholder {
+color: #80868b
+}
+.header__search-container .searchbox input:-ms-input-placeholder,
+.header__search-container .searchbox input::-ms-input-placeholder {
+color: #80868b
+}
+.header__search-container .searchbox input::placeholder {
+color: #80868b
+}
+.header__search-container .searchbox input:hover {
+background: #e8eaed
+}
+.header__search-container .material-icons {
+color: #80868b;
+left: 8px;
+position: absolute;
+top: 6px;
+-webkit-transition: color .2s;
+transition: color .2s
+}
+.header__cta {
+font-family: Google Sans, Noto Sans, Android Euclid, Roboto, sans-serif;
+font-size: 16px;
+font-weight: 600;
+line-height: 20px;
+display: -webkit-box;
+display: -webkit-flex;
+display: -ms-flexbox;
+display: flex;
+-webkit-box-align: center;
+-webkit-align-items: center;
+-ms-flex-align: center;
+align-items: center;
+color: #1a73e8 !important;
+text-decoration: none
+}
+.header__cta.mobile {
+padding: 18px 0
+}
+.header__cta:hover .cta-icon {
+margin-left: 0;
+margin-right: 12px
+}
+.header__cta .cta-icon {
+-webkit-transition: margin-right .2s linear, margin-left .2s linear;
+transition: margin-right .2s linear, margin-left .2s linear;
+margin-left: 4px;
+margin-right: 8px;
+-webkit-transform: rotate(180deg);
+transform: rotate(180deg)
+}
+.header__cta .cta-icon path {
+fill: #1a73e8
+}
+.header__nav-item {
+font-family: Roboto, sans-serif;
+font-size: 16px;
+font-weight: 600;
+line-height: 24px;
+color: #80868b;
+font-weight: 500;
+display: -webkit-box;
+display: -webkit-flex;
+display: -ms-flexbox;
+display: flex;
+-webkit-box-align: center;
+-webkit-align-items: center;
+-ms-flex-align: center;
+align-items: center;
+padding: 0 18px;
+height: 100%;
+text-transform: none;
+text-decoration: none
+}
+.header__nav-item:hover {
+color: #202124
+}
+.header__nav-item.mobile {
+font-weight: 500;
+padding: 0
+}
+.header__nav-item:after {
+bottom: 0;
+border-radius: 3px 3px 0 0;
+content: "";
+display: block;
+height: 3px;
+left: 50%;
+min-width: 20px;
+position: absolute;
+right: 0;
+-webkit-transform: translateX(-50%);
+transform: translateX(-50%);
+width: calc(100% - 24px)
+}
+.header__hamburger {
+border: 0;
+background: none;
+outline: none;
+padding: 0;
+margin: 1px 8px 0 -4px;
+padding: 8px;
+color: rgba(0, 0, 0, .65);
+cursor: pointer
+}
+@media only screen and (min-width:840px) {
+.header__hamburger {
+display: none
+}
+}
+.header__side-menu {
+background-color: #fff;
+bottom: 0;
+-webkit-box-orient: vertical;
+-webkit-box-direction: normal;
+-webkit-flex-direction: column;
+-ms-flex-direction: column;
+flex-direction: column;
+height: 100%;
+left: 0;
+overflow: auto;
+position: fixed;
+top: 0;
+-webkit-transform: translateX(-100%);
+transform: translateX(-100%);
+-webkit-transition: -webkit-transform .2s cubic-bezier(.215, .61, .355, 1);
+transition: -webkit-transform .2s cubic-bezier(.215, .61, .355, 1);
+transition: transform .2s cubic-bezier(.215, .61, .355, 1);
+transition: transform .2s cubic-bezier(.215, .61, .355, 1), -webkit-transform .2s cubic-bezier(.215, .61, .355, 1);
+z-index: 900
+}
+.header__side-menu.is-open {
+-webkit-transform: translateX(0);
+transform: translateX(0);
+width: 80%
+}
+.header__side-menu.is-open,
+.header__side-menu__content {
+display: -webkit-box;
+display: -webkit-flex;
+display: -ms-flexbox;
+display: flex;
+height: 100%
+}
+.header__side-menu__content {
+padding: 18px 16px 0;
+-webkit-box-orient: vertical;
+-webkit-box-direction: normal;
+-webkit-flex-direction: column;
+-ms-flex-direction: column;
+flex-direction: column
+}
+.header__side-menu__content .spacer {
+-webkit-box-flex: 1;
+-webkit-flex: 1;
+-ms-flex: 1;
+flex: 1
+}
+.header__side-menu__title {
+font-family: Roboto, sans-serif;
+font-size: 20px;
+line-height: 26px;
+font-weight: 500;
+margin-bottom: 12px
+}
+.header__side-menu__items {
+list-style: none
+}
+.header__side-menu__items li {
+padding: 12px 0
+}
+.header__side-menu__items tab {
+position: relative
+}
+.header__side-menu__items tab.active .header__nav-item,
+.header__side-menu__items tab:focus-within a {
+color: #202124
+}
+.header__side-menu__bottom {
+border-top: 1px solid #e6e6e6
+}
+.header__side-menu__logo-container {
+background: #fff;
+height: 40px;
+display: -webkit-box;
+display: -webkit-flex;
+display: -ms-flexbox;
+display: flex;
+-webkit-box-align: center;
+-webkit-align-items: center;
+-ms-flex-align: center;
+align-items: center;
+-webkit-flex-shrink: 0;
+-ms-flex-negative: 0;
+flex-shrink: 0;
+padding: 4px 16px;
+border-bottom: 1px solid #e6e6e6
+}
+#nav .widget {
+margin: 0
+}
+.featured__wrapper {
+width: 100%;
+border: 0;
+background-color: #e8f0fe;
+display: -webkit-box;
+display: -webkit-flex;
+display: -ms-flexbox;
+display: flex;
+-webkit-box-pack: center;
+-webkit-justify-content: center;
+-ms-flex-pack: center;
+justify-content: center;
+-webkit-box-align: center;
+-webkit-align-items: center;
+-ms-flex-align: center;
+align-items: center;
+padding-top: 48px;
+}
+@media only screen and (max-width:767px) {
+.featured__wrapper {
+padding: 0
+}
+}
+.featured__inner {
+max-width: 1080px;
+width: calc(100% - 24px);
+display: -webkit-box;
+display: -webkit-flex;
+display: -ms-flexbox;
+display: flex;
+-webkit-box-orient: vertical;
+-webkit-box-direction: normal;
+-webkit-flex-direction: column;
+-ms-flex-direction: column;
+flex-direction: column;
+-webkit-box-pack: justify;
+-webkit-justify-content: space-between;
+-ms-flex-pack: justify;
+justify-content: space-between;
+position: relative;
+padding: 48px
+}
+@media only screen and (min-width:768px) {
+.featured__inner {
+-webkit-box-orient: horizontal;
+-webkit-box-direction: normal;
+padding: 12px 80px
+}
+}
+.featured__href {
+height: 100%;
+left: 0;
+position: absolute;
+top: 0;
+width: 100%;
+z-index: 2
+}
+.featured__image {
+-webkit-align-self: center;
+-ms-flex-item-align: center;
+align-self: center;
+width: 100%;
+max-width: 100%;
+}
+.featured__content {
+-webkit-align-self: center;
+-ms-flex-item-align: center;
+align-self: center;
+margin-top: 24px;
+width: 100%
+}
+.featured__title {
+font-size: 32px;
+line-height: 44.8px;
+font-weight: 500;
+font-family: Google Sans, Noto Sans, Android Euclid, Roboto, sans-serif;
+margin-bottom: 15px
+}
+.featured__info {
+font-family: Roboto Mono, monospace;
+font-weight: 400;
+font-size: 12px;
+line-height: 160%;
+margin-bottom: 24px
+}
+.featured__description {
+margin-bottom: 48px
+}
+.preview.featured__wrapper {
+-webkit-box-orient: vertical;
+-webkit-box-direction: normal;
+-webkit-flex-direction: column;
+-ms-flex-direction: column;
+flex-direction: column;
+background-color: #f1f3f4;
+padding: 64px 0 120px
+}
+.preview.featured__wrapper h1 {
+margin: 0 0 64px
+}
+.blog-label-container {
+display: -webkit-box;
+display: -webkit-flex;
+display: -ms-flexbox;
+display: flex;
+-webkit-box-orient: horizontal;
+-webkit-box-direction: normal;
+-webkit-flex-direction: row;
+-ms-flex-direction: row;
+flex-direction: row;
+-webkit-box-align: center;
+-webkit-align-items: center;
+-ms-flex-align: center;
+align-items: center;
+-webkit-flex-wrap: wrap;
+-ms-flex-wrap: wrap;
+flex-wrap: wrap;
+gap: 16px
+}
+.blog-label-container .blog-label {
+text-decoration: none;
+z-index: 3
+}
+.blog-label-container .blog-label span {
+font-size: 14px;
+line-height: 20px;
+font-weight: 500;
+text-align: center;
+background-color: #F1F3F4;
+border-radius: 100px;
+padding: 4px 16px;
+color: #3c4043
+}
+.adb-card:first-child .blog-label span {
+background-color: #fff;
+}
+.blog-label-container .blog-label span:focus,
+.blog-label-container .blog-label span:hover {
+background-color: #D7EFFE
+}
+.adb-card:first-child .blog-label span:focus,
+.adb-card:first-child .blog-label span:hover {
+background-color: #F1F3F4
+}
+.blog-label-container .blog-label span:focus-visible {
+outline-offset: 0
+}
+#pagination-container {
+display: none
+}
+.pagination {
+display: -webkit-box;
+display: -webkit-flex;
+display: -ms-flexbox;
+display: flex;
+-webkit-box-pack: justify;
+-webkit-justify-content: space-between;
+-ms-flex-pack: justify;
+justify-content: space-between;
+width: 100%
+}
+.pagination .page-button {
+font-family: Google Sans, Noto Sans, Android Euclid, Roboto, sans-serif;
+font-size: 16px;
+font-weight: 600;
+line-height: 24px !important;
+color: black;
+background-color: #C6FF00;
+padding: 16px 24px;
+border-radius: 80px;
+text-decoration: none;
+height: 56px !important;
+width: unset !important;
+}
+.pagination .page-button:focus,
+.pagination .page-button:hover {
+background-color: #C6FF00;
+}
+.pagination .page-button.disabled {
+color: #80868b;
+background-color: #f1f3f4
+}    
+--></style>
+<style id="template-skin-1" type="text/css"><!--
+
+--></style>
+<!-- start all head -->
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+<meta content="blogger" name="generator">
+<link href="https://android-developers.googleblog.com/favicon.ico" rel="icon" type="image/x-icon">
+<link href="https://android-developers.googleblog.com/2023/10/android-14-is-live-in-aosp.html" rel="canonical">
+<link rel="alternate" type="application/atom+xml" title="Android Developers Blog - Atom" href="https://android-developers.googleblog.com/feeds/posts/default">
+<link rel="alternate" type="application/rss+xml" title="Android Developers Blog - RSS" href="https://android-developers.googleblog.com/feeds/posts/default?alt=rss">
+<link rel="service.post" type="application/atom+xml" title="Android Developers Blog - Atom" href="https://www.blogger.com/feeds/6755709643044947179/posts/default">
+
+<link rel="alternate" type="application/atom+xml" title="Android Developers Blog - Atom" href="https://android-developers.googleblog.com/feeds/6498289298899691985/comments/default">
+<!--Can't find substitution for tag [blog.ieCssRetrofitLinks]-->
+<link href="Android%20Developers%20Blog_%20Android%2014%20is%20live%20in%20AOSP_files/Android_Android14DPI_1024x512.png" rel="image_src">
+<meta content="Android 14 is rolling out to select Pixel devices starting today, and will be available later this year on some of your favorite devices." name="description">
+<meta content="https://android-developers.googleblog.com/2023/10/android-14-is-live-in-aosp.html" property="og:url">
+<meta content="Android 14 is live in AOSP" property="og:title">
+<meta content="Android 14 is rolling out to select Pixel devices starting today, and will be available later this year on some of your favorite devices." property="og:description">
+<meta content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg9MZ26MCfyE5k66dnDkFBh6W9Uax1IrHwbK4Wz8WjArRsDHp9b4K9B2CreON5xt6KwWrpTERxmLXIj0WY70QXml0mcXfxUrWL6CYcJiFuYln3m5S6h2_jkpDd5gU1oJ67pttXIjF-ZalsystKsTx8SVIlC1rms-aaHy5sSfVohHta63_WjPCGUUuT3/w1200-h630-p-k-no-nu/Android_Android14DPI_1024x512.png" property="og:image">
+<!-- end all head -->
+<!-- base href="https://android-developers.googleblog.com/2023/10/android-14-is-live-in-aosp.html" -->
+<style>
+         /** Blogger default styles **/
+         html, .Label h2, #sidebar .rss a, .BlogArchive h2, .FollowByEmail h2.title, .widget .post h2 {
+           font-family: Roboto, sans-serif;
+         }
+
+         .plusfollowers h2.title, .post h2.title, .widget h2.title {
+           font-family: Roboto, sans-serif;
+         }
+
+         pre, .post-content pre.prettyprint {
+           background-color: #f7f7f7;
+           border: 1px solid #ddd;
+           margin: 0 0 1em 0;
+           padding: 1em;
+           overflow: auto;
+         }
+
+         pre, code {
+           font-size: 9pt;
+           line-height: 125%;
+           font-family: monospace;
+         }
+
+         pre, code {
+           color: #060;
+           font: 13px/18px Consolas, 'Liberation Mono', Menlo, Monaco, Courier, monospace;
+           -webkit-font-smoothing: subpixel-antialiased;
+           -moz-osx-font-smoothing: auto;
+         }
+
+         /* Styles for https://github.com/google/code-prettify */
+         .com { color: #060; }
+         .kwd { color: #008; }
+         .typ { color: #606; }
+         .lit { color: #066; }
+         .pun { color: #660; }
+         .pln { color: #000; }
+
+         .fb-custom img, .twitter-custom img, .gplus-share img, .email-custom img {
+           cursor: pointer;
+           opacity: 0.54;
+         }
+
+         .twitter-custom, .gplus-share, .fb-custom {
+           margin-right: 12px;
+         }
+
+         /** Blogger custom theme **/
+
+         .adb-header,
+         .searchBox input {
+             box-sizing: border-box;
+         }
+
+         .popout-nav {
+           background-color: white;
+           width: 280px;
+           height: 100%;
+           position: fixed;
+           z-index: 6;
+           left: -280px;
+           transition: left 0.2s;
+         }
+
+         .popout-search {
+           background-color: white;
+           width: 280px;
+           position: fixed;
+           z-index: 6;
+           right: -280px;
+           transition: right 0.2s;
+           top: 0;
+         }
+      
+      	 .popout-search .widget {
+           margin: 0;
+      	 }
+         
+         .popout-search #BlogSearch2_form .popout-options {
+      	   padding-right: 24px;
+           width: calc(100% - 48px);
+         }
+
+         .dropdown-nav {
+           display: none;
+           background-color: white;
+           width: 104px;
+           position: fixed;
+           padding: 4px 0px 3px 0px;
+           z-index: 4;
+           left: 352px;
+           top: 176px;
+           transition: top 0.2s;
+           box-shadow: 0 0px 2px 0 rgba(60,64,67,.3), 0 0px 6px 2px rgba(60,64,67,.15), inset 0 0px 6px -4px rgba(154,160,166,.5);
+         }
+
+         .dropdown-options {
+           align-items: center;
+           display: flex;
+           flex-wrap: wrap;
+           width: 94px;
+           height: 48px;
+           padding-left: 10px;
+         }
+
+         .dropdown-options:hover {
+           background-color: #f7f9fa;
+         }
+
+         .dropdown-options span {
+           color: #80868b;
+         }
+
+         .popout-options {
+           padding-right: 8px;
+           padding-left: 24px;
+           padding-top: 16px;
+           padding-bottom: 15px;
+           display: inline-block;
+           width: calc(100% - 32px);
+           border-top: 1px solid #ddd;
+           font-size: 13px;
+           font-weight: 700;
+           color: #80868b !important;
+         }
+
+         .popout-options:last-of-type {
+           border-bottom: 1px solid #ddd;
+         }
+
+         .popout-options:first-of-type {
+           border-top: 0;
+         }
+
+         #close-popout {
+           padding: 12px 12px 11px 20px;
+         }
+
+         #close-search-popout {
+           padding: 12px 20px 11px 12px;
+           text-align: right;
+         }
+
+         .popout-search-overlay{
+           display: none;
+           opacity: 0;
+           background-color: black;
+		   width: 100%;
+      	   height: 100%;
+           position: fixed;
+           transition: opacity 0.2s;
+        }
+
+        .popout-overlay{
+          display: none;
+          opacity: 0;
+          background-color: black;
+          width: 100%;
+          height: 100%;
+          position: fixed;
+		  z-index: 5;
+          transition: opacity 0.2s;
+        }
+
+         html {
+           background-color: #fff;
+           font-family: Roboto, sans-serif;
+           -moz-osx-font-smoothing: grayscale;
+           -webkit-font-smoothing: antialiased;
+         }
+
+         body {
+           width: 100%;
+           position: absolute;
+           padding: 0;
+           /* This ensures that the scroll bar is always present, which is needed */
+           /* because  render happens after page load; otherwise the header */
+           /* would 'bounce' in-between states. */
+           min-height: 150%;
+         }
+
+         h2 {
+           font-size: 130%;
+         }
+
+         h1, h2, h3, h4, h5 {
+           line-height: 1.5em;
+           margin-bottom: 1em;
+         }
+
+         html, h4, h5, h6 {
+           font-size: 14px;
+         }
+
+         a, a:visited {
+           color: #039be5;
+           text-decoration: none;
+         }
+
+         pre code {
+           display: block;
+         }
+
+         .cols-wrapper {
+           margin-top: 56px;
+         }
+
+         .header-outer, .cols-wrapper {
+           padding: 0 60px;
+         }
+
+         html, .header-inner a {
+           color: #212121;
+           color: rgba(0, 0, 0, .87);
+         }
+
+
+         /** Archive widget. **/
+
+         .BlogArchive {
+           font-size: 13px;
+           font-weight: normal;
+         }
+
+         .BlogArchive .widget- {
+           display: none;
+         }
+
+         .BlogArchive h2, .Label h2 {
+           color: #039be5;
+           text-decoration: none;
+         }
+
+
+         /* Specificity needed here to override widget CSS defaults. */
+
+
+         /* Months */
+
+         .Label {
+           font-size: 13px;
+           font-weight: normal;
+         }
+
+         .sidebar-icon {
+           display: inline-block;
+           width: auto;
+           vertical-align: middle;
+           height: 24px;
+           margin-right: 24px;
+         }
+
+         .sidebar-social-links {
+           align-items: center;
+         }
+
+         .sidebar-social-links .android-logo,
+      .android-logo {
+           height: 48px;
+      }
+
+         .sidebar-social-links a:last-child img {
+             margin-right: 0;
+         }
+
+         .Label .widget- {
+           display: none;
+         }
+
+         .searchBox input {
+           border: 1px solid #eee;
+           color: #212121;
+           color: rgba(0, 0, 0, .87);
+           font-size: 14px;
+           padding: 8px 8px 8px 40px;
+           width: 100%;
+           font-family: Google Sans, Noto Sans, Android Euclid, Roboto, sans-serif;
+           background: url('https://www.gstatic.com/images/icons/material/system/1x/search_grey600_24dp.png') 8px center no-repeat;
+         }
+
+         .searchBox ::-webkit-input-placeholder {
+           /* WebKit, Blink, Edge */
+           color: rgba(0, 0, 0, .54);
+         }
+
+         .section {
+           margin: 0;
+           padding: 0;
+         }
+
+         #sidebar-top {
+           border: 1px solid #eee;
+         }
+
+         #sidebar-top > div {
+           margin: 16px 0;
+         }
+
+
+         /*main post*/
+
+         .post {
+           margin-bottom: 30px;
+         }
+
+         #main .post .title {
+           margin: 0;
+         }
+
+         #main .post .title a {
+           color: #212121;
+           color: rgba(0, 0, 0, .87);
+           font-weight: normal;
+           font-size: 24px;
+         }
+
+         .message, #main .post .post-header {
+           margin: 0;
+           padding: 0;
+         }
+
+         #main .post .post-header .caption, #main .post .post-header .labels-caption, #main .post .post-footer .caption, #main .post .post-footer .labels-caption {
+           color: #444;
+           font-weight: 500;
+         }
+
+         #main .post .post-header .published {
+           font-size: 11px;
+           font-weight: bold;
+         }
+
+         .post-header .publishdate {
+           font-size: 16px;
+           font-weight: normal;
+           color: #757575;
+           color: rgba(0, 0, 0, .54);
+         }
+
+         #main .post .post-footer {
+           font-size: 12px;
+           padding-bottom: 21px;
+         }
+
+         .label-footer {
+           margin-bottom: 12px;
+           margin-top: 12px;
+         }
+
+         #main .post .post-header .published {
+           margin-bottom: 16px;
+         }
+
+         .post .post- {
+           color: #545454;
+           color: rgba(0, 0, 0, .67);
+           font-size: 16px;
+           margin: 16px 0 36px 0;
+           line-height: 24px;
+           word-wrap: break-word;
+         }
+
+
+         .post-summary {
+           display: none;
+         }
+
+         /* Override all post images/videos to left align. */
+
+
+         @media (max-width: 712px) {
+           .post- img {
+             max-width: 100%;
+             height: auto;
+             width: auto;
+           }
+         }
+
+         .post- .tr-caption-container img {
+           margin-bottom: 12px;
+         }
+
+         .post- iframe, .post- embed {
+           margin-left: auto !important;
+           margin-right: auto !important;
+           max-width: 100%;
+         }
+
+         .post- .carousel-container {
+           margin-bottom: 48px;
+         }
+
+         #main .post- b {
+           font-weight: 500;
+         }
+
+         /* These are the main paragraph spacing tweaks. */
+
+         #main .post- br {
+           : '';
+           display: block;
+           padding: 4px;
+         }
+
+         .post-content .space {
+           display: block;
+           height: 8px;
+         }
+
+         .post-content iframe+.space, .post-content iframe+br {
+           padding: 0 !important;
+         }
+
+         #main .post .jump-link {
+           margin-bottom: 10px;
+         }
+
+         .post-content img, .post-content iframe {
+           margin: 30px 0 20px 0;
+         }
+
+         .post-content > img:first-child, .post-content > iframe:first-child {
+           margin-top: 0;
+         }
+
+         .col-right .section {
+           padding: 0 16px;
+         }
+
+         #aside {
+           background: #fff;
+           border: 1px solid #eee;
+           border-top: 0;
+           z-index: 2;
+         }
+
+         #aside .widget {
+           margin: 0;
+         }
+
+         #aside .widget h2, #ArchiveList .toggle+a.post-count-link {
+           color: #212121;
+           color: rgba(0, 0, 0, .87);
+           font-weight: 400 !important;
+           margin: 0;
+         }
+
+         #ArchiveList .toggle {
+           float: right;
+         }
+
+         #ArchiveList .toggle .material-icons {
+           padding-top: 4px;
+         }
+
+         #sidebar-top,
+         #sidebar {
+           background: #fff;
+         }
+
+         #sidebar .tab {
+           cursor: pointer;
+         }
+
+         #sidebar .tab .arrow {
+           display: inline-block;
+           float: right;
+         }
+
+         #sidebar .tab .icon {
+           display: inline-block;
+           vertical-align: top;
+           height: 24px;
+           width: 24px;
+           margin-right: 13px;
+           margin-left: -1px;
+           margin-top: 1px;
+           color: #757575;
+           color: rgba(0, 0, 0, .54);
+         }
+
+         #sidebar .widget-content > :first-child {
+           padding-top: 8px;
+         }
+
+         #sidebar .active .tab .arrow {
+           -ms-transform: rotate(180deg);
+           transform: rotate(180deg);
+         }
+
+         #sidebar .arrow {
+           color: #757575;
+           color: rgba(0, 0, 0, .54);
+         }
+
+         #sidebar .widget h2 {
+           font-size: 14px;
+           line-height: 24px;
+           display: inline-block;
+         }
+
+         #sidebar .widget .BlogArchive {
+           padding-bottom: 8px;
+         }
+
+         #sidebar .widget {
+           border-bottom: 1px solid #eee;
+           box-shadow: 0px 1px 0 white;
+           margin-bottom: 0;
+           padding: 14px 0;
+           min-height: 20px;
+         }
+
+         #sidebar .widget:last-child {
+           border-bottom: none;
+           box-shadow: none;
+           margin-bottom: 0;
+         }
+
+         #sidebar ul {
+           margin: 0;
+           padding: 0;
+         }
+
+         #sidebar ul li {
+           list-style: none;
+           padding: 0;
+         }
+
+         #sidebar ul li a {
+           line-height: 32px;
+         }
+
+         #sidebar ul ul ul li a {
+           line-height: 24px;
+         }
+
+         #sidebar .archive {
+           background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAYCAYAAADzoH0MAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAE1JREFUeNpiNDY23s9AAWBioBCwYBM8c+YMVsUmJibEGYBNMS5DaeMFfDYSZQA2v9I3FrB5AZeriI4FmnrBccCT8mhmGs1MwyAzAQQYAKEWG9zm9QFEAAAAAElFTkSuQmCC');
+           height: 24px;
+           line-height: 24px;
+           padding-left: 30px;
+         }
+
+         #sidebar .labels {
+           background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAARCAYAAAA7bUf6AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAUxJREFUeNpiNDY23s9AAMycOfM7UF05kHkZmzwTMkdSUhKrIcXFxZy3bt3qBjIN8RrS09PDsHnzZjCNDr58+cKQlpbGDjSoHcg1w2oIyAUODg5gARCNzUVIBrUCuVYYhjx//pzhwIEDYAEQDeJjA1CDWIAGNQK59jBxRuSABbkAlwHIgIeHh2HWrFn/1NTU2oDcvSgBS4wBSC5iArqoCsj1YGIgEyAZVMoEchqlBjEB/cZAiUHg2AEGznpKDAImxOeM////B4VLKtBvEUCngZ1ILKivr3/u6+ubBzJAGZQ9gC5aQoqLgAY8BhkAZL4BuQQkxgXE34A4BuiiZEIuAhrwEGhAEZD5DpzYoIaA2UAM4kQADUrHZRDUgAIg8wO2XAwzbQXQa5OweQ1owB10AyA6gS7BgX1u3ry5397eHow3bdo0EyjGi00tQIABANPgyAH1q1eaAAAAAElFTkSuQmCC');
+           height: 20px;
+           line-height: 20px;
+           padding-left: 30px;
+         }
+
+         #sidebar .rss a {
+           background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAX5JREFUeNqsVDGSgkAQHL2rIiIikohIc/EBRkbwAIwuwgfwAXiAD9AHSI7kEkECRCb6AIyINDLx7K0aa6kT7uq0q7YYtnZ7umdnt7darXbr9Zpegeu61DNNc0dvwCcH4/GYJpMJnc9nOhwOVJbl/4hAAokMECZJQtvt9k+kH7qufyEYDAakqqqYxFdRFBqNRmTbNg2HQ0rTlK7XayvR0xqBdDqdkuM4dE/0ULhYLOh4PHYrknG5XGi/31MYhuL/nkwonM1mlGUZ1XXdrsiyLGEDhY7juJEZ1u5tIixDGdYhmYw+B7CAzPP5nDabjdgIAgCksMX1832/3drtdqPT6SQWapomiGEFNkDEdpDMMAzK81ys/7XYy+XyoQgq2WoURSIJ2iIIgp/WZCCTvFm2wgeAU31aI3Q2GhIDMeB53qPYPIcm5VrxXIOIOxsDMStjVawAc1VViRgN22lNBiuQN3GR+SY07hpOoStmFQAKXRRFY93bnpG+fONfedi+BRgAbkS8Fxp7QQIAAAAASUVORK5CYII=');
+         }
+
+         #sidebar .subscription a {
+           background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAALCAYAAACZIGYHAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAUBJREFUeNrMkSGLAlEUhb+ZB4JFi8mx2cz+ApvhRUGTcUCrNqNJDYIi+DO0GUwmQXDK2DSIoGgZcSaIjDrzwrK4ssvChj1w0733O+fdp+m6PozH4yQSCfb7Pa7r8pOi0SjJZBLP8zgej4gAIMvlMuPxmADIYrHger1+C6lUKmo+NJ/NZojb7SZDWiwWo1qtks1msW2bw+HwZdkwDHq9HvV6nel0SqvVYrvdIh6Ph3Qch+VyqRYLhQJSSjRNw7IsfN9XgGKxSLfbJZfL0e/3aTabrFYr7vc7IujLcOh8PqunrNdr0uk0pVKJVCpFJBJRgEajweVyod1uMxgM2O12BAGUgRbU8DV2JpOhVquRz+cRQii3+XxOp9NRN3jVR5LPOp1OjEYjlSL8hclkgmmabDabt4d+m+S30vkD/R/IU4ABAPTZgnZdmG/PAAAAAElFTkSuQmCC');
+         }
+
+         #sidebar-bottom {
+           background: #f5f5f5;
+           border-top: 1px solid #eee;
+         }
+
+         #sidebar-bottom .widget {
+           border-bottom: 1px solid #e0e0e0;
+           padding: 15px 0;
+           text-align: center;
+         }
+
+         #sidebar-bottom > div:last-child {
+           border-bottom: 0;
+         }
+
+         #sidebar-bottom .text {
+           line-height: 20px;
+         }
+
+         /* Home, forward, and backward pagination. */
+         .blog-pager {
+           padding-top: 10px;
+           margin-top: 15px;
+           text-align: right !important;
+         }
+
+         #blog-pager {
+           padding: 40px 0 0;
+         }
+
+         #blog-pager a {
+           display: inline-block;
+         }
+
+         .blog-pager i.disabled {
+           opacity: 0.2 !important;
+         }
+
+         .blog-pager i {
+           color: black;
+           margin-left: 16px;
+           opacity: 0.54;
+         }
+
+         .blog-pager i:hover, .blog-pager i:active {
+           opacity: 0.87;
+         }
+
+         #blog-pager-older-link, #blog-pager-newer-link {
+           float: none;
+         }
+
+         .gplus-profile {
+           background-color: #fafafa;
+           border: 1px solid #eee;
+           overflow: hidden;
+           width: 212px;
+         }
+
+         .gplus-profile-inner {
+           margin-left: -1px;
+           margin-top: -1px;
+         }
+
+         /* Sidebar follow buttons. */
+
+         .followgooglewrapper {
+           padding: 12px 0 0 0;
+         }
+
+         .loading {
+           visibility: hidden;
+         }
+
+         .detail-page .post-footer .cmt_iframe_holder {
+           padding-top: 40px !important;
+         }
+
+         /* ADB */
+
+         .adb-hero-area {
+           min-height: 104px;
+           background-color: #202124;
+           box-shadow: 0 1px 2px 0 rgba(60,64,67,.3), 0 2px 6px 2px rgba(60,64,67,.15);
+           z-index: 5;
+           position: fixed;
+           width: 100%;
+         }
+      
+         .adb-hero-logo {
+      	   height: 80px;
+           position: absolute;
+           top: 12px;
+           left: 16px;
+         }
+      
+         .adb-footer-btm {
+           display: flex;
+           margin: 0 24px;
+           align-items: center;
+           justify-content: space-between;
+           flex-wrap: wrap;
+           padding-bottom: 40px;
+         }
+
+         .subscribe-btn {
+           color: black;
+           background-color: #C6FF00;
+           border-radius: 100px;
+           font: 500 16px/24px Google Sans, Noto Sans, Android Euclid,Roboto,sans-serif;
+           padding: 12px 24px;
+           border: 0;
+         }
+
+         .adb-footer-info {
+           align-items: center;
+           display: flex;
+           padding: 0;
+           margin: 9px 0 0 -8px;
+           font-size: 13px;
+         }
+
+         .footer-list {
+           list-style: none;
+           padding: 0 8px;
+         }
+
+         .subscribe-info {
+           list-style: none;
+           padding: 0 8px 0 0;
+           font-size: 13px;
+           color: black;
+         }
+
+         .footer-newsletter {
+           display: flex;
+           align-items: center;
+         }
+
+         .adb-header-inner {
+           display: flex;
+           align-items: center;
+         }
+
+         .adb-header {
+           background-color: white;
+           color: #fff;
+           height: 48px;
+           left: 0;
+           overflow: hidden;
+           padding: 36px 24px;
+           right: 0;
+           top: 104px;
+           z-index: 4;
+           display: flex;
+           align-items: center;
+           position: fixed;
+      	   border-bottom: solid 1px #DADCE0;
+         }
+
+         .adb-shadow {
+           margin-top: 48px;
+           height: 1px;
+           width: 100%;
+           position: fixed;
+           background: white;
+           z-index: 2;
+           box-shadow: 0 1px 2px 0 rgba(60,64,67,.3), 0 2px 6px 2px rgba(60,64,67,.15);
+         }
+
+         .adb-logo-box {
+           display:inline;
+         }
+
+         .adb-burger-box {
+           display: none;
+           margin: 0 16px 0 0;
+         }
+
+         .adb-search-box {
+           display: none;
+           margin: 0 0 0 16px;
+         }
+
+         .adb-htag-box {
+           display: flex;
+           align-items: center;
+         }
+
+         .adb-header-tags {
+             padding: 0 24px 0 0;
+         }
+
+         .adb-header-tags ~ .atb-header-tags {
+             padding: 0 24px;
+         }
+
+         .adb-header-tags a {
+           font-family: Google Sans, Noto Sans, Android Euclid, Roboto, sans-serif;
+           font-weight: 600;
+           font-size: 16px;
+           line-height: 20px;
+           color: #5F6368;
+         }
+
+         .adb-header-tags a:hover {
+           font-weight: 600;
+           font-size: 16px;
+           line-height: 20px;
+           color: #202124;
+         }
+
+         .more-dropdown {
+           display: none;
+         }
+
+         .dropdown-icon {
+           transition: all 0.3s;
+         }
+
+         .adb-header-logo {
+           display: inline-block;
+           vertical-align: -11px;
+           width: 134px;
+           height: 32px;
+         }
+
+         .adb-header-title {
+           color: #fff;
+           display: inline-block;
+           font-size: 20px;
+           font-weight: normal;
+         }
+
+         .adb-header-links {
+           border-left: 1px solid rgba(0, 0, 0, .1);
+           display: block;
+           left: 250px;
+           list-style: none;
+           margin: 0;
+           padding: 12px 0 12px 18px;
+           position: absolute;
+           top: 0;
+         }
+
+         .adb-header-link-item {
+           display: inline-block;
+         }
+
+         .adb-header-link, .adb-header-link:visited {
+           color: #fff;
+           display: inline-block;
+           font-weight: 500;
+           opacity: .7;
+           padding: 12px 9px;
+           text-transform: uppercase;
+           vertical-align: 2px;
+         }
+
+         .adb-header-link:hover, .adb-header-link:focus {
+           color: #fff;
+           opacity: 1;
+         }
+
+         .adb-header-console, .adb-header-console:visited {
+           border-radius: 3px;
+           box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .2);
+           color: #fff;
+           float: right;
+           font-size: 14px;
+           font-weight: 500;
+           line-height: 28px;
+           padding: 4px 10px;
+           position: relative;
+           text-transform: uppercase;
+           transition: box-shadow .2s;
+           z-index: 60;
+         }
+
+         .adb-header-console:hover {
+           box-shadow: 0 2px 8px 0 rgba(0, 0, 0, .3);
+           color: #fff;
+         }
+
+         .adb-header-console:focus {
+           background-color: rgba(63, 81, 181, .1);
+           color: #fff;
+         }
+
+         .adb-header-console-image {
+           vertical-align: -5px;
+         }
+
+         .adb-hero {
+           background-color: #dcedc8;
+           margin-top: 64px;
+         }
+
+         .adb-hero-back, .adb-hero-back:link, .adb-hero-back:visited {
+           color: #414141;
+           display: inline-block;
+           font-weight: 500;
+           margin: 25px 25px 0;
+         }
+
+         .adb-hero-inner {
+           background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAc4AAADZCAMAAACenCAVAAAAvVBMVEXc7cjY68PT6bvR57fQ57bY6sPZ68TU6bvR6LfP5rTQ57XR57jW6r7b7cfa7MbS6LnS6Lrb7cbQ6Lfb7MbX6r/Z68PY6sLV6b7U6b3U6r3T6LnX68Da7MXP57Tb7Mfc7cfW6b/P57XS57nY68LY68HU6L3W6r/W6b7T6brX6sDV6rzQ57fa7MTV6b3T6Lra68TR57bX68HW6sDS57jU6bzO5rTP5rXZ7MXR6LbZ68XX6sHT6LvV6bzS6LjZ7MILrTuqAAAIyklEQVR4AezXhXEkUQwE0B6+Xhg8MzND/smZ4UsLBSb9Kr0UhI1vl6RZnqUFlnBl9Y+j8WQK4+qGr9oOi7iKr0YFTOt6vhsPmM81/FDAspafUszl/vNTXsOuFYZWMYfrRgyswa51hjLM4TYYGsOuTQpbgNO2dyjAroxCvgunpZT2YFZDaQKnlFRg1z6lgxpOOqS0CbtqKutwwhGVYxh2QqWGC/WUMlhWH1BK4QKnVFZh2hmVEh/cXk7pHLbt5pQafHCT6Jr9gsoR3riayiXMyyhd4Y27jDDHJVQu8MJdU7lBBBpKoz08c7eU8gERuKNyhiduhcopolBRqeGAMaV7xKE7eGzvThQTVZooAJdC1AM2qGg0BhdCrpnciVE0i9dZ3v+t/n2ZMBtJGpsu6nuCrNJddar4/gAnMmuP/GPk3JFwrL2QKw3FD26GyGmQNXbIGVHNKdfmYraDl/ZUcxO8NNtIW888bafDC7tP5R2qtQfL724N5AypxjbIGdseWHMV1VfP+rrnZvbTerMEhHb2Py4eA7KX9AwD5LSppi5ZdPTHEhv6cd5mSjZaeMW/Dc66TEpkO+Q0qIbUE5es6ke85FMN/YGXZs9yQLdXYGVASGJDBaMZXsQouzau/fzfitNsKvpUL1O8dFBksb+Q80C1coaco7RtLeYzO9tHCV7qUY0ckXPGribSoNpQB3Z1MbWtby1hiZwWw35CRjUReRx7Sg5ecqgmJiyHOxrIWVEtPDPNY/TMx4bmczq5T3jpSRELm1NWodVmlGY364tP4ZXvdw5u8jjDf8yQJJ7j+2HYfBh3d+l5HFB5RmyzjM3yh8iDUbb6M9y7j3idgxM+3BzTuPzyXmdOTARJaUc8tUmX7ekB7+aF7dV1a0G6pIx3CkxKmBBUreMfvS0086aTnZZf6kfG53mlN/0UnS2bW5Socz9OA737eM6JkZWu4uUiXfVcnIT34eZM6Yq9hcRKR0OpL7i9cHBi/udjrCOUuiFWsnc2/oKsfYAhXvM2lsj4S/7b2/L9y4cODDu0j8HbBzqSPvutOksqpDH+gorw1+dvHLcaEzv3r4+0BdmnBJXi9bL+G6qaEbFz98rF4sEwnKGKrrrxK3sOuzoMlM9i+ql47KPC/HX8inTxljgKUHBYI1g6qDx/HBct76XETfHF4v3hHpZwVgH9APc0TfFSyTwLZ7DJ9FYxmZvTv1h89DmBdbyHEX0rcuuTRB38fNuQ2vmw1GAYMSjv6ZwQbD0ksFlz9LPW7gMxNv3RBVtlDqz3cbWo32rmEXLGFExcsJBMnilGzk29pleT5gx8fLiq2XzyM2rllpiboEYGxF2UoD6+EntL1Ma+TkOP/LVqNJLM3yeqgayDmnjqKmIu3aNGDhlx1pqiZvyUuAqaqKGwRRwt1gnqqR0QO5ce6ms5J1ZGIWqtkxIf0QNqb7ohJjIXgFjPiYF4j38R2wbZTk1m+C/xqU9WSzv4hkgyVkcg0QvIUg0XEHleRjaK/gQb8g/a2EL8hHcky6zxC+JTQBa5c/BL4nBO1lgl+B2xJjv0QxQgnA1ZoOGhGHFNldedoShxMadKU/d4BeEEVGF3Ll5FJF+psm7Bh5xwHyDeoKeogvp7iDfpbKhyWgeIN/JSqpjbBOLtlqwq7qJNFdKGeKdQUUUEIcS7Df6iSngeQAPhtqgCWi60EElKxjUSsCFriK5nYEMuLDtoJSZk0BiaiaYsZGPlXnEqHoipIhOaKIW4WnD63xThgtP/pthHdFqfUCIRRvK/KZ+3VX1uiulc7puc3EstSOpD9d7+LYGTFfiQenyKkxE3VLLGI9iQkcH4CackzqlEwRYnJbwNlUb5ODHhBVSWHk5O+JFMLkh5qFYxLxnoPZ9BmJGRdrELNuTddNEAwhg34NSvFnvSqgth1ANpNEIZkhkYSg4dt9rHocCFXvvxWUD/ELR2TQ98hMOWon+Ks7YLrZI70iWETu6yT99Qt3uw4A4j+lY6hU4dVcloUFdR3tkA1kt29J1zHxr1SIsGNAoDnvGjMCj/CLmr3INzQj9x5sFm41Ns933c0PtNoc+O0bJNA9+Xryp14+zSL9x5PH6beS2vQrfP0exkQcMG08BdCn1SepeFc8KPijWs5MxPdzN4CipzR2nQb8wdnu0O5UKbkN7h/LQZ/a9Ms+pZNYp9kQt9Yvo9H3Yx8H15QSXm/qZUQMY0ybOCPtNKlIMuqYAogW1SKkBBoxW9SXSARoqKCGGbBRVxBY0C85V3h2mb/MrASGxIb3BnYlaxwXRmLwUMFxMc6NSlQvpM6nt5MXTylOl00JGKYTqxp6DVBb1SkECrlOmvs0HFGA7efjA0dwrLfKVC5tDLp1dpGHrGKFjm0tCZYEWvMTA0NrOBZVZUSMtoLn4I3T5RISnTZTGXJrea9BPotmU6QrqlQi6gXWx05V5MRTiwTaD/4aW5FN8y9pCJYZ2usSPBNRUzNfapNIZ1fGM7KQdUSMNYJyl6Ajh2yAKTBUYHpfCZruJ0jB3wCpVur1GSIf3G8yOPlG1ePDN46d2iJEmLR+86L4lNBRQTZXK/6UAxunMWDxC3Da6omXsoz5XiOa8/NfV9JYHRXVBXiudG8r0y9Jmzpl87oFSDFv3Qog2rDTb0Q6qJckX0K7coWTKkHxh1YLmkSz/Q6JjNKnVQOj+lnM0nMPDxmnLuPhjej5rhFLbjmP4nOF6BCXfdov8JLkPj+xcdnMjh03p3nWXLBwesuB/+GGbHXbc5wIkkSt7CwEmXU1lGbPX3OYVBt5y2Yoov9EN/QVhpJK9xZL/7P4Kw1LO8iIH7qxx8CEu5zG8pcldpQ1hrSjnBI4S9YnrpBsJiEzkIcfIkByFWUqkIcdKjb7kQdos49a3Fjv7vE4TlfPoflYAPuXoeIaw3pv+6h7CeQ/8RPYIP6XpegwGxknMtwxcqK7AgAqkhcDKkf3oAI9LE9sCDWGhf4S8M70peggnxQERTMCFcIjUDF+KOUrAhhvQANkT4dwEsPvJYWz4QAAAAAElFTkSuQmCC');
+           background-position: bottom right 70px;
+           background-repeat: no-repeat;
+           background-size: auto 100%;
+           margin: 0 auto;
+           max-width: 980px;
+           padding: 0 60px;
+           position: relative;
+         }
+
+         .adb-hero-back-icon {
+           display: inline-block;
+           margin-right: 5px;
+           vertical-align: middle;
+         }
+
+         .adb-hero-title {
+           font-size: 22px;
+           line-height: 28px;
+           padding: 24px 24px 0px 112px;
+         }
+
+         .adb-hero-title a {
+           color: #FFFFFF;
+           font-family: Google Sans, Noto Sans, Android Euclid, Roboto, sans-serif;
+           font-weight: 500;
+         }
+
+         .adb-hero-summary {
+           font-size: 16px;
+           line-height: 24px;
+           padding: 8px 24px 8px 112px;
+         }
+
+         .adb-hero-summary a {
+           color: rgba(255, 255, 255, 0.9);
+         }
+
+         .adb-hero-description {
+           color: #6f7172;
+           font-size: 16px;
+           margin: 0;
+           max-width: 440px;
+           padding-bottom: 32px;
+         }
+
+         .adb-hero-search {
+           position: absolute;
+           top: 19.35%;
+           right: 1.94%;
+         }
+
+      	 .adb-hero-search .searchBox input {
+           border: 1px solid #80868B;
+           border-radius: 4px;
+           color: white;
+         }
+
+         .adb-hero-search .searchBox input::placeholder {
+           color: #F1F3F4;
+           font-weight: 500;
+           font-size: 16px;
+           line-height: 24px;
+           letter-spacing: 0.5px;
+           padding-left: 12px;
+         }
+
+         .adb-hero-link {
+           position: absolute;
+           right: 1.67%;
+           top: 64.52%;
+         }
+
+         .adb-hero-link a {
+           font-family: Google Sans, Noto Sans, Android Euclid, Roboto, sans-serif;
+           font-weight: 600;
+           font-size: 16px;
+           line-height: 20px;
+           color: #D7EFFE;
+           letter-spacing: 1.4px;
+         }
+
+         .adb-hero-arrow {
+           display: inline-flex;
+           font-size: 24px;
+           vertical-align: middle;
+         }
+
+         .adb-socials-box {
+           display: flex;
+           position: absolute;
+           right: 1.67%;
+         }
+
+         .adb-socials-category,
+         .adb-socials-divider {
+           display: flex;
+           align-items: center;
+         }
+      
+         .adb-socials-divider {
+           color: #DADCE0;
+           font-size: 40px;
+           font-weight: 100;
+           margin: 0 20px;
+         }
+
+         .adb-socials-category img,
+      .adb-footer-social-links img {
+           height: 24px;
+         }
+
+      .adb-footer-social-links-img {
+           margin-right: 20px;
+         }
+
+         .adb-hero-subscribe, .adb-hero-subscribe:visited {
+           background-color: #90c653;
+           color: #fff;
+           display: inline-block;
+           border-radius: 3px;
+           margin: 25px 0 60px;
+           padding: 13px 32px;
+           text-transform: uppercase;
+         }
+
+         .adb-hero-subscribe:hover, .adb-hero-subscribe:focus {
+           background-color: #333;
+         }
+
+         .adb-footer {
+           margin: 32px auto 64px;
+         }
+
+         .adb-footer-more {
+           border-bottom: 1px solid #f0f0f0;
+           border-top: 1px solid #f0f0f0;
+           padding: 30px 0;
+         }
+
+         .adb-footer-more a {
+           color: #000;
+           display: inline-block;
+           font-size: 20px;
+           font-weight: 300;
+           margin-right: 16px;
+         }
+
+         .adb-footer-social {
+           float: right;
+           margin-top: -62px;
+         }
+
+         .adb-footer-social a {
+           background-color: #ccc;
+           background-position: center;
+           background-repeat: no-repeat;
+           background-size: auto 16px;
+           border-radius: 50%;
+           display: inline-block;
+           height: 36px;
+           margin-left: 16px;
+           transition: background-color .1s;
+           width: 36px;
+         }
+
+         .adb-footer-social-youtube {
+           background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAYCAQAAAAxWje/AAABLUlEQVQ4y6WUvUoDYRBFr42gCdhK8AV8BwsVC0FQfIQUgr5DIKJoGy1CfAaDq1hIGn8K2xDSaBc1wUJJEYmbkDXssdi1Mrvfst9tZ+bAzNwZSZLEAmvsUKTCBQ80eaWLyxiAMS5dXmhyT5UyBfIsM68/McM1aXRDJgCUSKsTSWQZpAa4ZMUmNtoSRxGhbd4TAI7F1eSIxBwVfAPgUtSjAJLEEk+xgLroxAEkpikyigS0RS8eIEks8hgB6ImhGSAxxS5fE9JGwksCkCRyOP/SfPFjC0jawl5UC9ZDbBvXuB+zxjezkZ5NRnJirHxmtLIjDq2O6UBsWJ3zut1D+WZWEqepAaVg0hlqqcpr4VMNbbpKngJlqtzRoMUnfTx8fDz6fNCiwS3n4VtfIRdU/gLTrSb7DGWLcQAAAABJRU5ErkJggg');
+         }
+
+         .adb-footer-social-youtube:hover {
+           background-color: #f44336;
+         }
+
+         .adb-footer-social-gplus {
+           background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACEAAAAUCAQAAACpWpz6AAABJUlEQVQ4EZXBTUoCYQDH4X9hTS3Cja0Kyb2X6BCJoLlr1aKwK1QHCMMzWLiqTcuWXaAWQWIlU1DQh4QJ+Wt4X95x0hGn55FCeGzSpMUXXW45ocSC/oMiHUZ1KCgZZqkzyZaSoM7QgCd8BlgXLGo6ijgv7JJRgAxV3jjDUwwMOXh0sK5ZUQRZ5hQLQw4VrA/WlBCGHJpY+0oMQw5trLxCjNtTgFiij5VSiHFHChBL9LFSCjGurgCxRBsrrxA+Pj4+Pl2sQ0VgyKGJdaAYNLAqisCQQxnrk5xGkKOHlVUEhhw8HrFuWFUEaa6wLvUHhoYo4LxSZVkBlihzh7OuaagR9YzPD0PHmo5ZakzSIKVk2OCBUe/sMKPkmKfEKS16fHPPOduklcAvR50zMVwhTI4AAAAASUVORK5CYII=');
+         }
+
+         .adb-footer-social-gplus:hover {
+           background-color: #f44336;
+         }
+
+         .adb-footer-social-twitter {
+           background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAWCAQAAAB0gUQ+AAABI0lEQVQ4EY3BQShDAQDH4f+zTSyJuLgoLlwclYOTHCwHu9ouiLRScpUmNwduDkpCSTs4LAeJhINoOTo4ctHkskyJtf20vWbe3tvb+z7JFUGibLHPMj0qoYEWSYzRKkdMkKbsm3m6WSRFuyQeuKNNNoTJU61ABL8kssAjvbKgiTR2V+ywJol3ijJMY+gP4zhLEpDEGWUpwvhUQgwnh/hURIT/3thjjmGWcBKViSCXeBWSiWdO+MGbPpm4watPfDIRxasLVXCANwuqwCDGK/V80akKGjnmmgLutmXFOvV80CUrAiRxNys7DCY5J4OzXdVCP7c4OcIvO5oJkSCHXZ5VDFkxwilP5HB2z6Cc0EGcF6plSTAqNxgMMEWcTTZYYYYhAqrpF0uh1zgYi1hVAAAAAElFTkSuQmCC');
+         }
+
+         .adb-footer-social-twitter:hover {
+           background-color: #55acee;
+         }
+
+         .adb-footer-social span {
+           display: none;
+         }
+
+         .adb-footer-related {
+           padding-top: 8px;
+         }
+
+         .adb-footer-related a {
+           color: #999;
+           font-size: 12px;
+           white-space: nowrap;
+         }
+
+         .adb-footer-related a:not(:last-child)::after {
+           content: '|';
+           cursor: default;
+           margin: 0 7px 0 10px;
+         }
+
+      .adb-footer-section {
+           margin: 48px auto;
+           max-width: 700px;
+         }
+
+         .adb-footer-title {
+           font-weight: 500;
+           font-size: 14px;
+           line-height: 20px;
+           letter-spacing: 1.5px;
+           text-transform: uppercase;
+           color: #3C4043;
+           margin-bottom: 24px;
+         }
+
+         .adb-footer-columns {
+           display: flex;
+           justify-content: space-between;
+          }
+
+         .adb-other-blogs-title img {
+           margin-right: 8px;
+           vertical-align: -12px;
+         }
+
+         .adb-footer-social-label {
+           display: flex !important;
+           align-items: center;
+         }
+
+         .adb-footer-column a,
+         .adb-footer-social-label,
+         #footer-subscribe .tab h2 {
+           color: #000;
+           font-size: 14px;
+           font-weight: 400;
+           line-height: 20px;
+           letter-spacing: 0.25px;
+           padding: .85em 0;
+           -webkit-column-break-inside: avoid;
+           break-inside: avoid-column;
+           display: table;
+           margin: 0;
+           page-break-inside: avoid;
+         }
+
+      .adb-footer-btm a {
+           color: #000;
+           font-family: Google Sans, Noto Sans, Android Euclid, Roboto, sans-serif;
+           font-size: 14px;
+           font-weight: 400;
+           letter-spacing: 0.25px;
+           opacity: .7;
+           transition: opacity .1s;
+           -webkit-column-break-inside: avoid;
+           break-inside: avoid-column;
+           display: table;
+           margin: 0;
+           page-break-inside: avoid;
+         }
+
+      .adb-footer-column a {
+           opacity: .7;
+           transition: opacity .1s;
+         }
+
+         .adb-footer-column a:hover {
+           opacity: 1;
+         }
+
+         .adb-footer-social-links {
+           margin: 0 0 20px;
+         }
+
+         #footer-subscribe .widget {
+           margin: 0;
+         }
+
+         #footer-subscribe .tab {
+           display: flex;
+           align-items: center;
+         }
+
+         #footer-subscribe .tab img {
+           height: 16px;
+         }
+
+         .adb-label-view-more-toggle {
+           cursor: pointer;
+         }
+
+         .adb-label-view-more-toggle::after {
+           content: '\00e5c5';
+           float: right;
+           font: 2em / .7 Material Icons;
+           opacity: .6;
+         }
+
+         .adb-label-view-more-toggle.active::after {
+           transform: rotate(180deg);
+         }
+
+
+         /** Desktop **/
+
+         @media (max-width: 900px) {
+           .col-right {
+             display: none;
+           }
+           .col-main {
+             margin-right: 0;
+             min-width: initial;
+           }
+           .cols-wrapper {
+             min-width: initial;
+           }
+           .adb-hero-inner {
+             background-image: none;
+           }
+         }
+
+
+         /** ADB header breakpoint **/
+
+         @media (max-width: 768px) {
+           .adb-header-links {
+             display: none;
+           }
+
+           .dropdown-nav {
+             display: none;
+           }
+
+           .adb-header {
+             padding: 12px;
+             text-align: center;
+           }
+         }
+
+         @media (max-width: 1196px) {
+           .breakpoint-hide {
+             display:none;
+           }
+
+           .more-dropdown {
+             height: 50px;
+             display: flex;
+             align-items: center;
+           }
+         }
+
+         @media (max-width: 915px) {
+           .adb-header {
+           	height: 0;
+           	margin: 0;
+           	padding: 0;
+           	display: none;
+           }
+           .adb-header-tags {
+             display:none;
+           }
+
+           .more-dropdown {
+             display:none;
+           }
+
+           .dropdown-nav {
+             display: none;
+           }
+
+           .adb-hero-summary,
+           .adb-hero-link,
+           .adb-socials-category {
+           	display: none;
+           }
+      
+           .adb-hero-title {
+            padding-left: 152px;
+           }
+      
+           .adb-hero-logo {
+            height: 52px;
+            top: 12px;
+            left: 120px;
+           }
+           .adb-footer-section {
+           	margin: 0 auto;
+           }
+           .adb-footer-btm {
+           	margin: 0 24px 40px;
+           }
+
+           .adb-hero-area {
+           	min-height: 76px;
+           }
+
+           .adb-burger-box {
+            display:inline;
+           	position: absolute;
+           	top: 17px;
+           	margin-left: 24px;
+           	font-size: 32px;
+           	color: white;
+           }
+
+           .adb-hero-title a{
+           	margin-left: 40px;
+           }
+         }
+
+         /** Tablet **/
+
+         @media (max-width: 712px) {
+           .header-outer, .cols-wrapper {
+             padding: 0 40px;
+           }
+           /* ADB */
+           .adb-hero-inner {
+             padding: 0 40px;
+           }
+           .adb-hero-title {
+            font-size: 16px;
+            padding-left: 132px;
+           }
+           .adb-hero-logo {
+            left: 100px;
+           }
+           .adb-hero-back, .adb-hero-back:link, .adb-hero-back:visited {
+             margin-left: 36px;
+           }
+           .adb-other-blogs-list {
+             columns: auto;
+           }
+           .adb-other-blogs-title {
+             font-size: 20px;
+           }
+           .adb-other-blogs-title img {
+             height: auto;
+             vertical-align: -6px;
+             width: 32px;
+           }
+           .adb-footer-section {
+           	margin: 0 24px;
+           }
+           .adb-footer-more {
+             padding-bottom: 75px;
+           }
+           .adb-footer-social {
+             float: none;
+             margin-bottom: 35px
+           }
+           .adb-footer-social .adb-footer-social-youtube {
+             margin-left: 0;
+           }
+         }
+
+
+         /** Small tablet **/
+
+         @media (max-width: 600px) {
+           .header-inner .google-logo {
+             top: 32px;
+             margin-top: 0;
+           }
+           .header-inner .google-logo img {
+             height: 56px;
+             width: auto;
+             /*
+             height: auto;
+             width: 188px;
+             */
+             /* Override any optical adjustments at desktop size. */
+             top: 0 !important;
+           }
+           .header-left {
+             left: 0;
+             top: inherit;
+             bottom: 24px;
+           }
+
+           .adb-footer-columns {
+           	display: block;
+           }
+
+           .adb-footer-column {
+           	margin-bottom: 48px;
+           }
+
+           .adb-footer-column a {
+           	opacity: 1;
+           }
+
+           .adb-footer-social-label {
+           	padding: 0;
+           }
+
+           .adb-footer-column .widget a {
+           	padding: 0;
+           }
+
+           .footer-newsletter {
+             margin-top: 16px;
+           }
+
+           .subscribe-btn {
+           	width: 100%;
+           }
+
+           .adb-hero-search {
+             display: none;
+           }
+
+           .adb-search-box {
+            display:inline;
+           	position: absolute;
+           	top: 24px;
+           	right: 24px;
+           	font-size: 24px;
+           	color: white;
+           }
+         }
+
+         /** Mobile **/
+
+         @media (max-width: 480px) {
+           .header-outer, .cols-wrapper {
+             padding: 0 16px;
+           }
+           .adb-hero-logo {
+            height: 28px;
+            top: 24px;
+            left: 76px;
+           }
+           .adb-hero-back, .adb-hero-back:link, .adb-hero-back:visited {
+             margin-left: 16px;
+           }
+           .cols-wrapper {
+             margin-top: 0;
+             overflow-x: auto;
+           }
+           .post-header .publishdate, .post .post-content {
+             font-size: 16px;
+           }
+           .post .post-content {
+             line-height: 28px;
+             margin-bottom: 30px;
+           }
+           .post {
+             margin-top: 30px;
+           }
+           .byline-author {
+             display: block;
+             font-size: 12px;
+             line-height: 24px;
+             margin-top: 6px;
+           }
+           #main .post .title a {
+             font-weight: 500;
+             color: #4c4c4c;
+             color: rgba(0, 0, 0, .70);
+           }
+           #main .post .post-header {
+             padding-bottom: 12px;
+           }
+           #main .post .post-header .published {
+             margin-bottom: -8px;
+             margin-top: 3px;
+           }
+           .post .read-more {
+             display: block;
+             margin-top: 14px;
+           }
+           .post .tr-caption {
+             font-size: 12px;
+           }
+           #main .post .title a {
+             font-size: 20px;
+             line-height: 30px;
+           }
+           .post-content iframe {
+             /* iframe won't keep aspect ratio when scaled down. */
+             max-height: 240px;
+           }
+           .post-content .separator img, .post-content .tr-caption-container img {
+             margin-left: -16px;
+             max-width: 100%;
+           }
+           .post-content table {
+             table-layout: fixed;
+             width: 100%;
+           }
+           /** List page tweaks. **/
+           .list-page .post-original {
+             display: none;
+           }
+           .list-page .post-summary {
+             display: block;
+           }
+           .list-page .comment-container {
+             display: none;
+           }
+           .list-page .label-footer {
+             display: none;
+           }
+           .list-page #main .post .post-footer {
+             border-bottom: 1px solid #eee;
+             margin: -16px 0 0 0;
+             padding: 0 0 20px 0;
+           }
+           .list-page .post .share {
+             display: none;
+           }
+           /** Detail page tweaks. **/
+           .detail-page .post-footer .cmt_iframe_holder {
+             padding-top: 32px !important;
+           }
+           .detail-page .label-footer {
+             margin-bottom: 0;
+           }
+           .detail-page #main .post .post-footer {
+             padding-bottom: 0;
+           }
+           .detail-page #comments {
+             display: none;
+           }
+           /* ADB */
+      	   body {
+             font-size: 17px !important;
+           }
+           .adb-header-console {
+             display: none;
+           }
+           .adb-hero-inner {
+             padding: 0 16px;
+           }
+           .adb-hero-title {
+             color: #4c4c4c;
+             color: rgba(0, 0, 0, .70);
+             font-weight: 500;
+             line-height: 30px;
+             padding-left: 80px;
+           }
+            .adb-detail__info p {
+             margin-top: 32px;
+           }
+           .adb-detail__title,
+           .adb-detail__title h1 {
+             font-size: 24px;
+             line-height: 32px;
+             margin: 0;
+           }
+           .adb-detail hr {
+             margin: 16px 0 32px;
+           }
+           .icon-sidebar {
+            margin-bottom: 8px;
+           }
+           .adb-detail__content em {
+            display: block;
+            margin-bottom: 12px;
+           }
+         }
+
+         /* Fixed-position sidebar for larger screens */
+         @media screen and (min-height: 700px) and (min-width: 1100px) {
+           .col-right .section {
+             max-height: calc(100vh - 197px);
+             overflow: auto;
+           }
+
+           .col-right.scroll-start {
+             left: 50%;
+             margin-left: 241px;
+             position: fixed;
+             top: 96px;
+           }
+
+           .col-right.scroll-end {
+             bottom: 485px;
+             position: absolute;
+             top: auto;
+           }
+         }
+
+         [data-about-pullquote], [data-is-preview], [data-about-syndication] {
+           display: none;
+         }
+         
+        #imgFull {
+            display: block;
+            margin: 10px auto;
+            width: 90%;
+            border: 0;
+            padding: 0;
+        }
+
+        #imgHalf {
+            display: block;
+            margin: 10px auto;
+            width: 50%;
+            border: 0;
+            padding: 0;
+        }
+
+        #flexParent {
+            display: flex;
+            width: 100%;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        #flexImg {
+            width: 90%;
+            margin: 0;
+            padding: 0;
+            border: 0;
+        }
+
+        #imgCaption {
+            text-align: center;
+            font-style: italic; 
+            font-size: 85%;
+            margin: -5px 0 10px 0;
+            padding: 0;
+            border: 0;
+        }
+
+        #floatRight {
+            float: right;
+            width: 45%;
+            margin: 5px 0 5px 5px;
+            padding: 0;
+            border: 0;
+        }
+
+        #floatLeft {
+            float: left;
+            width: 45%;
+            margin: 5px 5px 5px 0;
+            padding: 0;
+            border: 0;
+        }
+    </style>
+<noscript>
+<style>
+        .loading {
+          visibility: visible;
+        }
+      </style>
+</noscript>
+<script type="text/javascript">
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-5831155-1', 'auto', 'blogger');
+        ga('blogger.send', 'pageview');
+      </script>
+<link href="Android%20Developers%20Blog_%20Android%2014%20is%20live%20in%20AOSP_files/authorization.css" media="all" onload="if(media!='all')media='all'" rel="stylesheet"><noscript><link href='https://www.blogger.com/dyn-css/authorization.css?targetBlogID=6755709643044947179&amp;zx=e81b09a5-6e36-45ba-b7ac-f6be5557fd17' rel='stylesheet'/></noscript>
+<meta name="google-adsense-platform-account" content="ca-host-pub-1556223355139109">
+<meta name="google-adsense-platform-domain" content="blogspot.com">
+
+<script type="text/javascript" language="javascript">
+  // Supply ads personalization default for EEA readers
+  // See https://www.blogger.com/go/adspersonalization
+  adsbygoogle = window.adsbygoogle || [];
+  if (typeof adsbygoogle.requestNonPersonalizedAds === 'undefined') {
+    adsbygoogle.requestNonPersonalizedAds = 1;
+  }
+</script>
+
+
+<link rel="stylesheet" href="Android%20Developers%20Blog_%20Android%2014%20is%20live%20in%20AOSP_files/css2.css"><style class="singleton-element" type="text/css">.cookie-choices-info { position:fixed;width:100%;background-color:#666;margin:0;left:0;top:0;padding:0;z-index:4000;text-align:center;color:#fff;line-height:140%;padding:10px 0;font-family:roboto,Arial; } .cookie-choices-info .cookie-choices-inner { position:relative;width:initial;margin:0;left:0;top:0; } .cookie-choices-info .cookie-choices-text { display:inline-block;vertical-align:middle;font-size:16px;margin:10px 20px;color:#ccc;max-width:800px;text-align:left; }.cookie-choices-info .cookie-choices-buttons { display:inline-block;vertical-align:middle;white-space:nowrap;margin:0 10px; } .cookie-choices-info .cookie-choices-button:hover {  color: #fff; } .cookie-choices-info .cookie-choices-button { font-weight:bold;text-transform:UPPERCASE;white-space:nowrap;color:#eee;margin-left:8px;padding:0 6px; text-decoration:none; }</style></head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe height='0' src='https://www.googletagmanager.com/ns.html?id=GTM-TB2PQP2' style='display: none; visibility: hidden' width='0'></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<script type="text/javascript">
+      //<![CDATA[
+      var axel = Math.random() + "";
+      var a = axel * 10000000000000;
+      document.write(
+        '<iframe src="https://2542116.fls.doubleclick.net/activityi;src=2542116;type=gblog;cat=googl0;ord=ord=' +
+          a +
+          '?" width="1" height="1" frameborder="0" style="display:none"></iframe>'
+      );
+      //]]>
+    </script><iframe src="Android%20Developers%20Blog_%20Android%2014%20is%20live%20in%20AOSP_files/activityi.html" width="1" height="1" frameborder="0" style="display:none"></iframe>
+<noscript>
+<img alt='' height='1' src='https://ad.doubleclick.net/ddm/activity/src=2542116;type=gblog;cat=googl0;ord=1?' width='1'/>
+</noscript>
+<div class="adb-hero-area">
+<a href="https://android-developers.googleblog.com/"><img alt="hero android logo" class="adb-hero-logo" src="Android%20Developers%20Blog_%20Android%2014%20is%20live%20in%20AOSP_files/android.svg"></a>
+<span class="adb-burger-box"> ☰ </span>
+<div class="adb-hero-title">
+<a href="https://android-developers.googleblog.com/">Android Developers Blog</a>
+</div>
+<div class="adb-hero-summary">
+<a>The latest Android and Google Play news for app and game
+          developers.</a>
+</div>
+<span class="adb-search-box"> 🔍 </span>
+<div class="popout-search">
+<span class="popout-options" id="close-search-popout"><img height="22px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAQAAABLCVATAAAAoklEQVR4Ae2UtQEDMQDE5LHCsE26nyBQfenuS1dZM8yscGW5M8h8nJPJ9Ag8ItDFoWBBeqAKJOYMENosNiVxj7TrUUcodx0rblHtWksc4l3VXhNxzlTxLY0MiqoRVSnbPaL3M5ILUMJeZU/CCUxPNOETUXLRH7e210yY+GHj1+8f53cPUga5yj+t//13Y2SC0DnXeLBZ1CJRW3wn/PucksksATXJlBc3KdoMAAAAAElFTkSuQmCC" width="22px"></span>
+<div class="section" id="header-popout-search"><div class="widget BlogSearch" data-version="1" id="BlogSearch2">
+<div class="widget-content">
+<div id="BlogSearch2_form">
+<div class="searchBox popout-options">
+<form action="/search" class="searchbox">
+<input autocomplete="off" name="q" placeholder="Search blog" title="Search blog" type="text">
+</form>
+</div>
+</div>
+</div>
+</div></div>
+</div>
+<div class="adb-hero-search">
+<div class="section" id="header-search"><div class="widget BlogSearch" data-version="1" id="BlogSearch1">
+<div class="widget-content">
+<div id="BlogSearch1_form">
+<div class="searchBox">
+<form action="/search" class="searchbox">
+<input autocomplete="off" name="q" placeholder="Search blog" title="Search blog" type="text">
+</form>
+</div>
+</div>
+</div>
+</div></div>
+</div>
+<div class="adb-hero-link">
+<a href="https://developer.android.com/" target="_blank">Android Developers <span class="adb-hero-arrow">→</span></a>
+</div>
+</div>
+<div class="dropdown-nav">
+<a class="dropdown-options" href="https://developer.android.com/jetpack">
+<span>Jetpack</span>
+</a>
+<a class="dropdown-options" href="https://developer.android.com/kotlin">
+<span>Kotlin</span>
+</a>
+<a class="dropdown-options" href="https://developer.android.com/docs">
+<span>Docs</span>
+</a>
+<a class="dropdown-options" href="https://developer.android.com/news">
+<span>News</span>
+</a>
+</div>
+<div class="popout-nav">
+<span class="popout-options" id="close-popout"><img height="22px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAQAAABLCVATAAAAoklEQVR4Ae2UtQEDMQDE5LHCsE26nyBQfenuS1dZM8yscGW5M8h8nJPJ9Ag8ItDFoWBBeqAKJOYMENosNiVxj7TrUUcodx0rblHtWksc4l3VXhNxzlTxLY0MiqoRVSnbPaL3M5ILUMJeZU/CCUxPNOETUXLRH7e210yY+GHj1+8f53cPUga5yj+t//13Y2SC0DnXeLBZ1CJRW3wn/PucksksATXJlBc3KdoMAAAAAElFTkSuQmCC" width="22px"></span>
+<a class="popout-options" href="https://developer.android.com/about">
+<span>Platform</span>
+</a>
+<a class="popout-options" href="https://developer.android.com/studio">
+<span>Android Studio</span>
+</a>
+<a class="popout-options" href="https://developer.android.com/distribute">
+<span>Google Play</span>
+</a>
+<a class="popout-options" href="https://developer.android.com/jetpack">
+<span>Jetpack</span>
+</a>
+<a class="popout-options" href="https://developer.android.com/kotlin">
+<span>Kotlin</span>
+</a>
+<a class="popout-options" href="https://developer.android.com/docs">
+<span>Docs</span>
+</a>
+<a class="popout-options" href="https://developer.android.com/news">
+<span>News</span>
+</a>
+<div class="popout-xoptions">
+<div class="sidebar-social-links" style="display: flex">
+<a href="https://developer.android.com/" title="Android Developers Site">
+<img alt="Android Developers Site" class="sidebar-icon android-logo" src="Android%20Developers%20Blog_%20Android%2014%20is%20live%20in%20AOSP_files/android.svg">
+</a>
+<a href="https://www.youtube.com/user/androiddevelopers" title="Android Developers on YouTube">
+<img alt="Android Developers on YouTube" class="sidebar-icon" src="Android%20Developers%20Blog_%20Android%2014%20is%20live%20in%20AOSP_files/video_youtube_grey600_24dp.png">
+</a>
+<a href="https://www.linkedin.com/showcase/androiddev/" title="Android Developers on LinkedIn">
+<img alt="Android Developers on LinkedIn" class="sidebar-icon" src="Android%20Developers%20Blog_%20Android%2014%20is%20live%20in%20AOSP_files/linkedin-4-48.png">
+</a>
+<a href="https://medium.com/androiddevelopers" title="Android Developers on Medium">
+<img alt="Android Developers on Medium" class="sidebar-icon" src="data:image/png;base64,R0lGODlhMAAwAPcAAHJxcHFwb4iGhYODgre2tnNxcLi4t+jo6LCvr3BubW1ram5tbLOzsm1sa3BvbmtqaWppaG5ta2poZ2dmZoB/fmhnZ3Jxb3Jwb5CPjqqpqWtram9ubWxras7OzmloaGpoaHh3d8XExPj4+GhnZmhoZ/39/fv7+2pqaWtqaObm5r69vK2trIWEg+np6X59fIOCgYiHhoaFg93d3ba1tJKRj66trdDQz2lnZrm5uIKCge7t7WpqarW1tKampW1ra9ra2t3d3PPy8uvr67W1s8LCwZ2cm5WUk2ppafX19auqqpKRkff393RzcXRycbSzso+OjbW0s8vLyqalpODf3/f39srKymdnZ+Xl5IKCgLa2tXRzcnZ0c/7+/ru7upuamrS0s7y8u5GPjpuamNPS0nZ1dJqZmLu6ufHx8X18e+zs7O7u7fDw8Obl5dXU1JaVlLSzs52dm9DOzpOSkWtoZ2dnZoCAf+jn525sa9bW1r28vOfn556enbKysamop9nZ2Hl3dnFvbuXl5cTEw399fMHAv6Cenb6+vayrqsrKya+urdHR0fr5+W1tbHp5eNfW1uno6ODg4OLi4qqpqPr6+omIhn59fXh3dmZmZv///3FwbgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxMTEgNzkuMTU4MzI1LCAyMDE1LzA5LzEwLTAxOjEwOjIwICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgMjAxNSAoTWFjaW50b3NoKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpCQzNFMDRFOTlEMzgxMUU3OTk1N0ZEREQyNENCOTcxNCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpCQzNFMDRFQTlEMzgxMUU3OTk1N0ZEREQyNENCOTcxNCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkJDM0UwNEU3OUQzODExRTc5OTU3RkRERDI0Q0I5NzE0IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkJDM0UwNEU4OUQzODExRTc5OTU3RkRERDI0Q0I5NzE0Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+Af/+/fz7+vn49/b19PPy8fDv7u3s6+rp6Ofm5eTj4uHg397d3Nva2djX1tXU09LR0M/OzczLysnIx8bFxMPCwcC/vr28u7q5uLe2tbSzsrGwr66trKuqqainpqWko6KhoJ+enZybmpmYl5aVlJOSkZCPjo2Mi4qJiIeGhYSDgoGAf359fHt6eXh3dnV0c3JxcG9ubWxramloZ2ZlZGNiYWBfXl1cW1pZWFdWVVRTUlFQT05NTEtKSUhHRkVEQ0JBQD8+PTw7Ojk4NzY1NDMyMTAvLi0sKyopKCcmJSQjIiEgHx4dHBsaGRgXFhUUExIREA8ODQwLCgkIBwYFBAMCAQAAIfkEAAAAAAAsAAAAADAAMAAACP8AKVgaSLCgwYMIEyq0RCGTw4cQI0qcSLHiQ0sWM2rcOHCjx48QO4IcqVEkyZMTTaJc6VAlS5QuX5J0CcDBpZs4cY4AYBFAgpxAM/EMiRHiAiYYBChdqrRJg6ETN6BgwXQphgILIrp80EANpq9gv465FIFigEsCwoYNBOGB1qIPz7JQG/bFJagQAV0KQRdTGhAeArydeElOX0xVLiWYWCHAJLoyGF0qIDFmgJ+HDlu6JBgigEtS+rqYnBIuxAANLnXoa+iSg4gcLl0RfYliTIefV/TlssVK50wXLj05PKB26YqXCBwmYNzhz9V9i9s2HTE5JjYl1C5p4OEhHTKYRAj/oSv9OEXrPWzQ7XPJQiYLlxJh6hKFfPPB55UboURXxwS3D1yyBiaDtGHfdMgpl8ElSNAlxmSXYIAJEJekcKB5hCnHwyVD0BXJJRpcoggmZVzSwoWVUQeRdW9c0khfYVzyByYmQDDBASjilyEmDNwEXVh+XOIEJipcwgGOapWXYoI83hQDXSWAcGIdlzSAZFhK6iiRdT1GcMkPdD2CCSSXjKDAlWBlSRSTPX5Gw2GFXDLHmTmumV+TmcRmoVpULECCBHQmeZ+dhGWBCR+1fbYHXYTUBiiaX6l5kYoOFXCJbgtSdgIJZ6gVA2eP1jnpRAB8cIkjmOBxyQcAwCdJWFNc06JAJhI8oAddWAw6akSoXSIIWCGQBQAEEAQBFhx3BXDDJXbQpcVdGDp02SVJqLWgA8Eh8JUIC1RwwQaXeGECXVCAiFdL1J2lRF92FdDYIpjEoZhNRRzW5ALnujRBDvZWUkEmlxCBiRuuXfKFvV8hQpaWmZwAAw4IRCwxAmDAcEQAGqBRQwI+bLDDDCoYIPLII5uRxwKzElopBEDlhAJlBUxwyR0FBGBpyy0DkC+lMn10W88e/Qx0STwPnZHQRleEdNLRMk200z5DDZJAC1VttdUUBAQAOw==">
+</a>
+<a href="https://x.com/androiddev" title="Follow Android Developers on X">
+<img alt="Follow Android Developers on X" class="sidebar-icon" src="Android%20Developers%20Blog_%20Android%2014%20is%20live%20in%20AOSP_files/x.svg">
+</a>
+</div>
+</div>
+<div class="popout-options">
+<div class="sidebar-social-links" style="display: flex">
+<a href="https://developer.android.com/distribute/" title="Google Play Site">
+<img alt="Google Play Site" class="sidebar-icon" src="Android%20Developers%20Blog_%20Android%2014%20is%20live%20in%20AOSP_files/google-play.svg">
+</a>
+<a href="https://www.linkedin.com/company/googleplaybiz/" title="Google Play Apps &amp; Games on LinkedIn">
+<img alt="Google Play Apps &amp; Games on LinkedIn" class="sidebar-icon" src="Android%20Developers%20Blog_%20Android%2014%20is%20live%20in%20AOSP_files/linkedin-4-48.png">
+</a>
+<a href="https://medium.com/googleplaydev" title="Google Play Apps &amp; Games on Medium">
+<img alt="Google Play Apps &amp; Games on Medium" class="sidebar-icon" src="data:image/png;base64,R0lGODlhMAAwAPcAAHJxcHFwb4iGhYODgre2tnNxcLi4t+jo6LCvr3BubW1ram5tbLOzsm1sa3BvbmtqaWppaG5ta2poZ2dmZoB/fmhnZ3Jxb3Jwb5CPjqqpqWtram9ubWxras7OzmloaGpoaHh3d8XExPj4+GhnZmhoZ/39/fv7+2pqaWtqaObm5r69vK2trIWEg+np6X59fIOCgYiHhoaFg93d3ba1tJKRj66trdDQz2lnZrm5uIKCge7t7WpqarW1tKampW1ra9ra2t3d3PPy8uvr67W1s8LCwZ2cm5WUk2ppafX19auqqpKRkff393RzcXRycbSzso+OjbW0s8vLyqalpODf3/f39srKymdnZ+Xl5IKCgLa2tXRzcnZ0c/7+/ru7upuamrS0s7y8u5GPjpuamNPS0nZ1dJqZmLu6ufHx8X18e+zs7O7u7fDw8Obl5dXU1JaVlLSzs52dm9DOzpOSkWtoZ2dnZoCAf+jn525sa9bW1r28vOfn556enbKysamop9nZ2Hl3dnFvbuXl5cTEw399fMHAv6Cenb6+vayrqsrKya+urdHR0fr5+W1tbHp5eNfW1uno6ODg4OLi4qqpqPr6+omIhn59fXh3dmZmZv///3FwbgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxMTEgNzkuMTU4MzI1LCAyMDE1LzA5LzEwLTAxOjEwOjIwICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgMjAxNSAoTWFjaW50b3NoKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpCQzNFMDRFOTlEMzgxMUU3OTk1N0ZEREQyNENCOTcxNCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpCQzNFMDRFQTlEMzgxMUU3OTk1N0ZEREQyNENCOTcxNCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkJDM0UwNEU3OUQzODExRTc5OTU3RkRERDI0Q0I5NzE0IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkJDM0UwNEU4OUQzODExRTc5OTU3RkRERDI0Q0I5NzE0Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+Af/+/fz7+vn49/b19PPy8fDv7u3s6+rp6Ofm5eTj4uHg397d3Nva2djX1tXU09LR0M/OzczLysnIx8bFxMPCwcC/vr28u7q5uLe2tbSzsrGwr66trKuqqainpqWko6KhoJ+enZybmpmYl5aVlJOSkZCPjo2Mi4qJiIeGhYSDgoGAf359fHt6eXh3dnV0c3JxcG9ubWxramloZ2ZlZGNiYWBfXl1cW1pZWFdWVVRTUlFQT05NTEtKSUhHRkVEQ0JBQD8+PTw7Ojk4NzY1NDMyMTAvLi0sKyopKCcmJSQjIiEgHx4dHBsaGRgXFhUUExIREA8ODQwLCgkIBwYFBAMCAQAAIfkEAAAAAAAsAAAAADAAMAAACP8AKVgaSLCgwYMIEyq0RCGTw4cQI0qcSLHiQ0sWM2rcOHCjx48QO4IcqVEkyZMTTaJc6VAlS5QuX5J0CcDBpZs4cY4AYBFAgpxAM/EMiRHiAiYYBChdqrRJg6ETN6BgwXQphgILIrp80EANpq9gv465FIFigEsCwoYNBOGB1qIPz7JQG/bFJagQAV0KQRdTGhAeArydeElOX0xVLiWYWCHAJLoyGF0qIDFmgJ+HDlu6JBgigEtS+rqYnBIuxAANLnXoa+iSg4gcLl0RfYliTIefV/TlssVK50wXLj05PKB26YqXCBwmYNzhz9V9i9s2HTE5JjYl1C5p4OEhHTKYRAj/oSv9OEXrPWzQ7XPJQiYLlxJh6hKFfPPB55UboURXxwS3D1yyBiaDtGHfdMgpl8ElSNAlxmSXYIAJEJekcKB5hCnHwyVD0BXJJRpcoggmZVzSwoWVUQeRdW9c0khfYVzyByYmQDDBASjilyEmDNwEXVh+XOIEJipcwgGOapWXYoI83hQDXSWAcGIdlzSAZFhK6iiRdT1GcMkPdD2CCSSXjKDAlWBlSRSTPX5Gw2GFXDLHmTmumV+TmcRmoVpULECCBHQmeZ+dhGWBCR+1fbYHXYTUBiiaX6l5kYoOFXCJbgtSdgIJZ6gVA2eP1jnpRAB8cIkjmOBxyQcAwCdJWFNc06JAJhI8oAddWAw6akSoXSIIWCGQBQAEEAQBFhx3BXDDJXbQpcVdGDp02SVJqLWgA8Eh8JUIC1RwwQaXeGECXVCAiFdL1J2lRF92FdDYIpjEoZhNRRzW5ALnujRBDvZWUkEmlxCBiRuuXfKFvV8hQpaWmZwAAw4IRCwxAmDAcEQAGqBRQwI+bLDDDCoYIPLII5uRxwKzElopBEDlhAJlBUxwyR0FBGBpyy0DkC+lMn10W88e/Qx0STwPnZHQRleEdNLRMk200z5DDZJAC1VttdUUBAQAOw==">
+</a>
+<a href="https://x.com/GooglePlayBiz" title="Follow GooglePlaydBiz on X">
+<img alt="Follow GooglePlayBiz on X" class="sidebar-icon" src="Android%20Developers%20Blog_%20Android%2014%20is%20live%20in%20AOSP_files/x.svg">
+</a>
+</div>
+</div>
+</div>
+<div class="popout-overlay"></div>
+<div class="popout-search-overlay"></div>
+<div class="adb-header">
+<div class="adb-header-inner">
+<div class="adb-htag-box">
+<span class="adb-header-tags">
+<a href="https://developer.android.com/about">Platform</a>
+</span>
+<span class="adb-header-tags">
+<a href="https://developer.android.com/studio">Android Studio</a>
+</span>
+<span class="adb-header-tags">
+<a href="https://developer.android.com/distribute">Google Play</a>
+</span>
+<span class="adb-header-tags breakpoint-hide">
+<a href="https://developer.android.com/jetpack">Jetpack</a>
+</span>
+<span class="adb-header-tags breakpoint-hide">
+<a href="https://developer.android.com/kotlin">Kotlin</a>
+</span>
+<span class="adb-header-tags breakpoint-hide">
+<a href="https://developer.android.com/docs">Docs</a>
+</span>
+<span class="adb-header-tags breakpoint-hide">
+<a href="https://developer.android.com/news">News</a>
+</span>
+<span class="adb-header-tags more-dropdown" status="inactive">
+<a>More</a>
+<img class="dropdown-icon" height="24px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAAR0lEQVR4Ae3OMREAIBDEQCQgBf8qkIID+P4qqnyRnUmfIUmS1NesdnU/O9VqMJUz5FTMAFPcTE7xMzHFz8QUPxNT/IwkSUoPu7I4F2kEFg8AAAAASUVORK5CYII= " width="24px">
+</span>
+</div>
+<div class="adb-socials-box">
+<div class="adb-socials-category">
+<div class="sidebar-social-links" style="display: flex; justify-content: center; padding: 0 4px">
+<a href="https://developer.android.com/" title="Android Developers Site">
+<img alt="Android Developers Site" class="sidebar-icon android-logo" src="Android%20Developers%20Blog_%20Android%2014%20is%20live%20in%20AOSP_files/android.svg">
+</a>
+<a href="https://www.youtube.com/user/androiddevelopers" title="Android Developers on YouTube">
+<img alt="Android Developers on YouTube" class="sidebar-icon" src="Android%20Developers%20Blog_%20Android%2014%20is%20live%20in%20AOSP_files/video_youtube_grey600_24dp.png">
+</a>
+<a href="https://www.linkedin.com/showcase/androiddev/" title="Android Developers on LinkedIn">
+<img alt="Android Developers on LinkedIn" class="sidebar-icon" src="Android%20Developers%20Blog_%20Android%2014%20is%20live%20in%20AOSP_files/linkedin-4-48.png">
+</a>
+<a href="https://medium.com/androiddevelopers" title="Android Developers on Medium">
+<img alt="Android Developers on Medium" class="sidebar-icon" src="data:image/png;base64,R0lGODlhMAAwAPcAAHJxcHFwb4iGhYODgre2tnNxcLi4t+jo6LCvr3BubW1ram5tbLOzsm1sa3BvbmtqaWppaG5ta2poZ2dmZoB/fmhnZ3Jxb3Jwb5CPjqqpqWtram9ubWxras7OzmloaGpoaHh3d8XExPj4+GhnZmhoZ/39/fv7+2pqaWtqaObm5r69vK2trIWEg+np6X59fIOCgYiHhoaFg93d3ba1tJKRj66trdDQz2lnZrm5uIKCge7t7WpqarW1tKampW1ra9ra2t3d3PPy8uvr67W1s8LCwZ2cm5WUk2ppafX19auqqpKRkff393RzcXRycbSzso+OjbW0s8vLyqalpODf3/f39srKymdnZ+Xl5IKCgLa2tXRzcnZ0c/7+/ru7upuamrS0s7y8u5GPjpuamNPS0nZ1dJqZmLu6ufHx8X18e+zs7O7u7fDw8Obl5dXU1JaVlLSzs52dm9DOzpOSkWtoZ2dnZoCAf+jn525sa9bW1r28vOfn556enbKysamop9nZ2Hl3dnFvbuXl5cTEw399fMHAv6Cenb6+vayrqsrKya+urdHR0fr5+W1tbHp5eNfW1uno6ODg4OLi4qqpqPr6+omIhn59fXh3dmZmZv///3FwbgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxMTEgNzkuMTU4MzI1LCAyMDE1LzA5LzEwLTAxOjEwOjIwICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgMjAxNSAoTWFjaW50b3NoKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpCQzNFMDRFOTlEMzgxMUU3OTk1N0ZEREQyNENCOTcxNCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpCQzNFMDRFQTlEMzgxMUU3OTk1N0ZEREQyNENCOTcxNCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkJDM0UwNEU3OUQzODExRTc5OTU3RkRERDI0Q0I5NzE0IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkJDM0UwNEU4OUQzODExRTc5OTU3RkRERDI0Q0I5NzE0Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+Af/+/fz7+vn49/b19PPy8fDv7u3s6+rp6Ofm5eTj4uHg397d3Nva2djX1tXU09LR0M/OzczLysnIx8bFxMPCwcC/vr28u7q5uLe2tbSzsrGwr66trKuqqainpqWko6KhoJ+enZybmpmYl5aVlJOSkZCPjo2Mi4qJiIeGhYSDgoGAf359fHt6eXh3dnV0c3JxcG9ubWxramloZ2ZlZGNiYWBfXl1cW1pZWFdWVVRTUlFQT05NTEtKSUhHRkVEQ0JBQD8+PTw7Ojk4NzY1NDMyMTAvLi0sKyopKCcmJSQjIiEgHx4dHBsaGRgXFhUUExIREA8ODQwLCgkIBwYFBAMCAQAAIfkEAAAAAAAsAAAAADAAMAAACP8AKVgaSLCgwYMIEyq0RCGTw4cQI0qcSLHiQ0sWM2rcOHCjx48QO4IcqVEkyZMTTaJc6VAlS5QuX5J0CcDBpZs4cY4AYBFAgpxAM/EMiRHiAiYYBChdqrRJg6ETN6BgwXQphgILIrp80EANpq9gv465FIFigEsCwoYNBOGB1qIPz7JQG/bFJagQAV0KQRdTGhAeArydeElOX0xVLiWYWCHAJLoyGF0qIDFmgJ+HDlu6JBgigEtS+rqYnBIuxAANLnXoa+iSg4gcLl0RfYliTIefV/TlssVK50wXLj05PKB26YqXCBwmYNzhz9V9i9s2HTE5JjYl1C5p4OEhHTKYRAj/oSv9OEXrPWzQ7XPJQiYLlxJh6hKFfPPB55UboURXxwS3D1yyBiaDtGHfdMgpl8ElSNAlxmSXYIAJEJekcKB5hCnHwyVD0BXJJRpcoggmZVzSwoWVUQeRdW9c0khfYVzyByYmQDDBASjilyEmDNwEXVh+XOIEJipcwgGOapWXYoI83hQDXSWAcGIdlzSAZFhK6iiRdT1GcMkPdD2CCSSXjKDAlWBlSRSTPX5Gw2GFXDLHmTmumV+TmcRmoVpULECCBHQmeZ+dhGWBCR+1fbYHXYTUBiiaX6l5kYoOFXCJbgtSdgIJZ6gVA2eP1jnpRAB8cIkjmOBxyQcAwCdJWFNc06JAJhI8oAddWAw6akSoXSIIWCGQBQAEEAQBFhx3BXDDJXbQpcVdGDp02SVJqLWgA8Eh8JUIC1RwwQaXeGECXVCAiFdL1J2lRF92FdDYIpjEoZhNRRzW5ALnujRBDvZWUkEmlxCBiRuuXfKFvV8hQpaWmZwAAw4IRCwxAmDAcEQAGqBRQwI+bLDDDCoYIPLII5uRxwKzElopBEDlhAJlBUxwyR0FBGBpyy0DkC+lMn10W88e/Qx0STwPnZHQRleEdNLRMk200z5DDZJAC1VttdUUBAQAOw==">
+</a>
+<a href="https://x.com/androiddev" title="Follow Android Developers on X">
+<img alt="Follow Android Developers on X" class="sidebar-icon" src="Android%20Developers%20Blog_%20Android%2014%20is%20live%20in%20AOSP_files/x.svg">
+</a>
+</div>
+</div>
+<div class="adb-socials-divider">|</div>
+<div class="adb-socials-category">
+<div class="sidebar-social-links" style="display: flex; justify-content: center; padding: 0 4px">
+<a href="https://developer.android.com/distribute/" title="Google Play Site">
+<img alt="Google Play Site" class="sidebar-icon" src="Android%20Developers%20Blog_%20Android%2014%20is%20live%20in%20AOSP_files/google-play.svg">
+</a>
+<a href="https://www.linkedin.com/company/googleplaybiz/" title="Google Play Apps &amp; Games on LinkedIn">
+<img alt="Google Play Apps &amp; Games on LinkedIn" class="sidebar-icon" src="Android%20Developers%20Blog_%20Android%2014%20is%20live%20in%20AOSP_files/linkedin-4-48.png">
+</a>
+<a href="https://medium.com/googleplaydev" title="Google Play Apps &amp; Games on Medium">
+<img alt="Google Play Apps &amp; Games on Medium" class="sidebar-icon" src="data:image/png;base64,R0lGODlhMAAwAPcAAHJxcHFwb4iGhYODgre2tnNxcLi4t+jo6LCvr3BubW1ram5tbLOzsm1sa3BvbmtqaWppaG5ta2poZ2dmZoB/fmhnZ3Jxb3Jwb5CPjqqpqWtram9ubWxras7OzmloaGpoaHh3d8XExPj4+GhnZmhoZ/39/fv7+2pqaWtqaObm5r69vK2trIWEg+np6X59fIOCgYiHhoaFg93d3ba1tJKRj66trdDQz2lnZrm5uIKCge7t7WpqarW1tKampW1ra9ra2t3d3PPy8uvr67W1s8LCwZ2cm5WUk2ppafX19auqqpKRkff393RzcXRycbSzso+OjbW0s8vLyqalpODf3/f39srKymdnZ+Xl5IKCgLa2tXRzcnZ0c/7+/ru7upuamrS0s7y8u5GPjpuamNPS0nZ1dJqZmLu6ufHx8X18e+zs7O7u7fDw8Obl5dXU1JaVlLSzs52dm9DOzpOSkWtoZ2dnZoCAf+jn525sa9bW1r28vOfn556enbKysamop9nZ2Hl3dnFvbuXl5cTEw399fMHAv6Cenb6+vayrqsrKya+urdHR0fr5+W1tbHp5eNfW1uno6ODg4OLi4qqpqPr6+omIhn59fXh3dmZmZv///3FwbgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxMTEgNzkuMTU4MzI1LCAyMDE1LzA5LzEwLTAxOjEwOjIwICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgMjAxNSAoTWFjaW50b3NoKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpCQzNFMDRFOTlEMzgxMUU3OTk1N0ZEREQyNENCOTcxNCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpCQzNFMDRFQTlEMzgxMUU3OTk1N0ZEREQyNENCOTcxNCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkJDM0UwNEU3OUQzODExRTc5OTU3RkRERDI0Q0I5NzE0IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkJDM0UwNEU4OUQzODExRTc5OTU3RkRERDI0Q0I5NzE0Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+Af/+/fz7+vn49/b19PPy8fDv7u3s6+rp6Ofm5eTj4uHg397d3Nva2djX1tXU09LR0M/OzczLysnIx8bFxMPCwcC/vr28u7q5uLe2tbSzsrGwr66trKuqqainpqWko6KhoJ+enZybmpmYl5aVlJOSkZCPjo2Mi4qJiIeGhYSDgoGAf359fHt6eXh3dnV0c3JxcG9ubWxramloZ2ZlZGNiYWBfXl1cW1pZWFdWVVRTUlFQT05NTEtKSUhHRkVEQ0JBQD8+PTw7Ojk4NzY1NDMyMTAvLi0sKyopKCcmJSQjIiEgHx4dHBsaGRgXFhUUExIREA8ODQwLCgkIBwYFBAMCAQAAIfkEAAAAAAAsAAAAADAAMAAACP8AKVgaSLCgwYMIEyq0RCGTw4cQI0qcSLHiQ0sWM2rcOHCjx48QO4IcqVEkyZMTTaJc6VAlS5QuX5J0CcDBpZs4cY4AYBFAgpxAM/EMiRHiAiYYBChdqrRJg6ETN6BgwXQphgILIrp80EANpq9gv465FIFigEsCwoYNBOGB1qIPz7JQG/bFJagQAV0KQRdTGhAeArydeElOX0xVLiWYWCHAJLoyGF0qIDFmgJ+HDlu6JBgigEtS+rqYnBIuxAANLnXoa+iSg4gcLl0RfYliTIefV/TlssVK50wXLj05PKB26YqXCBwmYNzhz9V9i9s2HTE5JjYl1C5p4OEhHTKYRAj/oSv9OEXrPWzQ7XPJQiYLlxJh6hKFfPPB55UboURXxwS3D1yyBiaDtGHfdMgpl8ElSNAlxmSXYIAJEJekcKB5hCnHwyVD0BXJJRpcoggmZVzSwoWVUQeRdW9c0khfYVzyByYmQDDBASjilyEmDNwEXVh+XOIEJipcwgGOapWXYoI83hQDXSWAcGIdlzSAZFhK6iiRdT1GcMkPdD2CCSSXjKDAlWBlSRSTPX5Gw2GFXDLHmTmumV+TmcRmoVpULECCBHQmeZ+dhGWBCR+1fbYHXYTUBiiaX6l5kYoOFXCJbgtSdgIJZ6gVA2eP1jnpRAB8cIkjmOBxyQcAwCdJWFNc06JAJhI8oAddWAw6akSoXSIIWCGQBQAEEAQBFhx3BXDDJXbQpcVdGDp02SVJqLWgA8Eh8JUIC1RwwQaXeGECXVCAiFdL1J2lRF92FdDYIpjEoZhNRRzW5ALnujRBDvZWUkEmlxCBiRuuXfKFvV8hQpaWmZwAAw4IRCwxAmDAcEQAGqBRQwI+bLDDDCoYIPLII5uRxwKzElopBEDlhAJlBUxwyR0FBGBpyy0DkC+lMn10W88e/Qx0STwPnZHQRleEdNLRMk200z5DDZJAC1VttdUUBAQAOw==">
+</a>
+<a href="https://x.com/GooglePlayBiz" title="Follow GooglePlaydBiz on X">
+<img alt="Follow GooglePlayBiz on X" class="sidebar-icon" src="Android%20Developers%20Blog_%20Android%2014%20is%20live%20in%20AOSP_files/x.svg">
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- all content wrapper start -->
+<div class="content-wrap">
+<div class="full-width section" id="Body">
+<div class="widget Blog" data-version="1" id="Blog1">
+<div class="adb-container--large">
+<div class="adb-detail">
+<div class="adb-detail__info">
+<p>
+04 October 2023
+</p>
+</div>
+<div class="adb-detail__title">
+<h1>Android 14 is live in AOSP</h1>
+</div>
+<hr>
+<div class="icon-sidebar">
+<span class="share-text">Share this post</span>
+<a class="icon-link" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://android-developers.googleblog.com/2023/10/android-14-is-live-in-aosp.html&amp;title=Android%2014%20is%20live%20in%20AOSP" rel="noopener noreferrer" target="_blank">
+<img alt="Share on LinkedIn" src="Android%20Developers%20Blog_%20Android%2014%20is%20live%20in%20AOSP_files/ic_linkedin_black.svg">
+<span class="share-text">LinkedIn</span>
+</a>
+<a class="icon-link" href="https://x.com/share?text=Android%20Developers%20Blog:%20Android%2014%20is%20live%20in%20AOSP&amp;url=https://android-developers.googleblog.com/2023/10/android-14-is-live-in-aosp.html&amp;via=google" rel="noopener noreferrer" target="_blank">
+<img alt="Share on X" src="Android%20Developers%20Blog_%20Android%2014%20is%20live%20in%20AOSP_files/x.svg" style="height: 16px; margin: auto 9px;">
+<span class="share-text">Twitter</span>
+</a>
+<a class="icon-link" href="https://www.facebook.com/sharer.php?u=https://android-developers.googleblog.com/2023/10/android-14-is-live-in-aosp.html" rel="noopener noreferrer" target="_blank">
+<img alt="Share on Facebook" src="Android%20Developers%20Blog_%20Android%2014%20is%20live%20in%20AOSP_files/ic_facebook_black.svg">
+<span class="share-text">Facebook</span>
+</a>
+<a class="icon-link" href="mailto:?subject=Android%2014%20is%20live%20in%20AOSP&amp;body=https://android-developers.googleblog.com/2023/10/android-14-is-live-in-aosp.html" rel="noopener noreferrer" target="_blank">
+<img alt="Share in mail" src="Android%20Developers%20Blog_%20Android%2014%20is%20live%20in%20AOSP_files/ic_mail.svg">
+<span class="share-text">Email</span>
+</a>
+<a class="icon-link copy-link" type="button" value="https://android-developers.googleblog.com/2023/10/android-14-is-live-in-aosp.html">
+<img alt="Copy link" src="Android%20Developers%20Blog_%20Android%2014%20is%20live%20in%20AOSP_files/ic_link.svg">
+<span class="share-text">Copy link</span>
+</a>
+</div>
+<div class="copy-tooltip">
+<span class="copy-tooltiptext">Link copied to clipboard</span>
+</div>
+<div class="adb-detail__content">
+<div>
+<meta content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg9MZ26MCfyE5k66dnDkFBh6W9Uax1IrHwbK4Wz8WjArRsDHp9b4K9B2CreON5xt6KwWrpTERxmLXIj0WY70QXml0mcXfxUrWL6CYcJiFuYln3m5S6h2_jkpDd5gU1oJ67pttXIjF-ZalsystKsTx8SVIlC1rms-aaHy5sSfVohHta63_WjPCGUUuT3/s1600/Android_Android14DPI_1024x512.png" name="twitter:image">
+<img src="Android%20Developers%20Blog_%20Android%2014%20is%20live%20in%20AOSP_files/Android_Android14DPI_1024x512.png" style="display: none;">
+
+<em> Posted by <a href="https://twitter.com/davey_burke" target="_blank">Dave Burke</a>, VP of Engineering </em><p></p>
+
+<a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgj3HqZ4kTjNILs9bRVDYaEvL9e93ZA6W3x477en6nOtA2qlRRkYcWjfxcGjX-MOjcsbL1N0WnnMK9qxh0yRrIbtyt0SZXgJUVZHA7j3TLk3TADGHRCT8lzJJeSruXx_HHU705JoZ8UBIFvt4JQeghi38ojYm6sXbispr7mtdFL0UQt33DSAGO_Xdc5NJA/s1600/image5.png"><img border="0" data-original-height="800" data-original-width="100%" src="Android%20Developers%20Blog_%20Android%2014%20is%20live%20in%20AOSP_files/image5.png"></a>
+
+<p>Today we're releasing <a href="https://developer.android.com/about/versions/14" target="_blank">Android 14</a> and pushing the Android 14 source to the <a href="https://source.android.com/" target="_blank">Android Open Source Project</a>
+ (AOSP). Android 14 is designed to improve your productivity as 
+developers while enhancing performance, privacy, security, and 
+customization for users.</p>
+
+<p>Android 14 is rolling out to select Pixel devices starting today, and
+ will be available later this year on some of your favorite devices from
+ Samsung Galaxy, iQOO, Nothing, OnePlus, Oppo, Realme, Sharp, Sony, 
+Tecno, vivo and Xiaomi.</p>
+
+<p>Thank you for taking the time to take Android 14 for an early spin 
+though our developer preview and beta programs, sharing your feedback, 
+and making sure your apps deliver a great experience on Android 14. 
+Making Android work well for each and every one of the billions of 
+Android users is a collaborative process between us, Android hardware 
+manufacturers, and you, our developer community.</p>
+
+<p>This post covers a selection of Android 14 changes that have the most
+ developer impact. For a complete list of all of the Android 14 changes,
+ <a href="https://developer.android.com/about/versions/14" target="_blank">visit the Android 14 developer site</a>.</p>
+
+<h3>Performance and Efficiency</h3>
+
+<p>A big focus of Android 14 was on improving the performance and efficiency of the platform.</p>
+
+<b>Freezing cached applications</b>
+
+<p>Prior to Android 14, cached applications were allowed to run somewhat
+ unconstrained. In Android 14, we freeze cached applications after a 
+short period of time, giving them 0 CPU time. In Android 14 Beta 
+populations, we see that <a href="https://developer.android.com/guide/components/activities/process-lifecycle" target="_blank">cached</a>
+ processes consume up to 50% less CPU cycles as compared to Android 13 
+public devices. Thus, background work is disallowed outside of 
+conventional Android app lifecycle APIs such as foreground services, 
+JobScheduler, or WorkManager.</p>
+
+<b>Optimized broadcasts</b>
+
+<p>To keep frozen applications frozen longer (i.e. not get CPU time), we adjusted how apps receive <a href="https://developer.android.com/guide/components/broadcasts#context-registered-receivers" target="_blank">context-registered</a> broadcasts once they go into a <a href="https://developer.android.com/guide/components/activities/process-lifecycle" target="_blank">cached state</a>; they may be queued, and repeating ones, such as <a href="https://developer.android.com/reference/android/content/Intent#ACTION_BATTERY_CHANGED" target="_blank"><span style="font-family: courier;">BATTERY_CHANGED</span></a>, may be merged into one broadcast.</p>
+
+<b>Faster app launches</b>
+
+<p>With cached app and broadcast optimizations In Android 14, we were 
+able to increase long-standing limits on the maximum number of cached 
+applications in the platform, leading to a reduction in cold app starts 
+that scales by the RAM present on the device. On 8GB devices, the beta 
+group saw 20% fewer cold app starts, and on 12GB devices it was over 30%
+ fewer. Cold startups are slow compared to warm startups and they are 
+expensive in terms of power. This work effectively improves both power 
+usage and overall app startup times.</p>
+
+<b>Reduced memory footprint</b>
+
+<p>Improving the Android Runtime (ART) has a huge impact on the Android 
+user-experience. Code size is one of the key metrics we look at; smaller
+ generated files are better for memory (both RAM and storage). In 
+Android 14, ART includes optimizations that reduce code size by an 
+average of 9.3% without impacting performance.</p>
+
+<h3>Customization</h3>
+
+<p>Customization is at the core of Android's DNA, and Android 14 
+continues our commitment to enabling Android users to tune their 
+experience around their individual needs, including enhanced 
+accessibility and internationalization features.</p>
+
+<p><b>Bigger fonts with non-linear scaling</b> – Starting in Android 14,
+ users will be able to scale up their font to 200%. Previously, the 
+maximum font size scale on Pixel devices was 130%. A non-linear font 
+scaling curve is automatically applied to ensure that text that is 
+already large enough doesn’t increase at the same rate as smaller text. <a href="http://developer.android.com/about/versions/14/features#non-linear-font-scaling" target="_blank">Learn more here</a>.</p>
+
+<img><div style="text-align: center;"><img alt="Image showing the differences between font with no scaling at 100% on the left, standard scaling at 200% in the middle, and non-linear scaling at 200% on the right" border="0" id="imgCaption" src="Android%20Developers%20Blog_%20Android%2014%20is%20live%20in%20AOSP_files/image8.png" width="100%"></div><br>
+
+<p><b>Per-app language preferences </b> – You can dynamically update your app's localeConfig with <a href="https://d.android.com/reference/android/app/LocaleManager?hl=en#setOverrideLocaleConfig(android.app.LocaleConfig)" target="_blank"><span style="font-family: courier;">LocaleManager.setOverrideLocaleConfig</span></a> to customize the set of languages displayed in the per-app language list in Android Settings. IMEs can now use <a href="https://developer.android.com/reference/android/app/LocaleManager#getApplicationLocales%28%29" target="_blank"><span style="font-family: courier;">LocaleManager.getApplicationLocales</span></a> to know the UI language of the current app to update the keyboard language. Starting with <a href="https://developer.android.com/guide/topics/resources/app-languages#auto-localeconfig" target="_blank">Android Studio Giraffe</a> and AGP 8.1, you can configure your app to support Android 13's <a href="https://developer.android.com/guide/topics/resources/app-languages" target="_blank">per-app language preferences</a> automatically. </p>
+
+<p><b>Regional preferences</b> – <a href="https://developer.android.com/reference/androidx/core/text/util/LocalePreferences" target="_blank">Regional preferences</a> enable users to personalize temperature units, the first day of the week, and numbering systems.</p>
+
+<p><b>Grammatical Inflection</b> – The <a href="https://developer.android.com/reference/androidx/core/text/util/LocalePreferences" target="_blank">Grammatical Inflection API</a>
+ allows you to more easily add support for users who speak languages 
+that have grammatical gender. To show personalized translations, you 
+just need to add translations inflected for each grammatical gender for 
+impacted languages and integrate the API.</p>
+
+<h3>New media capabilities</h3>
+
+<p><b></b></p><div class="separator" style="clear: both; text-align: center;"><b><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjDugK1UGCMXoSCn6OVNqlGz5WD-ZZZ8B92dtaEUvS2gGGKBNuefHHjublNNntTygB5fGMUcChgRK2U6LEVO8wxK84M_G5_ZfLKDI6-tu-OhrfUmPl7Mig16mvVAvs2auTkmc0YdVqi9OuDWCqwmd4KZKJb3bwMZ8HjvDxVUeupKxHx3PjYB5LnNnk6YMY/s1364/image7.png" style="clear: right; float: right; margin-bottom: 1em; margin-left: 1em;"><img border="0" data-original-height="1364" data-original-width="1088" height="320" src="Android%20Developers%20Blog_%20Android%2014%20is%20live%20in%20AOSP_files/image7.png" width="255"></a></b></div><b><br>Ultra HDR for images</b> - Android 14 adds support for 10-bit high dynamic range (HDR) images, with support for the <a href="https://developer.android.com/guide/topics/media/hdr-image-format" target="_blank">Ultra HDR image format</a>. The format is fully backward-compatible with JPEG, allowing apps to seamlessly interoperate with HDR images.<p></p>
+
+<p><b>Zoom, Focus, Postview, and more in Camera Extensions</b> - Android 14 upgrades and improves <a href="https://developer.android.com/training/camera/camera-extensions" target="_blank">Camera Extensions</a>,
+ allowing apps to handle longer processing times, enabling improved 
+images using compute-intensive algorithms like low-light photography on 
+supported devices.</p>
+
+
+<p><b>Lossless USB audio</b> - Android 14 devices can support lossless <a href="https://developer.android.com/reference/android/media/AudioMixerAttributes" target="_blank">audio formats</a> for audiophile-level experiences over USB wired headsets.</p>
+
+<h3>New graphics capabilities</h3>
+
+<p><b>Custom meshes with vertex and fragment shaders</b> - Android 14 adds support for <a href="https://developer.android.com/reference/kotlin/android/graphics/Mesh" target="_blank">custom meshes</a>, which can be defined as <a href="https://developer.android.com/reference/kotlin/android/graphics/Mesh?#TRIANGLES:kotlin.Int" target="_blank">triangles</a> or <a href="https://developer.android.com/reference/kotlin/android/graphics/Mesh?#triangle_strip" target="_blank">triangle strips</a>, and can, optionally, be indexed. These meshes are <a href="https://developer.android.com/reference/kotlin/android/graphics/MeshSpecification" target="_blank">specified</a> with <a href="https://developer.android.com/reference/kotlin/android/graphics/MeshSpecification.Attribute" target="_blank">custom attributes</a>, vertex strides, <a href="https://developer.android.com/reference/kotlin/android/graphics/MeshSpecification.Varying" target="_blank">varying</a>, and vertex/fragment shaders written in <a href="https://developer.android.com/develop/ui/views/graphics/agsl" target="_blank">AGSL</a>.</p> 
+
+<p><b>Hardware buffer renderer for Canvas</b> - Android 14 introduces <a href="https://developer.android.com/reference/android/graphics/HardwareBufferRenderer" target="_blank"><span style="font-family: courier;">HardwareBufferRenderer</span></a> to assist in using Android's <a href="https://developer.android.com/reference/android/graphics/Canvas" target="_blank"><span style="font-family: courier;">Canvas</span></a> API to draw with hardware acceleration into a <a href="https://developer.android.com/reference/android/hardware/HardwareBuffer" target="_blank"><span style="font-family: courier;">HardwareBuffer</span></a>, which is particularly helpful when your use case involves communication with the system compositor through <a href="https://developer.android.com/reference/android/view/SurfaceControl" target="_blank"><span style="font-family: courier;">SurfaceControl</span></a> for low-latency drawing.</p>
+
+<h3>Developing across form factors</h3>
+
+<p>Android 14 builds on the work done in Android 12L and 13 to support 
+tablets and foldable form factors including a taskbar supporting 
+enhanced multitasking, large-screen optimized system apps and 
+notification UI, activity embedding, enhanced letterboxing, improved 
+media projection, and more. Our <a href="https://developer.android.com/docs/quality-guidelines/tablet-app-quality" target="_blank">app quality guidance for large screens</a> along with additional learning opportunities around <a href="https://developer.android.com/guide/topics/large-screens/get-started-with-large-screens" target="_blank">building for large screens</a> and <a href="https://developer.android.com/guide/topics/ui/foldables" target="_blank">foldables</a> can help optimize your app across all Android surfaces, while the <a href="https://developer.android.com/large-screens/gallery" target="_blank">large screen gallery</a> contains design patterns and inspiration for <a href="https://developer.android.com/large-screens/gallery/social" target="_blank">social and communications</a>, <a href="https://developer.android.com/large-screens/gallery/media" target="_blank">media</a>, <a href="https://developer.android.com/large-screens/gallery/productivity" target="_blank">productivity</a>, <a href="https://developer.android.com/large-screens/gallery/shopping" target="_blank">shopping</a>, and <a href="https://developer.android.com/large-screens/gallery/reading" target="_blank">reading apps</a>.</p>
+
+<h3>Improving your productivity</h3>
+
+<p>Android 14 contains many updates focused on making your development 
+experience more consistent, fun, and productive. Many of these updates 
+are being made available on older platform releases using a combination 
+of <a href="https://support.google.com/product-documentation/answer/11462338" target="_blank">Google Play system updates</a>, <a href="https://developer.android.com/jetpack/androidx/explorer" target="_blank">Jetpack libraries</a>, and <a href="https://developer.android.com/google/play-services/index.html" target="_blank">Google Play services</a>, so you can reach more users with them.</p>
+
+<p><b>OpenJDK 17 Support</b> - Thanks to <a href="https://android-developers.googleblog.com/2019/05/fresher-os-with-projects-treble-and-mainline.html" target="_blank">Google Play system updates</a>
+ (Project Mainline), over 600M devices are enabled to receive the latest
+ Android Runtime (ART) updates that ship with Android 14. <a href="https://android-developers.googleblog.com/2023/08/latest-artwork-on-hundreds-of-millions-of-devices.html" target="_blank">Learn more here</a>.</p>
+
+<p><b>Credential Manager and Passkeys support</b> - <a href="https://developer.android.com/training/sign-in/passkeys" target="_blank">Credential Manager</a> is a new Jetpack API that supports multiple sign-in methods, such as username and password, <a href="https://developer.android.com/design/ui/mobile/guides/patterns/passkeys" target="_blank">passkeys</a>,
+ and federated sign-in solutions (such as Sign-in with Google) in a 
+single API, simplifying your integration. Using Google Play services, 
+Credential Manager is supported back to Android 4.4 (API level 19). <a href="https://android-developers.googleblog.com/2023/07/credential-manager-beta-easy-secure-authentication-with-passkeys-on-android.html" target="_blank">Read more here</a>.</p><p><b></b></p><div class="separator" style="clear: both; text-align: center;"><b><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiPlSr2Gn6bFWuL-LoK6MFC41mR48pKTN98ObFxQCGVwsmVN0ulIDFHdhk9bWk1Mb6WmDmdmG-uLeMidAgwH0_s83sNcjK6qOLnHwwd8bqYMq8m93fyLJ7Wtt4sVCtudvMZ4ENLhD06ioLDNT2LHDgLY5pbcF3JXLvYLWRUGP8avEU0gtcdhYOD5eOhqf4/s285/image9.png" style="clear: right; float: right; margin-bottom: 1em; margin-left: 1em;"><img border="0" data-original-height="272" data-original-width="285" height="272" src="Android%20Developers%20Blog_%20Android%2014%20is%20live%20in%20AOSP_files/image9.png" width="285"></a></b></div><b>Health Connect</b> - <a href="https://developer.android.com/health-connect" target="_blank">Health Connect</a>
+ is a user controlled on-device repository for user health and fitness 
+data that makes it easier than ever to support an integrated health and 
+fitness experience across apps and connected devices. Health Connect is 
+part of the Android platform and receives updates via Google Play system
+ updates without requiring a separate download, and is available to 
+older devices as an app on the Google Play store. Read about Health 
+Connect and more in <a href="https://android-developers.googleblog.com/2023/05/whats-new-in-android-health.html" target="_blank">What's new in Android Health</a>.<p></p>
+
+<p><b>Superior system sharesheets</b> - To make it easy to give your 
+app's users a rich, consistent, sharing experience, the system 
+sharesheets in Android 14 are configurable with custom actio<a href="https://developer.android.com/about/versions/14/features#add-custom-actions" target="_blank"></a>ns and <a href="https://developer.android.com/about/versions/14/features#publish-dynamic-shortcuts" target="_blank">improved ranking</a>.</p>
+
+<p><b>More consistent and reliable foreground services</b>- We've <a href="https://android-developers.googleblog.com/2023/05/improving-consistency-of-background-work-on-android.html" target="_blank">collaborated with hardware manufacturers such as Samsung</a> to create both a more consistent <b>developer</b> experience and a more reliable <b>user</b> experience. To this end, Android 14 has a new requirement to declare <a href="https://developer.android.com/about/versions/14/changes/fgs-types-required" target="_blank">foreground service types and request type-specific permissions</a> and we have <a href="https://support.google.com/googleplay/android-developer/answer/13315670" target="_blank">Google Play policies</a> to enforce appropriate use of these APIs. We've also added a new <a href="https://developer.android.com/about/versions/14/changes/user-initiated-data-transfers" target="_blank">user-initiated data transfer</a>
+ job type, making the experience of managing large user-initiated 
+uploads and downloads smoother by leveraging JobScheduler's constraints 
+(e.g. <a href="https://developer.android.com/reference/android/app/job/JobInfo.Builder#setRequiredNetworkType%28int%29" target="_blank">network constraints</a> such as unmetered WiFi).</p>
+
+<h3>User experience</h3>
+
+<p><b>Predictive Back</b> - Android 14 introduces new Predictive Back 
+system animations – cross-activity and cross-task – to join the 
+back-to-home animation introduced in Android 13. The system animations 
+remain behind a <a href="https://developer.android.com/guide/navigation/custom-back/predictive-back-gesture#dev-option" target="_blank">developer option</a> to allow time for additional polish and for more apps to opt-into Predictive Back; <a href="https://developer.android.com/about/versions/14/features/predictive-back" target="_blank">Material and Jetpack Predictive Back</a> animations are available to users today.</p>
+
+<h3>Privacy and security</h3>
+
+<p><b></b></p><div class="separator" style="clear: both; text-align: center;"><div class="separator" style="clear: right; float: right; margin-bottom: 1em; margin-left: 1em; text-align: center;"><img border="0" data-original-height="1784" data-original-width="824" height="320" src="Android%20Developers%20Blog_%20Android%2014%20is%20live%20in%20AOSP_files/image4.png" width="149">&nbsp;<img border="0" data-original-height="1784" data-original-width="824" height="320" src="Android%20Developers%20Blog_%20Android%2014%20is%20live%20in%20AOSP_files/image1.png" width="149"><b></b></div></div><b>Data sharing updates</b>
+ – Users will see a new section in the location runtime permission 
+dialog that highlights when an app shares location data with third 
+parties, where they can get more information and control the app’s data 
+access.<p></p>
+
+<p><b>Partial access to photos and videos</b> – When your app targeting SDK 34 requests any of the visual media permissions introduced in SDK 33 (<a href="https://developer.android.com/reference/android/Manifest.permission#READ_MEDIA_IMAGES" target="_blank"><span style="font-family: courier;">READ_MEDIA_IMAGES</span></a> / <a href="https://developer.android.com/reference/android/Manifest.permission#READ_MEDIA_VIDEO" target="_blank"><span style="font-family: courier;">READ_MEDIA_VIDEO</span></a>),
+ Android 14 users can now grant your app access to only selected photos 
+and videos. To adapt your app to this change, we recommend following <a href="https://android-developers.googleblog.com/2023/08/choosing-right-storage-experience.html" target="_blank">our recent best practices</a>.</p>
+
+<p><b>Background activity launching</b> – <a href="https://developer.android.com/about/versions/10" target="_blank">Android 10</a> (API level 29) and higher <a href="https://developer.android.com/guide/components/activities/background-starts" target="_blank">place restrictions</a> on when apps can start <a href="https://developer.android.com/guide/components/activities/intro-activities" target="_blank">activities</a> when running in the background. To further reduce instances of unexpected interruptions, apps targeting Android 14 need to <a href="https://android.devsite.corp.google.com/about/versions/14/behavior-changes-14#background-activity-restrictions" target="_blank">grant privileges</a> to start activities in the background when sending a PendingIntent or when binding a service.</p>
+
+<p><b>Block installation of apps targeting older SDK versions</b> –  To protect against malware that targets older API levels to bypass security and privacy protections, apps with a <a href="https://developer.android.com/guide/topics/manifest/uses-sdk-element" target="_blank"><span style="font-family: courier;">targetSdkVersion</span></a> lower than 23 cannot be installed on Android 14.</p>
+
+<p><b>Runtime receivers</b> – Apps targeting Android 14 must indicate if dynamic <a href="https://developer.android.com/reference/android/content/Context#registerReceiver%28android.content.BroadcastReceiver,%20android.content.IntentFilter,%20int%29" target="_blank"><span style="font-family: courier;">Context.registerReceiver()</span></a> usage should be treated as "exported" or "unexported", a continuation of the manifest-level work from previous releases. <a href="https://developer.android.com/about/versions/14/behavior-changes-14#runtime-receivers-exported" target="_blank">Learn more here</a>.</p>
+
+<p><b>Secure full screen Intent notifications</b> – Since full-screen 
+intent notifications are designed for extremely high-priority 
+notifications demanding the user's immediate attention, Android 14 
+limits the apps granted this permission on app install to those that 
+provide calling and alarms only. Your app can now launch the settings 
+page where users can grant the permission.</p>
+
+<p><b>Safer dynamic code loading</b> – Apps targeting Android 14 require dynamically loaded files to be marked as read-only. <a href="https://developer.android.com/about/versions/14/behavior-changes-14#safer-dynamic-code-loading" target="_blank">Learn more here</a>.</p>
+
+<p><b>Safer implicit intents</b> – For apps targeting Android 14, creating a mutable <a href="https://developer.android.com/reference/android/app/PendingIntent" target="_blank">pending intent</a>
+ with an implicit intent will throw an exception, preventing them from 
+being able to be used to trigger unexpected code paths. Apps need to 
+either make the pending intent immutable or make the intent explicit. <a href="https://developer.android.com/about/versions/14/behavior-changes-14#safer-intents" target="_blank">Learn more here</a>.</p>
+
+<h3>App compatibility</h3>
+
+<p>We’re working to make updates faster and smoother with each platform 
+release by prioritizing app compatibility. In Android 14 we’ve made most
+ app-facing changes opt-in until your app targets SDK version 34 to give
+ you more time to make any necessary app changes, and we’ve updated our 
+tools and processes to help you get ready sooner.</p>
+
+<p><b>Easier testing and debugging of changes</b> – To make it easier 
+for you to test the opt-in changes that can affect your app, we’ll make 
+many of them toggleable again this year. With the toggles, you can 
+force-enable or disable the changes individually from Developer options 
+or adb. <a href="https://developer.android.com/about/versions/14/reference/compat-framework-changes" target="_blank">Check out the details here</a>.</p>
+
+<img><div style="text-align: center;"><img alt="image of app compatibility toggles in Developer Options" border="0" id="imgCaption" src="Android%20Developers%20Blog_%20Android%2014%20is%20live%20in%20AOSP_files/image6.png" width="50%"></div><imgcaption><center><em>App compatibility toggles in Developer Options.
+</em></center></imgcaption><br>
+
+<h3>Get your apps, libraries, tools, and game engines ready!</h3>
+
+<p>Now is the time to finish your <b>final compatibility testing</b> and <b>publish any necessary updates</b> to ensure a smooth app experience.</p>
+
+<p>If you develop an <b>SDK, library, tool, or game engine</b>, it's 
+even more important to release any necessary updates now to prevent your
+ downstream app and game developers from being blocked by compatibility 
+issues and allow them to target the latest SDK features. Please make 
+sure to let your developers know if updates are needed to fully support 
+Android 14.</p>
+
+<p>Testing your app involves installing your production app onto a 
+device running Android 14; you can use Google Play or other means. Work 
+through all the app's flows and look for functional or UI issues. Review
+ the <a href="https://developer.android.com/about/versions/14/behavior-changes-all" target="_blank">behavior changes</a>
+ to focus your testing. Each release of Android contains changes to the 
+platform that improve privacy, security, and the overall user 
+experience, and these changes can affect your apps. Here are some top 
+changes to test:</p>
+<ul>
+<li><a href="https://developer.android.com/about/versions/14/behavior-changes-all#partial-photo-video-access" target="_blank">Grant partial access to photos and videos</a>
+ – On Android 14, the user can grant partial access to their photos and 
+videos when an app requests any visual media permissions that were 
+introduced in Android 13 (API level 33): <a href="https://developer.android.com/reference/android/Manifest.permission#READ_MEDIA_IMAGES" target="_blank"><span style="font-family: courier;">READ_MEDIA_IMAGES</span></a> or <a href="https://developer.android.com/reference/android/Manifest.permission#READ_MEDIA_VIDEO" target="_blank"><span style="font-family: courier;">READ_MEDIA_VIDEO</span></a>. If your app already uses the <a href="https://developer.android.com/training/data-storage/shared/photopicker" target="_blank">photo picker</a>, you don't need to take any action to support this change. Otherwise, you should <a href="https://android-developers.googleblog.com/2023/08/choosing-right-storage-experience.html" target="_blank">optimize the user experience</a> using the new <a href="https://developer.android.com/reference/android/Manifest.permission#READ_MEDIA_VISUAL_USER_SELECTED" target="_blank"><span style="font-family: courier;">READ_MEDIA_VISUAL_USER_SELECTED</span></a> permission.</li></ul><ul>
+
+<li><a href="https://developer.android.com/about/versions/14/behavior-changes-all#secure-fsi" target="_blank">Secure full-screen Intent notifications</a>
+ – On Android 14, apps that create full-screen intent notifications are 
+limited to those that provide calling and alarms only, and the Google 
+Play Store revokes default <a href="https://developer.android.com/reference/android/Manifest.permission#USE_FULL_SCREEN_INTENT" target="_blank"><span style="font-family: courier;">USE_FULL_SCREEN_INTENT</span></a> permissions for any apps that don't fit this profile.</li></ul><ul>
+
+<li><a href="https://developer.android.com/about/versions/14/behavior-changes-all#schedule-exact-alarms" target="_blank">Schedule exact alarms are denied by default</a> – Starting in Android 14, the <a href="https://developer.android.com/reference/android/Manifest.permission#SCHEDULE_EXACT_ALARM" target="_blank"><span style="font-family: courier;">SCHEDULE_EXACT_ALARM</span></a> permission is <b>no longer being pre-granted to most newly installed apps targeting Android 13 and higher</b> – the permission is denied by default. Please <a href="https://developer.android.com/about/versions/14/behavior-changes-all#schedule-exact-alarms" target="_blank">check for the permission</a> before scheduling exact alarms. <a href="https://developer.android.com/about/versions/14/changes/schedule-exact-alarms#use-cases" target="_blank">Here</a> are some alternatives to exact alarms that don’t require the permission.</li></ul><ul>
+
+<li><a href="https://developer.android.com/about/versions/14/behavior-changes-all#non-linear-font-scaling" target="_blank">Non-linear font scaling to 200%</a>
+ – Starting in Android 14, the system supports font scaling up of small 
+text sizes to 200%, providing low-vision users with additional 
+accessibility options that align with <a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-scale.html" target="_blank">Web Content Accessibility Guidelines (WCAG)</a>.</li></ul>Remember
+ to exercise libraries and SDKs that your app is using in your 
+compatibility testing. You may need to update to current SDK versions or
+ reach out to the developer for help.<br><p>Once you’ve published the compatible version of your current app, you can start the <a href="https://developer.android.com/preview/migration#setup_sdk" target="_blank">process</a> to <a href="https://developer.android.com/distribute/best-practices/develop/target-sdk" target="_blank">update your app's targetSdkVersion</a>. Review the <a href="https://developer.android.com/about/versions/14/behavior-changes-14" target="_blank">behavior changes that apply when your app targets Android 14</a> and use the <a href="https://developer.android.com/preview/test-changes" target="_blank">compatibility framework</a> to help detect issues quickly.
+
+</p><h3>Get started with Android 14</h3>
+
+<p>If you have a supported Pixel device, and are not enrolled in the 
+Android Beta program, you will receive the public Android 14 OTA update 
+as it becomes available (it may take a week or longer as this is a 
+phased rollout dependent on device type and carrier). If you are 
+currently enrolled in the Android Beta program running Android 14, you 
+likely have received and installed the beta of the next Android 14 
+quarterly platform release (QPR1).
+
+</p><p>System images for Pixel devices are <a href="https://developers.google.com/android/images" target="_blank">available here</a> for manual download and flash, and you can get the latest 64-bit Android Emulator system images via the <a href="https://developer.android.com/about/versions/14/setup-sdk#install-sdk" target="_blank">Android Studio SDK Manager</a>. If you're looking for the Android 14 source, you'll find it <a href="https://android.googlesource.com/?format=HTML" target="_blank">here</a> in the <a href="https://source.android.com/" target="_blank">Android Open Source Project</a> repository under the Android 14 branches.
+
+</p><p>For the best development experience with Android 14, we recommend that you use the latest release of <a href="https://developer.android.com/studio/preview" target="_blank">Android Studio Hedgehog</a>. Once you’re <a href="https://developer.android.com/about/versions/14/setup-sdk" target="_blank">set up</a>, here are some of the things you should do:
+</p><ul>
+<li><b>Try the new features and APIs.</b> Report issues in our tracker on the feedback page.</li></ul><ul>
+
+<li><b>Test your current app for compatibility</b> – learn whether your 
+app is affected by default behavior changes in Android 14. Install your 
+app onto a device or emulator running Android 14 and extensively test 
+it.</li></ul><ul>
+
+<li><b>Test your app with opt-in changes</b> – Android 14 has opt-in 
+behavior changes that only affect your app when it’s targeting the new 
+platform. It’s important to understand and assess these changes early. 
+To make it easier to test, you can <a href="https://developer.android.com/about/versions/14/reference/compat-framework-changes" target="_blank">toggle the changes on and off individually</a>.</li></ul><ul>
+
+<li><b>Update your app with the Android SDK Upgrade Assistant</b> – 
+Android Studio Hedgehog now filters and identifies the specific Android 
+14 API changes that are relevant to your app, and walks you through the 
+steps to upgrade your <span style="color: #0d904f; font-family: courier;">targetSdkVersion</span> with the <a href="https://developer.android.com/build/sdk-upgrade-assistant" target="_blank">Android SDK Upgrade Assistant</a>.</li>
+</ul>
+
+<img><div style="text-align: center;"><img alt="Screengrab of Android SDK Upgrade Assistant on Google Pixel Fold" border="0" id="imgCaption" src="Android%20Developers%20Blog_%20Android%2014%20is%20live%20in%20AOSP_files/image2.png" width="100%"></div><br>
+
+
+<p>Thank you again for participating in our Android developer preview 
+and beta program! We're looking forward to seeing how your apps take 
+advantage of the updates in  <a href="https://developer.android.com/about/versions/14" target="_blank">Android 14</a>.</p>
+
+<p><em><small>Java and OpenJDK are trademarks or registered trademarks of Oracle and/or its affiliates.</small></em></p>
+<p></p><p></p><p></p><p></p><p></p>
+</div>
+<hr>
+<div class="blog-label-container">
+<a class="blog-label" href="https://android-developers.googleblog.com/search/label/Android?max-results=12">
+<span>Android</span>
+</a>
+<a class="blog-label" href="https://android-developers.googleblog.com/search/label/android14?max-results=12">
+<span>android14</span>
+</a>
+<a class="blog-label" href="https://android-developers.googleblog.com/search/label/Camera?max-results=12">
+<span>Camera</span>
+</a>
+<a class="blog-label" href="https://android-developers.googleblog.com/search/label/Featured?max-results=12">
+<span>Featured</span>
+</a>
+<a class="blog-label" href="https://android-developers.googleblog.com/search/label/latest?max-results=12">
+<span>latest</span>
+</a>
+<a class="blog-label" href="https://android-developers.googleblog.com/search/label/Media?max-results=12">
+<span>Media</span>
+</a>
+<a class="blog-label" href="https://android-developers.googleblog.com/search/label/mobile?max-results=12">
+<span>mobile</span>
+</a>
+<a class="blog-label" href="https://android-developers.googleblog.com/search/label/Privacy?max-results=12">
+<span>Privacy</span>
+</a>
+<a class="blog-label" href="https://android-developers.googleblog.com/search/label/release?max-results=12">
+<span>release</span>
+</a>
+</div>
+</div>
+</div>
+<div class="blog-pager pagination" id="blog-pager">
+<a class="blog-pager-newer-link page-button" href="https://android-developers.googleblog.com/2023/10/wear-os-4-is-now-stable-and-available-on-google-pixel-watch-2.html" title="Newer Post">
+<span>Newer post</span>
+</a>
+<a class="blog-pager-older-link page-button" href="https://android-developers.googleblog.com/2023/09/kakao-games-increased-fps-stability-through-android-adapatability.html" title="Older Post">
+<span>Older post</span>
+</a>
+</div>
+</div>
+</div></div>
+</div>
+<!-- Other blogs -->
+<div class="adb-footer-section">
+<div class="adb-footer-columns">
+<div class="adb-footer-column">
+<h2 class="adb-footer-title">Google developers blog</h2>
+<a href="https://developers.googleblog.com/" target="_blank">Google Developers Blog</a>
+</div>
+<div class="adb-footer-column">
+<h2 class="adb-footer-title">Connect</h2>
+<span class="adb-footer-social-label">
+<a href="https://developer.android.com/" title="Android Developers Site">
+<img alt="Android Developers Site" class="sidebar-icon android-logo" src="Android%20Developers%20Blog_%20Android%2014%20is%20live%20in%20AOSP_files/android.svg">
+</a>Android Developers</span>
+<div class="adb-footer-social-links" style="display: flex">
+<a href="https://www.youtube.com/user/androiddevelopers" title="Android Developers on YouTube">
+<img alt="Android Developers on YouTube" class="sidebar-icon" src="Android%20Developers%20Blog_%20Android%2014%20is%20live%20in%20AOSP_files/video_youtube_grey600_24dp.png">
+</a>
+<a href="https://www.linkedin.com/showcase/androiddev/" title="Android Developers on LinkedIn">
+<img alt="Android Developers on LinkedIn" class="sidebar-icon" src="Android%20Developers%20Blog_%20Android%2014%20is%20live%20in%20AOSP_files/linkedin-4-48.png">
+</a>
+<a href="https://medium.com/androiddevelopers" title="Android Developers on Medium">
+<img alt="Android Developers on Medium" class="sidebar-icon" src="data:image/png;base64,R0lGODlhMAAwAPcAAHJxcHFwb4iGhYODgre2tnNxcLi4t+jo6LCvr3BubW1ram5tbLOzsm1sa3BvbmtqaWppaG5ta2poZ2dmZoB/fmhnZ3Jxb3Jwb5CPjqqpqWtram9ubWxras7OzmloaGpoaHh3d8XExPj4+GhnZmhoZ/39/fv7+2pqaWtqaObm5r69vK2trIWEg+np6X59fIOCgYiHhoaFg93d3ba1tJKRj66trdDQz2lnZrm5uIKCge7t7WpqarW1tKampW1ra9ra2t3d3PPy8uvr67W1s8LCwZ2cm5WUk2ppafX19auqqpKRkff393RzcXRycbSzso+OjbW0s8vLyqalpODf3/f39srKymdnZ+Xl5IKCgLa2tXRzcnZ0c/7+/ru7upuamrS0s7y8u5GPjpuamNPS0nZ1dJqZmLu6ufHx8X18e+zs7O7u7fDw8Obl5dXU1JaVlLSzs52dm9DOzpOSkWtoZ2dnZoCAf+jn525sa9bW1r28vOfn556enbKysamop9nZ2Hl3dnFvbuXl5cTEw399fMHAv6Cenb6+vayrqsrKya+urdHR0fr5+W1tbHp5eNfW1uno6ODg4OLi4qqpqPr6+omIhn59fXh3dmZmZv///3FwbgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxMTEgNzkuMTU4MzI1LCAyMDE1LzA5LzEwLTAxOjEwOjIwICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgMjAxNSAoTWFjaW50b3NoKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpCQzNFMDRFOTlEMzgxMUU3OTk1N0ZEREQyNENCOTcxNCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpCQzNFMDRFQTlEMzgxMUU3OTk1N0ZEREQyNENCOTcxNCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkJDM0UwNEU3OUQzODExRTc5OTU3RkRERDI0Q0I5NzE0IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkJDM0UwNEU4OUQzODExRTc5OTU3RkRERDI0Q0I5NzE0Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+Af/+/fz7+vn49/b19PPy8fDv7u3s6+rp6Ofm5eTj4uHg397d3Nva2djX1tXU09LR0M/OzczLysnIx8bFxMPCwcC/vr28u7q5uLe2tbSzsrGwr66trKuqqainpqWko6KhoJ+enZybmpmYl5aVlJOSkZCPjo2Mi4qJiIeGhYSDgoGAf359fHt6eXh3dnV0c3JxcG9ubWxramloZ2ZlZGNiYWBfXl1cW1pZWFdWVVRTUlFQT05NTEtKSUhHRkVEQ0JBQD8+PTw7Ojk4NzY1NDMyMTAvLi0sKyopKCcmJSQjIiEgHx4dHBsaGRgXFhUUExIREA8ODQwLCgkIBwYFBAMCAQAAIfkEAAAAAAAsAAAAADAAMAAACP8AKVgaSLCgwYMIEyq0RCGTw4cQI0qcSLHiQ0sWM2rcOHCjx48QO4IcqVEkyZMTTaJc6VAlS5QuX5J0CcDBpZs4cY4AYBFAgpxAM/EMiRHiAiYYBChdqrRJg6ETN6BgwXQphgILIrp80EANpq9gv465FIFigEsCwoYNBOGB1qIPz7JQG/bFJagQAV0KQRdTGhAeArydeElOX0xVLiWYWCHAJLoyGF0qIDFmgJ+HDlu6JBgigEtS+rqYnBIuxAANLnXoa+iSg4gcLl0RfYliTIefV/TlssVK50wXLj05PKB26YqXCBwmYNzhz9V9i9s2HTE5JjYl1C5p4OEhHTKYRAj/oSv9OEXrPWzQ7XPJQiYLlxJh6hKFfPPB55UboURXxwS3D1yyBiaDtGHfdMgpl8ElSNAlxmSXYIAJEJekcKB5hCnHwyVD0BXJJRpcoggmZVzSwoWVUQeRdW9c0khfYVzyByYmQDDBASjilyEmDNwEXVh+XOIEJipcwgGOapWXYoI83hQDXSWAcGIdlzSAZFhK6iiRdT1GcMkPdD2CCSSXjKDAlWBlSRSTPX5Gw2GFXDLHmTmumV+TmcRmoVpULECCBHQmeZ+dhGWBCR+1fbYHXYTUBiiaX6l5kYoOFXCJbgtSdgIJZ6gVA2eP1jnpRAB8cIkjmOBxyQcAwCdJWFNc06JAJhI8oAddWAw6akSoXSIIWCGQBQAEEAQBFhx3BXDDJXbQpcVdGDp02SVJqLWgA8Eh8JUIC1RwwQaXeGECXVCAiFdL1J2lRF92FdDYIpjEoZhNRRzW5ALnujRBDvZWUkEmlxCBiRuuXfKFvV8hQpaWmZwAAw4IRCwxAmDAcEQAGqBRQwI+bLDDDCoYIPLII5uRxwKzElopBEDlhAJlBUxwyR0FBGBpyy0DkC+lMn10W88e/Qx0STwPnZHQRleEdNLRMk200z5DDZJAC1VttdUUBAQAOw==">
+</a>
+<a href="https://x.com/androiddev" title="Follow Android Developers on X">
+<img alt="Follow Android Developers on X" class="sidebar-icon" src="Android%20Developers%20Blog_%20Android%2014%20is%20live%20in%20AOSP_files/x.svg">
+</a>
+</div>
+<span class="adb-footer-social-label">
+<a href="https://developer.android.com/distribute/" title="Google Play Site">
+<img alt="Google Play Site" class="sidebar-icon" src="Android%20Developers%20Blog_%20Android%2014%20is%20live%20in%20AOSP_files/google-play.svg">
+</a>Google Play</span>
+<div class="adb-footer-social-links" style="display: flex">
+<a href="https://www.linkedin.com/company/googleplaybiz/" title="Google Play Apps &amp; Games on LinkedIn">
+<img alt="Google Play Apps &amp; Games on LinkedIn" class="sidebar-icon" src="Android%20Developers%20Blog_%20Android%2014%20is%20live%20in%20AOSP_files/linkedin-4-48.png">
+</a>
+<a href="https://medium.com/googleplaydev" title="Google Play Apps &amp; Games on Medium">
+<img alt="Google Play Apps &amp; Games on Medium" class="sidebar-icon" src="data:image/png;base64,R0lGODlhMAAwAPcAAHJxcHFwb4iGhYODgre2tnNxcLi4t+jo6LCvr3BubW1ram5tbLOzsm1sa3BvbmtqaWppaG5ta2poZ2dmZoB/fmhnZ3Jxb3Jwb5CPjqqpqWtram9ubWxras7OzmloaGpoaHh3d8XExPj4+GhnZmhoZ/39/fv7+2pqaWtqaObm5r69vK2trIWEg+np6X59fIOCgYiHhoaFg93d3ba1tJKRj66trdDQz2lnZrm5uIKCge7t7WpqarW1tKampW1ra9ra2t3d3PPy8uvr67W1s8LCwZ2cm5WUk2ppafX19auqqpKRkff393RzcXRycbSzso+OjbW0s8vLyqalpODf3/f39srKymdnZ+Xl5IKCgLa2tXRzcnZ0c/7+/ru7upuamrS0s7y8u5GPjpuamNPS0nZ1dJqZmLu6ufHx8X18e+zs7O7u7fDw8Obl5dXU1JaVlLSzs52dm9DOzpOSkWtoZ2dnZoCAf+jn525sa9bW1r28vOfn556enbKysamop9nZ2Hl3dnFvbuXl5cTEw399fMHAv6Cenb6+vayrqsrKya+urdHR0fr5+W1tbHp5eNfW1uno6ODg4OLi4qqpqPr6+omIhn59fXh3dmZmZv///3FwbgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxMTEgNzkuMTU4MzI1LCAyMDE1LzA5LzEwLTAxOjEwOjIwICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgMjAxNSAoTWFjaW50b3NoKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpCQzNFMDRFOTlEMzgxMUU3OTk1N0ZEREQyNENCOTcxNCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpCQzNFMDRFQTlEMzgxMUU3OTk1N0ZEREQyNENCOTcxNCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkJDM0UwNEU3OUQzODExRTc5OTU3RkRERDI0Q0I5NzE0IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkJDM0UwNEU4OUQzODExRTc5OTU3RkRERDI0Q0I5NzE0Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+Af/+/fz7+vn49/b19PPy8fDv7u3s6+rp6Ofm5eTj4uHg397d3Nva2djX1tXU09LR0M/OzczLysnIx8bFxMPCwcC/vr28u7q5uLe2tbSzsrGwr66trKuqqainpqWko6KhoJ+enZybmpmYl5aVlJOSkZCPjo2Mi4qJiIeGhYSDgoGAf359fHt6eXh3dnV0c3JxcG9ubWxramloZ2ZlZGNiYWBfXl1cW1pZWFdWVVRTUlFQT05NTEtKSUhHRkVEQ0JBQD8+PTw7Ojk4NzY1NDMyMTAvLi0sKyopKCcmJSQjIiEgHx4dHBsaGRgXFhUUExIREA8ODQwLCgkIBwYFBAMCAQAAIfkEAAAAAAAsAAAAADAAMAAACP8AKVgaSLCgwYMIEyq0RCGTw4cQI0qcSLHiQ0sWM2rcOHCjx48QO4IcqVEkyZMTTaJc6VAlS5QuX5J0CcDBpZs4cY4AYBFAgpxAM/EMiRHiAiYYBChdqrRJg6ETN6BgwXQphgILIrp80EANpq9gv465FIFigEsCwoYNBOGB1qIPz7JQG/bFJagQAV0KQRdTGhAeArydeElOX0xVLiWYWCHAJLoyGF0qIDFmgJ+HDlu6JBgigEtS+rqYnBIuxAANLnXoa+iSg4gcLl0RfYliTIefV/TlssVK50wXLj05PKB26YqXCBwmYNzhz9V9i9s2HTE5JjYl1C5p4OEhHTKYRAj/oSv9OEXrPWzQ7XPJQiYLlxJh6hKFfPPB55UboURXxwS3D1yyBiaDtGHfdMgpl8ElSNAlxmSXYIAJEJekcKB5hCnHwyVD0BXJJRpcoggmZVzSwoWVUQeRdW9c0khfYVzyByYmQDDBASjilyEmDNwEXVh+XOIEJipcwgGOapWXYoI83hQDXSWAcGIdlzSAZFhK6iiRdT1GcMkPdD2CCSSXjKDAlWBlSRSTPX5Gw2GFXDLHmTmumV+TmcRmoVpULECCBHQmeZ+dhGWBCR+1fbYHXYTUBiiaX6l5kYoOFXCJbgtSdgIJZ6gVA2eP1jnpRAB8cIkjmOBxyQcAwCdJWFNc06JAJhI8oAddWAw6akSoXSIIWCGQBQAEEAQBFhx3BXDDJXbQpcVdGDp02SVJqLWgA8Eh8JUIC1RwwQaXeGECXVCAiFdL1J2lRF92FdDYIpjEoZhNRRzW5ALnujRBDvZWUkEmlxCBiRuuXfKFvV8hQpaWmZwAAw4IRCwxAmDAcEQAGqBRQwI+bLDDDCoYIPLII5uRxwKzElopBEDlhAJlBUxwyR0FBGBpyy0DkC+lMn10W88e/Qx0STwPnZHQRleEdNLRMk200z5DDZJAC1VttdUUBAQAOw==">
+</a>
+<a href="https://x.com/GooglePlayBiz" title="Follow GooglePlaydBiz on X">
+<img alt="Follow GooglePlayBiz on X" class="sidebar-icon" src="Android%20Developers%20Blog_%20Android%2014%20is%20live%20in%20AOSP_files/x.svg">
+</a>
+</div>
+</div>
+<div class="adb-footer-column">
+<h2 class="adb-footer-title">Subscribe</h2>
+<div class="section" id="footer-subscribe"><div class="widget HTML" data-version="1" id="HTML1">
+<a href="https://android-developers.blogspot.com/atom.xml" rel="alternate" title="Subscribe to our feed" type="application/rss+xml">
+<div class="tab">
+<img alt="" class="sidebar-icon" src="Android%20Developers%20Blog_%20Android%2014%20is%20live%20in%20AOSP_files/rss_feed_grey600_24dp.png">
+<h2>Feed</h2>
+</div>
+</a>
+</div><div class="widget HTML" data-version="1" id="HTML2">
+<a href="https://developer.android.com/newsletter/index.html">
+<div class="tab">
+<img alt="" class="sidebar-icon" src="Android%20Developers%20Blog_%20Android%2014%20is%20live%20in%20AOSP_files/news_grey600_24dp.png">
+<h2>Newsletter</h2>
+</div>
+</a>
+</div></div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="adb-footer-btm">
+<ul class="adb-footer-info">
+<a href="https://policies.google.com/privacy"><li class="footer-list">Privacy</li></a>
+        |
+        <a href="https://developer.android.com/license"><li class="footer-list">License</li></a>
+        |
+        <a href="https://developer.android.com/distribute/marketing-tools/brand-guidelines"><li class="footer-list">Brand guidelines</li></a>
+</ul>
+<div class="footer-newsletter">
+<a href="https://developer.android.com/newsletter/#subscribe"><button class="subscribe-btn">Get news and tips by email</button></a>
+</div>
+</footer>
+<script type="text/javascript">
+      //<![CDATA[
+      (function () {
+        "use strict";
+
+        // Social sharing popups.
+        var postEl = document.getElementsByClassName("social-wrapper");
+        var postCount = postEl.length;
+        for (var i = 0; i < postCount; i++) {
+          postEl[i].addEventListener("click", function (event) {
+            var postUrl = this.getAttribute("data-href");
+            window.open(
+              postUrl,
+              "popUpWindow",
+              "height=500,width=500,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes"
+            );
+          });
+        }
+        var BreakpointHandler = function () {
+          this.initted = false;
+          this.isHomePage = false;
+          this.isMobile = false;
+        };
+        BreakpointHandler.prototype.finalizeSummary = function (
+          summaryHtml,
+          lastNode
+        ) {
+          // Use $.trim for IE8 compatibility
+          summaryHtml = $.trim(summaryHtml).replace(/(<br>|\s+)*$/, "");
+          if (lastNode.nodeType == 3) {
+            var lastChar = summaryHtml.slice(-1);
+            if (!lastChar.match(/[.”"?]/)) {
+              if (!lastChar.match(/[A-Za-z]/)) {
+                summaryHtml = summaryHtml.slice(0, -1);
+              }
+              summaryHtml += " ...";
+            }
+          } else if (
+            lastNode.nodeType == 1 &&
+            (lastNode.nodeName == "I" || lastNode.nodeName == "A")
+          ) {
+            summaryHtml += " ...";
+          }
+          return summaryHtml;
+        };
+        BreakpointHandler.prototype.generateSummaryFromContent = function (
+          content,
+          numWords
+        ) {
+          var seenWords = 0;
+          var summaryHtml = "";
+          for (var i = 0; i < content.childNodes.length; i++) {
+            var node = content.childNodes[i];
+            var nodeText;
+            if (node.nodeType == 1) {
+              if (node.hasAttribute("data-about-pullquote")) {
+                continue;
+              }
+              nodeText = node.textContent;
+              if (nodeText === undefined) {
+                // innerText for IE8
+                nodeText = node.innerText;
+              }
+              if (node.nodeName == "DIV" || node.nodeName == "B") {
+                // Don't end early if we haven't seen enough words.
+                if (seenWords < 10) {
+                  continue;
+                }
+                if (i > 0) {
+                  summaryHtml = this.finalizeSummary(
+                    summaryHtml,
+                    content.childNodes[i - 1]
+                  );
+                }
+                break;
+              }
+              summaryHtml += node.outerHTML;
+            } else if (node.nodeType == 3) {
+              nodeText = node.nodeValue;
+              summaryHtml += nodeText + " ";
+            }
+            var words = nodeText.match(/\S+\s*/g);
+            if (!words) {
+              continue;
+            }
+            var remain = numWords - seenWords;
+            if (words.length >= remain) {
+              summaryHtml = this.finalizeSummary(summaryHtml, node);
+              break;
+            }
+            seenWords += words.length;
+          }
+          return summaryHtml;
+        };
+        BreakpointHandler.prototype.detect = function () {
+          var match,
+            pl = /\+/g,
+            search = /([^&=]+)=?([^&]*)/g,
+            decode = function (s) {
+              return decodeURIComponent(s.replace(pl, " "));
+            },
+            query = window.location.search.substring(1);
+          var urlParams = {};
+          while ((match = search.exec(query)))
+            urlParams[decode(match[1])] = decode(match[2]);
+          this.isListPage = $("html").hasClass("list-page");
+          this.isMobile = urlParams["m"] === "1";
+          this.isHomePage = window.location.pathname == "/";
+        };
+        BreakpointHandler.prototype.initContent = function () {
+          var self = this;
+          $(".post").each(function (index) {
+            var body = $(this).children(".post-body")[0];
+            var content = $(body).children(".post-content")[0];
+            $(content).addClass("post-original");
+
+            var data = $(content).children("script").html();
+            data = self.rewriteForSSL(data);
+
+            // If exists, extract specified editor's preview.
+            var match = data.match(
+              /([\s\S]+?)<div data-is-preview.+?>([\s\S]+)<\/div>/m
+            );
+
+            if (match) {
+              data = match[1];
+            }
+
+            // Prevent big images from loading when they aren't needed.
+            // This must be done as a pre-injection step, since image loading can't be
+            // canceled once embedded into the DOM.
+            if (self.isListPage && self.isMobile) {
+              data = data.replace(/<(img|iframe) .+?>/g, "");
+            }
+
+            // Insert template to be rendered as nodes.
+            content.innerHTML = data;
+
+            if (self.isListPage) {
+              var summary = document.createElement("div");
+              $(summary).addClass("post-content");
+              $(summary).addClass("post-summary");
+              body.insertBefore(summary, content);
+              if (match) {
+                // Use provided summary.
+                summary.innerHTML = match[2];
+              } else {
+                // Generate a summary.
+                // Summary generation relies on DOM, so it must occur after content is
+                // inserted into the page.
+                summary.innerHTML = self.generateSummaryFromContent(
+                  content,
+                  30
+                );
+              }
+
+              // Add read more link to summary.
+              var titleAnchor = $(this).find(".title a")[0];
+              var link = titleAnchor.cloneNode(true);
+              link.innerHTML = "Read More";
+              $(link).addClass("read-more");
+              summary.appendChild(link);
+            }
+          });
+          // Firefox does not allow for proper styling of BR.
+          if (navigator.userAgent.indexOf("Firefox") > -1) {
+            $(".post-content br").replaceWith('<span class="space"></span>');
+          }
+          $(".loading").removeClass("loading");
+        };
+        BreakpointHandler.prototype.process = function () {
+          if (!this.initted) {
+            var makeInsecureImageRegex = function (hosts) {
+              var whitelist = hosts.join("|").replace(/\./g, "\\.");
+              // Normal image tags, plus input images (yes, this is possible!)
+              return new RegExp(
+                "(<(img|input)[^>]+?src=(\"|'))http:\/\/(" + whitelist + ")",
+                "g"
+              );
+            };
+            this.sslImageRegex = makeInsecureImageRegex(
+              BreakpointHandler.KNOWN_HTTPS_HOSTS
+            );
+            this.sslImageCurrentDomainRegex = makeInsecureImageRegex([
+              window.location.hostname,
+            ]);
+            this.detect();
+            this.initContent();
+            this.initted = true;
+          }
+        };
+        BreakpointHandler.KNOWN_HTTPS_HOSTS = [
+          "www.google.org",
+          "www.google.com",
+          "services.google.com",
+
+          "blogger.com",
+          "draft.blogger.com",
+          "www.blogger.com",
+          "photos1.blogger.com",
+          "photos2.blogger.com",
+          "photos3.blogger.com",
+
+          "blogblog.com",
+          "img1.blogblog.com",
+          "img2.blogblog.com",
+          "www.blogblog.com",
+          "www1.blogblog.com",
+          "www2.blogblog.com",
+
+          "0.bp.blogspot.com",
+          "1.bp.blogspot.com",
+          "2.bp.blogspot.com",
+          "3.bp.blogspot.com",
+          "4.bp.blogspot.com",
+
+          "lh3.googleusercontent.com",
+          "lh4.googleusercontent.com",
+          "lh5.googleusercontent.com",
+          "lh6.googleusercontent.com",
+          "themes.googleusercontent.com",
+        ];
+        BreakpointHandler.prototype.rewriteForSSL = function (html) {
+          // Handle HTTP -> HTTPS source replacement of images, movies, and other embedded content.
+          return (
+            html
+              .replace(this.sslImageRegex, "$1https://$4")
+              .replace(this.sslImageCurrentDomainRegex, "$1//$4")
+              .replace(
+                /(<(embed|iframe)[^>]+?src=("|'))http:\/\/([^"']*?(youtube|picasaweb\.google)\.com)/g,
+                "$1https://$4"
+              )
+              // Slideshow SWF takes a image host, so we need to rewrite that parameter.
+              .replace(/(<embed[^>]+?feed=http(?=[^s]))/g, "$1s")
+          );
+        };
+        $(document).ready(function () {
+          var handler = new BreakpointHandler();
+          handler.process();
+          // Top-level navigation.
+          $(".BlogArchive .tab").click(function (ev) {
+            ev.preventDefault();
+            $(this).parent().toggleClass("active");
+            $(this).siblings().slideToggle(300);
+          });
+          $(".Label .tab").click(function (ev) {
+            ev.preventDefault();
+            $(this).parent().toggleClass("active");
+            $(this).siblings().slideToggle(300);
+          });
+          // Blog archive year expansion.
+          $(".BlogArchive .intervalToggle").click(function (ev) {
+            ev.preventDefault();
+            if ($(this).parent().hasClass("collapsed")) {
+              $(this).parent().removeClass("collapsed");
+              $(this).parent().addClass("expanded");
+            } else {
+              $(this).parent().removeClass("expanded");
+              $(this).parent().addClass("collapsed");
+            }
+          });
+          // Reverse order of months.
+          $(".BlogArchive .intervalToggle + div").each(function (_, items) {
+            var year = $(this);
+            year.children().each(function (_, month) {
+              year.prepend(month);
+            });
+          });
+          // Set anchors to open in new tab.
+          $(".post-content img")
+            .parent()
+            .each(function (_, node) {
+              if (node.nodeName == "A") {
+                $(this).attr("target", "_blank");
+              }
+            });
+          // Process search requests.
+          $(".searchBox input").on("keypress", function (ev) {
+            if (ev.which == 13) {
+              window.location.href =
+                "https://www.google.com/search?q=site%3A" +
+                window.location.hostname +
+                "%20" +
+                encodeURIComponent($(this).val());
+            }
+          });
+        });
+
+        $.fn.labelWidgetShowMore = function () {
+          if (!this.length) return;
+          // Fetch feed containing labels
+          var promise = $.getJSON(
+            "/feeds/posts/summary?alt=json&max-results=0"
+          );
+          // For each label widget
+          this.each(function () {
+            var $widget = $(this);
+            var open = false;
+            var $viewMoreContent = $widget.find(".adb-label-view-more-content");
+            var $viewMoreToggle = $widget.find(".adb-label-view-more-toggle");
+            var $list = $viewMoreContent.find("ul");
+            // Function to set new open/closed state
+            function setOpenClosed(_open) {
+              open = _open;
+              var text = $viewMoreToggle.data(open ? "open" : "closed");
+              $viewMoreContent.toggle(open);
+              $viewMoreToggle.text(text).toggleClass("active", open);
+            }
+            // Toggle handler
+            $viewMoreToggle.on("click", function () {
+              setOpenClosed(!open);
+            });
+            // Load data
+            promise.then(function (data) {
+              $.each(data.feed.category, function (index, category) {
+                $(
+                  '<li><a href="/search/label/' +
+                    category.term +
+                    '">' +
+                    category.term +
+                    "</a></li>"
+                ).appendTo($list);
+              });
+              // Set toggle text
+              setOpenClosed(false);
+            });
+          });
+        };
+
+        $.fn.fixedScroll = function (scrollBounds) {
+          if (!this.length) return;
+
+          var $elements = this;
+
+          $(window).on("scroll", function () {
+            var page = document.documentElement;
+            var body = document.body;
+            // How much the page or body can scroll
+            var scrollHeight = page.scrollHeight || body.scrollHeight;
+            // How much the page or body has scrolled
+            var scrollTop = page.scrollTop || body.scrollTop;
+            // Whether the page has scrolled past the top bound
+            var scrollStart = scrollTop > scrollBounds.top;
+
+            $elements.each(function () {
+              var $element = $(this);
+              var elementHeight = $element.height();
+              // Whether the fixed element has scrolled past the bottom bound
+              var scrollEnd =
+                scrollHeight - scrollTop < scrollBounds.bottom + elementHeight;
+              $element.toggleClass("scroll-start", scrollStart);
+              $element.toggleClass("scroll-end", scrollEnd);
+            });
+          });
+        };
+
+        $(function () {
+          // Enable show more link for Labels widget
+          $(".widget.Label").labelWidgetShowMore();
+          // Enable fixed sidebar
+          $(".col-right").fixedScroll({ top: 227, bottom: 643 });
+          // Enable pretty printed code snippets
+          $("pre:not(.no-pretty-print)").addClass("prettyprint");
+          PR.prettyPrint();
+        });
+      })();
+
+      var $popoutNavBtn = $(".adb-burger-box");
+      var $popoutNav = $(".popout-nav");
+      var $popoutOverlay = $(".popout-overlay");
+      var $closePopoutBtn = $("#close-popout");
+      var $popoutSearchBtn = $(".adb-search-box");
+      var $popoutSearch = $(".popout-search");
+      var $popoutSearchOverlay = $(".popout-search-overlay");
+      var $closeSearchPopoutBtn = $("#close-search-popout");
+      var $moreDropdownBtn = $(".more-dropdown");
+      var $dropdownIcon = $(".dropdown-icon");
+      var $dropdownMenu = $(".dropdown-nav");
+      var $copyLinkBtn = $(".copy-link");
+      var $copyToolTip = $(".copy-tooltip");
+
+      function moreDropdown() {
+        if ($moreDropdownBtn.attr("status") === "inactive") {
+          $moreDropdownBtn.attr("status", "active");
+          $dropdownIcon.css({ transform: "rotate(" + -180 + "deg)" });
+          $dropdownMenu.css({ display: "block" });
+        } else if ($moreDropdownBtn.attr("status") === "active") {
+          $moreDropdownBtn.attr("status", "inactive");
+          $dropdownIcon.css({ transform: "rotate(" + 0 + "deg)" });
+          $dropdownMenu.css({ display: "none" });
+        }
+      }
+
+      function openSidenav() {
+        $popoutNav.css({ left: 0 });
+        $popoutOverlay
+          .css({
+            opacity: 0.4,
+          })
+          .show();
+      }
+
+      function closeSidenav() {
+        $popoutNav.css({ left: -280 });
+        $popoutOverlay.css({ opacity: 0 });
+        setTimeout(function () {
+          $popoutOverlay.hide();
+        }, 200);
+      }
+
+      function openSideSearch() {
+        $popoutSearch.css({ right: 0 });
+        $popoutSearchOverlay
+          .css({
+            opacity: 0.4,
+          })
+          .show();
+      }
+
+      function closeSideSearch() {
+        $popoutSearch.css({ right: -280 });
+        $popoutSearchOverlay.css({ opacity: 0 });
+        setTimeout(function () {
+          $popoutSearchOverlay.hide();
+        }, 200);
+      }
+
+      function copyLink() {
+        const link = $copyLinkBtn.attr("value");
+        const textArea = document.createElement("textarea");
+        textArea.value = link;
+        document.body.append(textArea);
+        textArea.select();
+        textArea.setSelectionRange(0, 99999); /* For mobile devices */
+        const copied = document.execCommand("copy");
+        document.body.removeChild(textArea);
+
+        $copyToolTip.css({ display: "block", opacity: 1 });
+        setTimeout(() => {$copyToolTip.css({ display: "none", opacity: 0 });}, 3000);
+      }
+
+
+      $popoutNavBtn.click(openSidenav);
+      $closePopoutBtn.click(closeSidenav);
+      $popoutOverlay.click(closeSidenav);
+      $popoutSearchBtn.click(openSideSearch);
+      $closeSearchPopoutBtn.click(closeSideSearch);
+      $popoutSearchOverlay.click(closeSideSearch);
+      $moreDropdownBtn.mouseenter(moreDropdown);
+      $dropdownMenu.mouseleave(moreDropdown);
+      $copyLinkBtn.click(copyLink);
+
+      //]]>
+    </script>
+<!--Eres el responsable de informar a los visitantes de tu blog qu\xe9 cookies utilizas y qu\xe9 datos suyos se recogen. Blogger facilita una notificaci\xf3n est\xe1ndar para que la uses en tu blog, aunque puedes personalizarla o crear tu propia notificaci\xf3n. Consulta http://www.blogger.com/go/cookiechoices para obtener m\xe1s informaci\xf3n.-->
+<script defer="defer" src="Android%20Developers%20Blog_%20Android%2014%20is%20live%20in%20AOSP_files/cookienotice.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function(event) {
+      window.cookieChoices && cookieChoices.showCookieConsentBar && cookieChoices.showCookieConsentBar(
+          (window.cookieOptions && cookieOptions.msg) || 'Este sitio utiliza cookies de Google para prestar sus servicios y para analizar su tr\xe1fico. Tu direcci\xf3n IP y user-agent se comparten con Google, junto con las m\xe9tricas de rendimiento y de seguridad, para garantizar la calidad del servicio, generar estad\xedsticas de uso y detectar y solucionar abusos.',
+          (window.cookieOptions && cookieOptions.close) || 'Entendido',
+          (window.cookieOptions && cookieOptions.learn) || 'M\xe1s informaci\xf3n',
+          (window.cookieOptions && cookieOptions.link) || 'https://www.blogger.com/go/blogspot-cookies');
+    });
+  </script>
+
+<script type="text/javascript" src="Android%20Developers%20Blog_%20Android%2014%20is%20live%20in%20AOSP_files/387437488-widgets.js"></script>
+<script type="text/javascript">
+window['__wavt'] = 'AEUoTZqdgCbJtvuGLjAM1Lq4-v-C:1781734922160';_WidgetManager._Init('//www.blogger.com/rearrange?blogID\x3d6755709643044947179','//android-developers.googleblog.com/2023/10/android-14-is-live-in-aosp.html','6755709643044947179');
+_WidgetManager._SetDataContext([{'name': 'blog', 'data': {'blogId': '6755709643044947179', 'title': 'Android Developers Blog', 'url': 'https://android-developers.googleblog.com/2023/10/android-14-is-live-in-aosp.html', 'canonicalUrl': 'https://android-developers.googleblog.com/2023/10/android-14-is-live-in-aosp.html', 'homepageUrl': 'https://android-developers.googleblog.com/', 'searchUrl': 'https://android-developers.googleblog.com/search', 'canonicalHomepageUrl': 'https://android-developers.googleblog.com/', 'blogspotFaviconUrl': 'https://android-developers.googleblog.com/favicon.ico', 'bloggerUrl': 'https://www.blogger.com', 'hasCustomDomain': true, 'httpsEnabled': true, 'enabledCommentProfileImages': true, 'gPlusViewType': 'FILTERED_POSTMOD', 'adultContent': false, 'analyticsAccountNumber': 'UA-5831155-1', 'encoding': 'UTF-8', 'locale': 'en', 'localeUnderscoreDelimited': 'en', 'languageDirection': 'ltr', 'isPrivate': false, 'isMobile': false, 'isMobileRequest': false, 'mobileClass': '', 'isPrivateBlog': false, 'isDynamicViewsAvailable': true, 'feedLinks': '\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22Android Developers Blog - Atom\x22 href\x3d\x22https://android-developers.googleblog.com/feeds/posts/default\x22 /\x3e\n\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/rss+xml\x22 title\x3d\x22Android Developers Blog - RSS\x22 href\x3d\x22https://android-developers.googleblog.com/feeds/posts/default?alt\x3drss\x22 /\x3e\n\x3clink rel\x3d\x22service.post\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22Android Developers Blog - Atom\x22 href\x3d\x22https://www.blogger.com/feeds/6755709643044947179/posts/default\x22 /\x3e\n\n\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22Android Developers Blog - Atom\x22 href\x3d\x22https://android-developers.googleblog.com/feeds/6498289298899691985/comments/default\x22 /\x3e\n', 'meTag': '', 'adsenseHostId': 'ca-host-pub-1556223355139109', 'adsenseHasAds': false, 'adsenseAutoAds': false, 'boqCommentIframeForm': true, 'loginRedirectParam': '', 'view': '', 'dynamicViewsCommentsSrc': '//www.blogblog.com/dynamicviews/4224c15c4e7c9321/js/comments.js', 'dynamicViewsScriptSrc': '//www.blogblog.com/dynamicviews/cd96ebb13b57568d', 'plusOneApiSrc': 'https://apis.google.com/js/platform.js', 'disableGComments': true, 'interstitialAccepted': false, 'sharing': {'platforms': [{'name': 'Get link', 'key': 'link', 'shareMessage': 'Get link', 'target': ''}, {'name': 'Facebook', 'key': 'facebook', 'shareMessage': 'Share to Facebook', 'target': 'facebook'}, {'name': 'BlogThis!', 'key': 'blogThis', 'shareMessage': 'BlogThis!', 'target': 'blog'}, {'name': 'X', 'key': 'twitter', 'shareMessage': 'Share to X', 'target': 'twitter'}, {'name': 'Pinterest', 'key': 'pinterest', 'shareMessage': 'Share to Pinterest', 'target': 'pinterest'}, {'name': 'Email', 'key': 'email', 'shareMessage': 'Email', 'target': 'email'}], 'disableGooglePlus': true, 'googlePlusShareButtonWidth': 0, 'googlePlusBootstrap': '\x3cscript type\x3d\x22text/javascript\x22\x3ewindow.___gcfg \x3d {\x27lang\x27: \x27en\x27};\x3c/script\x3e'}, 'hasCustomJumpLinkMessage': false, 'jumpLinkMessage': 'Read more', 'pageType': 'item', 'postId': '6498289298899691985', 'postImageThumbnailUrl': 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg9MZ26MCfyE5k66dnDkFBh6W9Uax1IrHwbK4Wz8WjArRsDHp9b4K9B2CreON5xt6KwWrpTERxmLXIj0WY70QXml0mcXfxUrWL6CYcJiFuYln3m5S6h2_jkpDd5gU1oJ67pttXIjF-ZalsystKsTx8SVIlC1rms-aaHy5sSfVohHta63_WjPCGUUuT3/s72-c/Android_Android14DPI_1024x512.png', 'postImageUrl': 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg9MZ26MCfyE5k66dnDkFBh6W9Uax1IrHwbK4Wz8WjArRsDHp9b4K9B2CreON5xt6KwWrpTERxmLXIj0WY70QXml0mcXfxUrWL6CYcJiFuYln3m5S6h2_jkpDd5gU1oJ67pttXIjF-ZalsystKsTx8SVIlC1rms-aaHy5sSfVohHta63_WjPCGUUuT3/s1600/Android_Android14DPI_1024x512.png', 'pageName': 'Android 14 is live in AOSP', 'pageTitle': 'Android Developers Blog: Android 14 is live in AOSP', 'metaDescription': 'Android 14 is rolling out to select Pixel devices starting today, and will be available later this year on some of your favorite devices.'}}, {'name': 'features', 'data': {}}, {'name': 'messages', 'data': {'edit': 'Edit', 'linkCopiedToClipboard': 'Link copied to clipboard!', 'ok': 'Ok', 'postLink': 'Post Link'}}, {'name': 'template', 'data': {'name': 'custom', 'localizedName': 'Custom', 'isResponsive': false, 'isAlternateRendering': false, 'isCustom': true}}, {'name': 'view', 'data': {'classic': {'name': 'classic', 'url': '?view\x3dclassic'}, 'flipcard': {'name': 'flipcard', 'url': '?view\x3dflipcard'}, 'magazine': {'name': 'magazine', 'url': '?view\x3dmagazine'}, 'mosaic': {'name': 'mosaic', 'url': '?view\x3dmosaic'}, 'sidebar': {'name': 'sidebar', 'url': '?view\x3dsidebar'}, 'snapshot': {'name': 'snapshot', 'url': '?view\x3dsnapshot'}, 'timeslide': {'name': 'timeslide', 'url': '?view\x3dtimeslide'}, 'isMobile': false, 'title': 'Android 14 is live in AOSP', 'description': 'Android 14 is rolling out to select Pixel devices starting today, and will be available later this year on some of your favorite devices.', 'featuredImage': 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg9MZ26MCfyE5k66dnDkFBh6W9Uax1IrHwbK4Wz8WjArRsDHp9b4K9B2CreON5xt6KwWrpTERxmLXIj0WY70QXml0mcXfxUrWL6CYcJiFuYln3m5S6h2_jkpDd5gU1oJ67pttXIjF-ZalsystKsTx8SVIlC1rms-aaHy5sSfVohHta63_WjPCGUUuT3/s1600/Android_Android14DPI_1024x512.png', 'url': 'https://android-developers.googleblog.com/2023/10/android-14-is-live-in-aosp.html', 'type': 'item', 'isSingleItem': true, 'isMultipleItems': false, 'isError': false, 'isPage': false, 'isPost': true, 'isHomepage': false, 'isArchive': false, 'isLabelSearch': false, 'postId': 6498289298899691985}}]);
+_WidgetManager._RegisterWidget('_BlogSearchView', new _WidgetInfo('BlogSearch2', 'header-popout-search', document.getElementById('BlogSearch2'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogSearchView', new _WidgetInfo('BlogSearch1', 'header-search', document.getElementById('BlogSearch1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_FeaturedPostView', new _WidgetInfo('FeaturedPost1', 'Body', document.getElementById('FeaturedPost1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogView', new _WidgetInfo('Blog1', 'Body', document.getElementById('Blog1'), {'cmtInteractionsEnabled': false, 'lightboxEnabled': true, 'lightboxModuleUrl': 'https://www.blogger.com/static/v1/jsbin/1053750561-lbx.js', 'lightboxCssUrl': 'https://www.blogger.com/static/v1/v-css/828616780-lightbox_bundle.css'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_HTMLView', new _WidgetInfo('HTML1', 'footer-subscribe', document.getElementById('HTML1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_HTMLView', new _WidgetInfo('HTML2', 'footer-subscribe', document.getElementById('HTML2'), {}, 'displayModeFull'));
+</script>
+
+<div id="cookieChoiceInfo" class="cookie-choices-info singleton-element"><div class="cookie-choices-inner"><span class="cookie-choices-text">Este
+ sitio utiliza cookies de Google para prestar sus servicios y para 
+analizar su tráfico. Tu dirección IP y user-agent se comparten con 
+Google, junto con las métricas de rendimiento y de seguridad, para 
+garantizar la calidad del servicio, generar estadísticas de uso y 
+detectar y solucionar abusos.</span><span class="cookie-choices-buttons"><a href="https://www.blogger.com/go/blogspot-cookies" target="_blank" class="cookie-choices-button">Más información</a><a id="cookieChoiceDismiss" href="#" class="cookie-choices-button">Entendido</a></span></div></div></body></html>
